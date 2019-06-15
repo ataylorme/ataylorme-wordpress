@@ -13,8 +13,17 @@
       "url": "https://github.com/pantheon-systems/wordpress-composer"
     },
     {
-      "type": "vcs",
-      "url": "https://github.com/ampproject/amp-wp"
+      "type": "package",
+      "package": {
+        "name": "google/amp",
+        "version": "1.2-RC1",
+        "type": "wordpress-plugin",
+        "dist": {
+          "type": "zip",
+          "url": "https://github.com/ampproject/amp-wp/releases/download/1.2-RC1/amp.zip",
+          "reference": "1.2-RC1"
+        }
+      }
     },
     {
       "type": "package",
@@ -38,7 +47,7 @@
     "roots/wp-password-bcrypt": "^1.0.0",
     "rvtraveller/qs-composer-installer": "^1.1",
     "vlucas/phpdotenv": "^3.1.0",
-    "ampproject/amp-wp": "^1.2-RC1",
+    "google/amp": "^1.2-RC1",
     "google/site-kit": "^1.0.0-RC1",
     "wpackagist-plugin/lh-hsts": "^1.24",
     "wpackagist-plugin/gutenberg": "^5.9.2",

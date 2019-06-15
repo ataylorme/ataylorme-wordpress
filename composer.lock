@@ -4,64 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "043552bfb6ef897a0479eec76a2bfff7",
+    "content-hash": "5481ea59226688e02fb433a6e3f65e88",
     "packages": [
-        {
-            "name": "ampproject/amp-wp",
-            "version": "1.2-RC1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/ampproject/amp-wp.git",
-                "reference": "0efb9cf51c3a8f394d07c946f4c9f1240bd358ac"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/ampproject/amp-wp/zipball/0efb9cf51c3a8f394d07c946f4c9f1240bd358ac",
-                "reference": "0efb9cf51c3a8f394d07c946f4c9f1240bd358ac",
-                "shasum": ""
-            },
-            "require": {
-                "cweagans/composer-patches": "1.6.6",
-                "ext-curl": "*",
-                "ext-date": "*",
-                "ext-dom": "*",
-                "ext-iconv": "*",
-                "ext-libxml": "*",
-                "ext-spl": "*",
-                "fasterimage/fasterimage": "1.5.0",
-                "php": "^5.4 || ^7.0",
-                "sabberworm/php-css-parser": "8.3.0"
-            },
-            "require-dev": {
-                "dealerdirect/phpcodesniffer-composer-installer": "0.5.0",
-                "phpcompatibility/php-compatibility": "9.1.1",
-                "wp-coding-standards/wpcs": "2.1.1",
-                "xwp/wp-dev-lib": "1.1.2"
-            },
-            "suggest": {
-                "ext-intl": "Enables use of idn_to_utf8() to convert punycode domains to UTF-8 for use with an AMP Cache.",
-                "ext-json": "Provides native implementation of json_encode()/json_decode().",
-                "ext-mbstring": "Used by PHP-CSS-Parser when working with stylesheets."
-            },
-            "type": "wordpress-plugin",
-            "extra": {
-                "patches": {
-                    "sabberworm/php-css-parser": {
-                        "PHP-CSS-Parser: Fix parsing CSS selectors which contain commas <https://github.com/sabberworm/PHP-CSS-Parser/pull/138>": "patches/php-css-parser-mods.diff"
-                    }
-                }
-            },
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "description": "WordPress plugin for adding AMP support.",
-            "homepage": "https://github.com/ampproject/amp-wp",
-            "support": {
-                "source": "https://github.com/ampproject/amp-wp/tree/1.2-RC1",
-                "issues": "https://github.com/ampproject/amp-wp/issues"
-            },
-            "time": "2019-06-14T15:53:52+00:00"
-        },
         {
             "name": "composer/installers",
             "version": "v1.6.0",
@@ -183,103 +127,15 @@
             "time": "2018-08-27T06:10:37+00:00"
         },
         {
-            "name": "cweagans/composer-patches",
-            "version": "1.6.6",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/cweagans/composer-patches.git",
-                "reference": "1d89dcc730e7f42426c434b88261fcfb3bce651e"
-            },
+            "name": "google/amp",
+            "version": "1.2-RC1",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cweagans/composer-patches/zipball/1d89dcc730e7f42426c434b88261fcfb3bce651e",
-                "reference": "1d89dcc730e7f42426c434b88261fcfb3bce651e",
-                "shasum": ""
+                "url": "https://github.com/ampproject/amp-wp/releases/download/1.2-RC1/amp.zip",
+                "reference": "1.2-RC1",
+                "shasum": null
             },
-            "require": {
-                "composer-plugin-api": "^1.0",
-                "php": ">=5.3.0"
-            },
-            "require-dev": {
-                "composer/composer": "~1.0",
-                "phpunit/phpunit": "~4.6"
-            },
-            "type": "composer-plugin",
-            "extra": {
-                "class": "cweagans\\Composer\\Patches"
-            },
-            "autoload": {
-                "psr-4": {
-                    "cweagans\\Composer\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Cameron Eagans",
-                    "email": "me@cweagans.net"
-                }
-            ],
-            "description": "Provides a way to patch Composer packages.",
-            "time": "2018-10-24T15:51:16+00:00"
-        },
-        {
-            "name": "fasterimage/fasterimage",
-            "version": "v1.5.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/willwashburn/fasterimage.git",
-                "reference": "42d125a15dc124520aff2157bbed9a4b2d4f310a"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/willwashburn/fasterimage/zipball/42d125a15dc124520aff2157bbed9a4b2d4f310a",
-                "reference": "42d125a15dc124520aff2157bbed9a4b2d4f310a",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.4.0",
-                "willwashburn/stream": ">=1.0"
-            },
-            "require-dev": {
-                "php-coveralls/php-coveralls": "^2.1",
-                "php-mock/php-mock-phpunit": "^2.3",
-                "phpunit/phpunit": "~6.0"
-            },
-            "type": "library",
-            "autoload": {
-                "classmap": [
-                    "src"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Will Washburn",
-                    "email": "will@tailwindapp.com"
-                },
-                {
-                    "name": "Weston Ruter"
-                }
-            ],
-            "description": "FasterImage finds the size or type of a set of images given their uris by fetching as little as needed, in parallel. Originally ported by Tom Moor.",
-            "homepage": "https://github.com/willwashburn/fasterimage",
-            "keywords": [
-                "fast image",
-                "faster image",
-                "fasterimage",
-                "fastimage",
-                "getimagesize",
-                "image size",
-                "parallel"
-            ],
-            "time": "2019-05-25T14:33:33+00:00"
+            "type": "wordpress-plugin"
         },
         {
             "name": "google/site-kit",
@@ -545,51 +401,6 @@
             "time": "2017-01-27T20:40:31+00:00"
         },
         {
-            "name": "sabberworm/php-css-parser",
-            "version": "8.3.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/sabberworm/PHP-CSS-Parser.git",
-                "reference": "91bcc3e3fdb7386c9a2e0e0aa09ca75cc43f121f"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/sabberworm/PHP-CSS-Parser/zipball/91bcc3e3fdb7386c9a2e0e0aa09ca75cc43f121f",
-                "reference": "91bcc3e3fdb7386c9a2e0e0aa09ca75cc43f121f",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.2"
-            },
-            "require-dev": {
-                "codacy/coverage": "^1.4",
-                "phpunit/phpunit": "~4.8"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Sabberworm\\CSS": "lib/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Raphael Schweikert"
-                }
-            ],
-            "description": "Parser for CSS Files written in PHP",
-            "homepage": "http://www.sabberworm.com/blog/2010/6/10/php-css-parser",
-            "keywords": [
-                "css",
-                "parser",
-                "stylesheet"
-            ],
-            "time": "2019-02-22T07:42:52+00:00"
-        },
-        {
             "name": "symfony/polyfill-ctype",
             "version": "v1.11.0",
             "source": {
@@ -698,53 +509,6 @@
                 "environment"
             ],
             "time": "2019-03-06T09:39:45+00:00"
-        },
-        {
-            "name": "willwashburn/stream",
-            "version": "v1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/willwashburn/stream.git",
-                "reference": "345b3062493e3899d987dbdd1fec1c13ee28c903"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/willwashburn/stream/zipball/345b3062493e3899d987dbdd1fec1c13ee28c903",
-                "reference": "345b3062493e3899d987dbdd1fec1c13ee28c903",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.4.0"
-            },
-            "require-dev": {
-                "mockery/mockery": "~0.9",
-                "phpunit/phpunit": "~4.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "WillWashburn\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Will Washburn",
-                    "email": "will.washburn@gmail.com"
-                }
-            ],
-            "description": "model a sequence of data elements made available over time ",
-            "homepage": "https://github.com/willwashburn/stream",
-            "keywords": [
-                "peek",
-                "read",
-                "stream",
-                "streamable"
-            ],
-            "time": "2016-03-15T10:54:35+00:00"
         },
         {
             "name": "wpackagist-plugin/gutenberg",
@@ -5266,7 +5030,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "ampproject/amp-wp": 5,
+        "google/amp": 5,
         "google/site-kit": 5,
         "roave/security-advisories": 20
     },
