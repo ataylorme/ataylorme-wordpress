@@ -1,0 +1,21 @@
+name: ataylorme-wordpress
+
+recipe: pantheon
+
+config:
+  framework: wordpress
+  site: ataylorme-wordpress
+  id: 489520a4-b156-4743-8e4c-dffdcf353fa2
+  xdebug: false
+  webroot: web
+
+# Additional "lando" commands
+tooling:
+  composer:
+    service: appserver
+  wp:
+    service: appserver
+  unit-test:
+    description: Run unit tests
+    cmd: composer -n unit-test
+    service: appserver
