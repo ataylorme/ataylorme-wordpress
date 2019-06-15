@@ -58,8 +58,8 @@ jobs:
           root: .
           paths:
             - bash_env.txt
-  
-    build_wprig_theme_php:
+
+  build_wprig_theme_php:
     <<: *defaults
 
     steps:
@@ -240,27 +240,27 @@ jobs:
           when: always
 
     visual_regression_test:
-        <<: *defaults
-        docker:
-            - image: backstopjs/backstopjs:4.1.9
-        steps:
-            - checkout
+      <<: *defaults
+      docker:
+        - image: backstopjs/backstopjs:4.1.9
+      steps:
+        - checkout
 
-            - attach_workspace:
-                at: /tmp/workspace
+        - attach_workspace:
+            at: /tmp/workspace
 
-            - run: cp /tmp/workspace/bash_env.txt $BASH_ENV
-            - run: echo "export CI_BUILD_URL='${CIRCLE_BUILD_URL}'" >> $BASH_ENV
-            - run: echo "export CI_NODE_INDEX='${CIRCLE_NODE_INDEX}'" >> $BASH_ENV
-            - run: source $BASH_ENV
+        - run: cp /tmp/workspace/bash_env.txt $BASH_ENV
+        - run: echo "export CI_BUILD_URL='${CIRCLE_BUILD_URL}'" >> $BASH_ENV
+        - run: echo "export CI_NODE_INDEX='${CIRCLE_NODE_INDEX}'" >> $BASH_ENV
+        - run: source $BASH_ENV
 
-            - run:
-                name: visual regression test
-                command: ./.ci/scripts/visual-regression-test
+        - run:
+            name: visual regression test
+            command: ./.ci/scripts/visual-regression-test
 
-            - store_artifacts:
-                path: /tmp/artifacts
-                destination: artifacts
+        - store_artifacts:
+            path: /tmp/artifacts
+            destination: artifacts
 
   composer_lock_updater:
     <<: *defaults
