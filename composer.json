@@ -1,6 +1,6 @@
 {
-  "name": "pantheon-systems/example-wordpress-composer",
-  "description": "",
+  "name": "ataylorme/ataylorme-wordpress",
+  "description": "Personal site of Andrew Taylor",
   "type": "project",
   "keywords": [],
   "repositories": [
