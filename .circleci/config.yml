@@ -191,7 +191,7 @@ jobs:
 
       - run:
           name: copy production theme
-          command: cp -r /tmp/web/wp-content/themes/pantheon-brewing web/wp-content/themes/
+          command: cp -r /tmp/web/wp-content/themes/ataylorme web/wp-content/themes/
 
       - run:
           name: remove dev theme
