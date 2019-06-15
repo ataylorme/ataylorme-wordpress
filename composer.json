@@ -128,7 +128,7 @@
       "WordPressProject\\composer\\ScriptHandler::createRequiredFiles"
     ],
     "code-sniff": [
-      "./vendor/bin/phpcs --standard=WordPress --ignore=./web/wp-content/themes/wprig/gulp,./web/wp-content/themes/wprig/gulpfile.babel.js ./web/wp-content"
+      "./vendor/bin/phpcs --standard=WordPress --ignore=./web/wp-content/themes/wprig ./web/wp-content"
     ],
     "unit-test": [
       "./vendor/bin/phpunit tests/unit/*"
