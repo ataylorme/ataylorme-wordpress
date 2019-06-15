@@ -118,7 +118,7 @@ jobs:
           root: .
           # Must be relative path from root
           paths:
-            - web/wp-content/themes/pantheon-brewing
+            - web/wp-content/themes/ataylorme
 
   # @todo: common initialization: 'composer install' for the site-under-test
   unit:
