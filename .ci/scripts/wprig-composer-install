@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# Exit on errors
+set -e
+
+# Change into dev theme directory
+echo -e "\nChanging directories into web/wp-content/themes/wprig"
+cd web/wp-content/themes/wprig
+
+# Install any dependencies, if we find composer.json
+if [ -f 'composer.json' ]
+then
+
+	echo -e "\ncomposer.json found"
+
+	echo -e "\nRunning 'composer install'"
+	composer install --no-ansi --no-interaction --optimize-autoloader --no-progress
+fi
+
+# Change back again
+echo -e "\nchanged directories back into:"
+cd -
