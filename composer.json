@@ -1,6 +1,6 @@
 {
-  "name": "pantheon-systems/example-wordpress-composer",
-  "description": "",
+  "name": "ataylorme/ataylorme-wordpress",
+  "description": "Personal site of Andrew Taylor",
   "type": "project",
   "keywords": [],
   "repositories": [
@@ -128,10 +128,11 @@
       "WordPressProject\\composer\\ScriptHandler::createRequiredFiles"
     ],
     "code-sniff": [
-      "./vendor/bin/phpcs --standard=WordPress ./web/wp-content"
+      "./vendor/bin/phpcs --standard=WordPress --ignore=./web/wp-content/themes/wprig,./web/wp-content/object-cache.php ./web/wp-content"
     ],
     "unit-test": [
       "./vendor/bin/phpunit tests/unit/*"
-    ]
+    ],
+    "lint": "find web/wp-content -name '*.php' -exec php -l {} \\;"
   }
 }

@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# Exit on errors
+set -e
+
+# Change into dev theme directory
+echo -e "\nChanging directories into web/wp-content/themes/wprig"
+cd web/wp-content/themes/wprig
+
+echo -e "\nCopying stored vendor directory"
+cp -r /tmp/web/wp-content/themes/wprig/vendor/ .
+
+
+# Install any dependencies, if we find packages.json
+if [ -f 'package.json' ]
+then
+
+	echo -e "\npackage.json found"
+
+	echo -e "\nRunning 'npm install'"
+	npm install
+fi
+
+# Run gulp
+echo -e "\nRunning 'npm run bundle'"
+npm run bundle
+
+# Change back again
+echo -e "\nchanged directories back into:"
+cd -
