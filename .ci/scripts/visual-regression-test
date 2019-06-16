@@ -57,8 +57,8 @@ echo -e "\nPinging the ${TERMINUS_ENV} multidev environment to wake it from slee
 curl -I "$MULTIDEV_SITE_URL" >/dev/null
 
 # Ping the live environment to wake it from sleep
-echo -e "\nPinging the live environment to wake it from sleep..."
-curl -I "$LIVE_SITE_URL" >/dev/null
+echo -e "\nPinging the dev environment to wake it from sleep..."
+curl -I "$DEV_SITE_URL" >/dev/null
 
 # Check for custom backstop.json
 if [ ! -f ./.ci/backstop.json ]; then
@@ -71,7 +71,7 @@ fi
 node .ci/dynamic-backstop-json-urls.js
 
 # Backstop visual regression
-echo -e "\nRunning backstop reference on ${LIVE_SITE_URL}..."
+echo -e "\nRunning backstop reference on ${DEV_SITE_URL}..."
 backstop reference --config=.ci/backstop.json
 
 # Kill any zombie Chrome instances
