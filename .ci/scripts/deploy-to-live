@@ -1,0 +1,18 @@
+#!/bin/bash
+
+set -eo pipefail
+
+# Set secrets on live
+terminus -n secrets:set $TERMINUS_SITE.live token "$GITHUB_TOKEN" --file='github-secrets.json' --clear --skip-if-empty
+
+# Deploy to test
+terminus -n env:deploy $TERMINUS_SITE.test --cc --sync-content --note="Automated deployment of PR $PR_NUMBER"
+
+# Run update-db on the test environment
+terminus -n wp $TERMINUS_SITE.test -- core update-db
+
+# Deploy to live
+terminus -n env:deploy $TERMINUS_SITE.live --note="Automated deployment of PR $PR_NUMBER"
+
+# Run update-db on the live environment
+terminus -n wp $TERMINUS_SITE.live -- core update-db
