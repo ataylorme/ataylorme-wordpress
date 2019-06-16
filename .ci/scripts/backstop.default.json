@@ -43,7 +43,7 @@
     "ci_report": "backstop_data/ci_report"
   },
   "report": ["browser", "CI"],
-  "engine": "puppeteer",
+  "engine": "chromy",
   "asyncCaptureLimit": 5,
   "asyncCompareLimit": 50,
   "debug": false,
