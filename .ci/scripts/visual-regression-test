@@ -61,10 +61,10 @@ echo -e "\nPinging the dev environment to wake it from sleep..."
 curl -I "$DEV_SITE_URL" >/dev/null
 
 # Check for custom backstop.json
-if [ ! -f ./.ci/backstop.json ]; then
+if [ ! -f ./.ci/scripts/backstop.json ]; then
 	# Create Backstop config file from template if needed
 	echo -e "\nCloning backstop.default json to backstop.json..."
-	cp .ci/backstop.default.json .ci/backstop.json
+	cp .ci/scripts/backstop.default.json .ci/scripts/backstop.json
 fi
 
 # Dynamically set URLs in backstop.json
