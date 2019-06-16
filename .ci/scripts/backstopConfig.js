@@ -56,6 +56,9 @@ module.exports = {
     report: ['browser', 'CI'],
     debug: false,
     engine: 'puppeteer',
+    engineOptions: {
+        args: ['--no-sandbox']
+    },
     asyncCaptureLimit: 5,
     asyncCompareLimit: 50,
     debug: false,
