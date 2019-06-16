@@ -1,22 +1,22 @@
 <?php
 
-namespace AdvancedPantheon\Tests\Unit;
+namespace ataylorme\Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
 use Brain\Monkey;
 
 class Test_Assert extends TestCase {
-	protected function setUp() {
+	protected function setUp(): void {
 		parent::setUp();
 		Monkey\setUp();
 	}
 
-	protected function tearDown() {
+	protected function tearDown(): void {
 		Monkey\tearDown();
 		parent::tearDown();
 	}
 
-	public function test_sample() {
+	public function testAssertTrue() {
 		$this->assertTrue( true );
 	}
 }

@@ -13,7 +13,7 @@ import calc from 'postcss-calc';
 import { pipeline } from 'mississippi';
 
 // Internal dependencies
-import {rootPath, paths, gulpPlugins, isProd} from './constants';
+import {paths, gulpPlugins, isProd, PHPCSOptions} from './constants';
 import {
 	getThemeConfig,
 	getStringReplacementTasks,
@@ -33,13 +33,15 @@ export function editorStylesBeforeReplacementStream() {
 			dest: paths.styles.dest,
 			extra: [paths.config.themeConfig]
 		}),
-		gulpPlugins.phpcs({
-			bin: `${rootPath}/vendor/bin/phpcs`,
-			standard: 'WordPress',
-			warningSeverity: 0
-		}),
-		// Log all problems that were found.
-		gulpPlugins.phpcs.reporter('log'),
+		// Code sniff if in development mode.
+		gulpPlugins.if(
+			! isProd,
+			gulpPlugins.phpcs(PHPCSOptions)
+		),
+		gulpPlugins.if(
+			! isProd,
+			gulpPlugins.phpcs.reporter('log')
+		),
 	]);
 }
 
