@@ -320,6 +320,7 @@ workflows:
       - behat_test:
           requires:
             - deploy_to_pantheon
+            - visual_regression_test
       # Deploy to live if tests pass
       - deploy_to_live:
           requires:
