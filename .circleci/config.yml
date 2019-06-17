@@ -262,6 +262,44 @@ jobs:
           path: /tmp/artifacts
           destination: artifacts
 
+  lighthouse_test:
+    <<: *defaults
+    docker:
+      - image: circleci/node:lts-browsers
+      # circleci/php:7-node-browsers
+    steps:
+      - checkout
+
+      - attach_workspace:
+          at: /tmp/workspace
+      - restore_cache:
+          keys:
+            - npm-dependencies-{{ checksum "package-lock.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - npm-dependencies-
+
+      - run: cp /tmp/workspace/bash_env.txt $BASH_ENV
+      - run: echo "export CI_BUILD_URL='${CIRCLE_BUILD_URL}'" >> $BASH_ENV
+      - run: echo "export CI_NODE_INDEX='${CIRCLE_NODE_INDEX}'" >> $BASH_ENV
+      - run: source $BASH_ENV
+
+      - run:
+          name: npm install
+          command: npm install
+
+      - run:
+          name: lighthouse audit
+          command: ./.ci/scripts/lighthouse/lighthouse-audit
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: npm-dependencies-{{ checksum "package-lock.json" }}
+
+      - store_artifacts:
+          path: /tmp/artifacts
+          destination: artifacts
+
   composer_lock_updater:
     <<: *defaults
     steps:
@@ -316,11 +354,17 @@ workflows:
           requires:
             - configure_env_vars
             - deploy_to_pantheon
+      # Deploy before running lighthouse tests
+      - lighthouse_test:
+          requires:
+            - configure_env_vars
+            - deploy_to_pantheon
       # Deploy before running Behat tests
       - behat_test:
           requires:
             - deploy_to_pantheon
             - visual_regression_test
+            - lighthouse_test
       # Deploy to live if tests pass
       - deploy_to_live:
           requires:
@@ -328,6 +372,7 @@ workflows:
             - unit
             - behat_test
             - visual_regression_test
+            - lighthouse_test
           filters:
             branches:
               only:
