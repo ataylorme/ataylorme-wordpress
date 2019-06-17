@@ -1,0 +1,24 @@
+{
+  "name": "ataylorme-wordpress",
+  "version": "0.1.0",
+  "description": "Personal website of Andrew Taylor",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ataylorme/ataylorme-wordpress.git"
+  },
+  "author": "Andrew Taylor",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ataylorme/ataylorme-wordpress/issues"
+  },
+  "homepage": "https://www.ataylor.me",
+  "devDependencies": {
+    "chrome-launcher": "^0.10.7",
+    "jest": "^24.8.0",
+    "lighthouse": "^5.1.0"
+  },
+  "scripts": {
+    "lighthouse-run": "node ./.ci/scripts/lighthouse/lighthouse.run.js",
+    "lighthouse-test": "jest ./.ci/scripts/lighthouse/lighthouse.test.js"
+  }
+}
