@@ -1,0 +1,81 @@
+#!/bin/bash
+
+# Variables
+BUILD_DIR=$(pwd)
+GITHUB_API_URL="https://api.github.com/repos/$CI_PROJECT_USERNAME/$CI_PROJECT_REPONAME"
+
+# Check if we are NOT on the master branch and this is a PR
+if [[ ${CI_BRANCH} != "master" && -z ${CI_PR_URL} ]];
+then
+  echo -e "\nLighthouse audits will only run if we are not on the master branch and making a pull request"
+  exit 0;
+fi
+
+echo -e "\nProcessing pull request #$PR_NUMBER"
+
+if [[ ${CI_BRANCH} == "master" ]];
+then
+    # Ping the dev environment to wake it from sleep
+    echo -e "\nPinging the dev environment to wake it from sleep..."
+    curl -I "$DEV_SITE_URL" >/dev/null
+
+    # Ping the live environment to wake it from sleep
+    echo -e "\nPinging the live environment to wake it from sleep..."
+    curl -I "$LIVE_SITE_URL" >/dev/null
+else
+    # Ping the multidev environment to wake it from sleep
+    echo -e "\nPinging the ${TERMINUS_ENV} multidev environment to wake it from sleep..."
+    curl -I "$MULTIDEV_SITE_URL" >/dev/null
+
+    # Ping the dev environment to wake it from sleep
+    echo -e "\nPinging the dev environment to wake it from sleep..."
+    curl -I "$DEV_SITE_URL" >/dev/null
+fi
+
+# Lighthouse audits
+echo -e "\nRunning lighthouse audits..."
+npm run lighthouse-run
+
+# Create the artifacts directory if needed
+if [ ! -d "$ARTIFACTS_FULL_DIR" ]; then
+  mkdir -p $ARTIFACTS_FULL_DIR
+fi
+
+export ARTIFACTS_DIR_URL="${CI_BUILD_URL}/artifacts/${CI_NODE_INDEX}/artifacts"
+
+# Copy lighthouse files to ARTIFACTS_FULL_DIR
+echo -e "\nCopying lighthouse_data files to $ARTIFACTS_FULL_DIR..."
+rm -rf $ARTIFACTS_FULL_DIR/lighthouse_data
+cp -r lighthouse_data $ARTIFACTS_FULL_DIR/
+
+DEV_HTML_REPORT="$ARTIFACTS_FULL_DIR/lighthouse_data/lighthouse-audit-dev.html"
+
+if [ ! -f $DEV_HTML_REPORT ]; then
+	echo -e "\nDev HTML report file $DEV_HTML_REPORT not found!"
+	exit 1
+fi
+
+REFERENCE_HTML_REPORT="$ARTIFACTS_FULL_DIR/lighthouse_data/lighthouse-audit-reference.html"
+
+if [ ! -f $REFERENCE_HTML_REPORT ]; then
+	echo -e "\nReference HTML report file $REFERENCE_HTML_REPORT not found!"
+	exit 1
+fi
+
+DEV_HTML_REPORT_URL="$ARTIFACTS_DIR_URL/lighthouse_data/lighthouse-audit-dev.html"
+REFERENCE_HTML_REPORT_URL="$ARTIFACTS_DIR_URL/lighthouse_data/lighthouse-audit-reference.html"
+
+PR_MESSAGE="Lighthouse audit results:\n- [Dev HTML Report]($DEV_HTML_REPORT_URL)\n- [Reference HTML Report]($REFERENCE_HTML_REPORT_URL)"
+
+# Post the results back to the pull request on GitHub
+if [[ ${CI_BRANCH} != "master" ]];
+then
+    echo -e "\nPosting Lighthouse results back to PR #$PR_NUMBER "
+    curl -s -i -u "$CI_PROJECT_USERNAME:$GITHUB_TOKEN" -d "{\"body\": \"$PR_MESSAGE\"}" $GITHUB_API_URL/issues/$PR_NUMBER/comments > /dev/null
+fi
+
+# Test Lighthouse results
+echo -e "\nTesting Lighthouse results..."
+LIGHTHOUSE_RESULTS=$(npm run lighthouse-test || echo 'true')
+
+echo "${LIGHTHOUSE_RESULTS}"

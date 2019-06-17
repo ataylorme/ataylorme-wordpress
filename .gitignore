@@ -7,6 +7,8 @@
 
 # Webroot #
 ###########
+lighthouse_data/
+node_modules/
 !web/
 web/*
 !web/index.php
