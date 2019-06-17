@@ -349,11 +349,17 @@ workflows:
           requires:
             - configure_env_vars
             - deploy_to_pantheon
+      # Deploy before running lighthouse tests
+      - lighthouse_test:
+          requires:
+            - configure_env_vars
+            - deploy_to_pantheon
       # Deploy before running Behat tests
       - behat_test:
           requires:
             - deploy_to_pantheon
             - visual_regression_test
+            - lighthouse_test
       # Deploy to live if tests pass
       - deploy_to_live:
           requires:
@@ -361,6 +367,7 @@ workflows:
             - unit
             - behat_test
             - visual_regression_test
+            - lighthouse_test
           filters:
             branches:
               only:
