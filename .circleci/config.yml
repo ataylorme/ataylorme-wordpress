@@ -284,8 +284,13 @@ jobs:
       - run: source $BASH_ENV
 
       - run:
+          name: npm install
+          command: npm install
+
+      - run:
           name: lighthouse audit
           command: ./.ci/scripts/lighthouse/lighthouse-audit
+
       - save_cache:
           paths:
             - node_modules
