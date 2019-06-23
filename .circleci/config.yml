@@ -156,27 +156,27 @@ jobs:
       - attach_workspace:
           at: /tmp
 
+      - run:
+          name: sync web
+          command: rsync -az /tmp/web/ web
+
       - restore_cache:
           keys:
             - wp-rig-node-modules-{{ checksum "web/wp-content/themes/wprig/package-lock.json" }}
             - wp-rig-node-modules-
 
       - run:
-          name: sync web
-          command: rsync -az /tmp/web/ web
-
-      - run:
           name: build theme
           command: ./.ci/scripts/wprig-npm-install
-
-      - run:
-          name: remove dev theme
-          command: rm -rf web/wp-content/themes/wprig
 
       - save_cache:
           key: wp-rig-node-modules-{{ checksum "web/wp-content/themes/wprig/package-lock.json" }}
           paths:
             - $HOME/ataylorme-wordpress/web/wp-content/themes/wprig/node_modules
+
+      - run:
+          name: remove dev theme
+          command: rm -rf web/wp-content/themes/wprig
 
       - persist_to_workspace:
           # Must be relative path from working_directory
