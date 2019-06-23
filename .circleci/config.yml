@@ -342,6 +342,11 @@ jobs:
           name: deploy to live
           command: ./.ci/scripts/deploy-to-live
 
+      - run:
+          name: restore backup
+          command: terminus -n backup:restore $TERMINUS_SITE.live --element=database --yes
+          when: on_fail
+
 workflows:
   version: 2
   build_and_test:
