@@ -37,9 +37,6 @@ defaults: &defaults
 
 version: 2.1
 
-orbs:
-  build-tools: circleci/build-tools@2.6.0
-
 jobs:
   configure_env_vars:
     <<: *defaults
@@ -164,8 +161,6 @@ jobs:
           keys:
             - wp-rig-node-modules-{{ checksum "web/wp-content/themes/wprig/package-lock.json" }}
             - wp-rig-node-modules-
-
-      - build-tools/install-ci-tools
 
       - run:
           name: sync web
