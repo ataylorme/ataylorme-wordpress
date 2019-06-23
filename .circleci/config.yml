@@ -146,6 +146,7 @@ jobs:
           root: .
           paths:
             - web
+            - vendor
 
   build_wprig_theme_node:
     <<: *defaults
