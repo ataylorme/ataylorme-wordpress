@@ -1,11 +1,72 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "f61ff1ae08ce01a058f2f38663a173e5",
+    "content-hash": "b78dc3ab4a1a03a5c7a6c84cd6d63b72",
     "packages": [
+        {
+            "name": "ataylorme/ataylorme-wordpress-theme",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ataylorme/ataylorme-wordpress-theme.git",
+                "reference": "2d71924d0a6663cbeca5b1fea8f3d0b18fc02fac"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ataylorme/ataylorme-wordpress-theme/zipball/2d71924d0a6663cbeca5b1fea8f3d0b18fc02fac",
+                "reference": "2d71924d0a6663cbeca5b1fea8f3d0b18fc02fac",
+                "shasum": ""
+            },
+            "require-dev": {
+                "brain/monkey": "^2",
+                "dealerdirect/phpcodesniffer-composer-installer": "^0.4",
+                "php": ">=7.0",
+                "phpcompatibility/php-compatibility": "^9",
+                "phpunit/phpunit": "^6",
+                "wp-coding-standards/wpcs": "^2"
+            },
+            "type": "wordpress-theme",
+            "autoload": {
+                "psr-4": {
+                    "WP_Rig\\WP_Rig\\": "inc"
+                }
+            },
+            "scripts": {
+                "install-codestandards": [
+                    "Dealerdirect\\Composer\\Plugin\\Installers\\PHPCodeSniffer\\Plugin::run"
+                ],
+                "phpcbf-dev": [
+                    "\"vendor/bin/phpcbf\""
+                ],
+                "run-phpcbf": [
+                    "@phpcbf-dev"
+                ],
+                "phpcs-dev": [
+                    "\"vendor/bin/phpcs\""
+                ],
+                "run-phpcs": [
+                    "@phpcs-dev"
+                ],
+                "phpunit-dev": [
+                    "\"vendor/bin/phpunit\""
+                ],
+                "phpunit-integration-dev": [
+                    "\"vendor/bin/phpunit\" -c \"phpunit.integration.xml.dist\""
+                ]
+            },
+            "license": [
+                "GPL-2.0"
+            ],
+            "description": "WordPress theme for ataylor.me",
+            "support": {
+                "source": "https://github.com/ataylorme/ataylorme-wordpress-theme/tree/master",
+                "issues": "https://github.com/ataylorme/ataylorme-wordpress-theme/issues"
+            },
+            "time": "2019-06-23T04:03:03+00:00"
+        },
         {
             "name": "composer/installers",
             "version": "v1.6.0",
@@ -125,28 +186,6 @@
                 "zikula"
             ],
             "time": "2018-08-27T06:10:37+00:00"
-        },
-        {
-            "name": "google/amp",
-            "version": "1.2-RC1",
-            "dist": {
-                "type": "zip",
-                "url": "https://github.com/ampproject/amp-wp/releases/download/1.2-RC1/amp.zip",
-                "reference": "1.2-RC1",
-                "shasum": null
-            },
-            "type": "wordpress-plugin"
-        },
-        {
-            "name": "google/site-kit",
-            "version": "1.0.0-RC1",
-            "dist": {
-                "type": "zip",
-                "url": "https://sitekit.withgoogle.com/download/rh7a9kcb715g11vj/google-site-kit.zip",
-                "reference": "1.0.0-RC1",
-                "shasum": null
-            },
-            "type": "wordpress-plugin"
         },
         {
             "name": "johnpbloch/wordpress-core-installer",
@@ -511,6 +550,26 @@
             "time": "2019-06-15T22:40:20+00:00"
         },
         {
+            "name": "wpackagist-plugin/amp",
+            "version": "1.2.0",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/amp/",
+                "reference": "tags/1.2.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/amp.1.2.0.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/amp/"
+        },
+        {
             "name": "wpackagist-plugin/gutenberg",
             "version": "5.9.2",
             "source": {
@@ -589,6 +648,26 @@
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/pantheon-advanced-page-cache/"
+        },
+        {
+            "name": "wpackagist-plugin/pwa",
+            "version": "0.2.0",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/pwa/",
+                "reference": "tags/0.2.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/pwa.0.2.0.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/pwa/"
         },
         {
             "name": "wpackagist-plugin/query-monitor",
@@ -4271,16 +4350,16 @@
         },
         {
             "name": "symfony/event-dispatcher-contracts",
-            "version": "v1.1.1",
+            "version": "v1.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/event-dispatcher-contracts.git",
-                "reference": "8fa2cf2177083dd59cf8e44ea4b6541764fbda69"
+                "reference": "c61766f4440ca687de1084a5c00b08e167a2575c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/event-dispatcher-contracts/zipball/8fa2cf2177083dd59cf8e44ea4b6541764fbda69",
-                "reference": "8fa2cf2177083dd59cf8e44ea4b6541764fbda69",
+                "url": "https://api.github.com/repos/symfony/event-dispatcher-contracts/zipball/c61766f4440ca687de1084a5c00b08e167a2575c",
+                "reference": "c61766f4440ca687de1084a5c00b08e167a2575c",
                 "shasum": ""
             },
             "require": {
@@ -4325,7 +4404,7 @@
                 "interoperability",
                 "standards"
             ],
-            "time": "2019-05-22T12:23:29+00:00"
+            "time": "2019-06-20T06:46:26+00:00"
         },
         {
             "name": "symfony/filesystem",
@@ -4496,23 +4575,23 @@
         },
         {
             "name": "symfony/service-contracts",
-            "version": "v1.1.2",
+            "version": "v1.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/service-contracts.git",
-                "reference": "191afdcb5804db960d26d8566b7e9a2843cab3a0"
+                "reference": "f391a00de78ec7ec8cf5cdcdae59ec7b883edb8d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/service-contracts/zipball/191afdcb5804db960d26d8566b7e9a2843cab3a0",
-                "reference": "191afdcb5804db960d26d8566b7e9a2843cab3a0",
+                "url": "https://api.github.com/repos/symfony/service-contracts/zipball/f391a00de78ec7ec8cf5cdcdae59ec7b883edb8d",
+                "reference": "f391a00de78ec7ec8cf5cdcdae59ec7b883edb8d",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.1.3"
+                "php": "^7.1.3",
+                "psr/container": "^1.0"
             },
             "suggest": {
-                "psr/container": "",
                 "symfony/service-implementation": ""
             },
             "type": "library",
@@ -4550,7 +4629,7 @@
                 "interoperability",
                 "standards"
             ],
-            "time": "2019-05-28T07:50:59+00:00"
+            "time": "2019-06-13T11:15:36+00:00"
         },
         {
             "name": "symfony/translation",
@@ -4630,16 +4709,16 @@
         },
         {
             "name": "symfony/translation-contracts",
-            "version": "v1.1.2",
+            "version": "v1.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/translation-contracts.git",
-                "reference": "93597ce975d91c52ebfaca1253343cd9ccb7916d"
+                "reference": "cb4b18ad7b92a26e83b65dde940fab78339e6f3c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/translation-contracts/zipball/93597ce975d91c52ebfaca1253343cd9ccb7916d",
-                "reference": "93597ce975d91c52ebfaca1253343cd9ccb7916d",
+                "url": "https://api.github.com/repos/symfony/translation-contracts/zipball/cb4b18ad7b92a26e83b65dde940fab78339e6f3c",
+                "reference": "cb4b18ad7b92a26e83b65dde940fab78339e6f3c",
                 "shasum": ""
             },
             "require": {
@@ -4683,7 +4762,7 @@
                 "interoperability",
                 "standards"
             ],
-            "time": "2019-05-27T08:16:38+00:00"
+            "time": "2019-06-13T11:15:36+00:00"
         },
         {
             "name": "symfony/yaml",
@@ -5030,8 +5109,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "google/amp": 5,
-        "google/site-kit": 5,
+        "ataylorme/ataylorme-wordpress-theme": 20,
         "roave/security-advisories": 20
     },
     "prefer-stable": false,
