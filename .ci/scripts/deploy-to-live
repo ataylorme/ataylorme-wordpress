@@ -11,6 +11,9 @@ terminus -n env:deploy $TERMINUS_SITE.test --cc --sync-content --note="Automated
 # Run update-db on the test environment
 terminus -n wp $TERMINUS_SITE.test -- core update-db
 
+# Create a backup before deploying to production
+terminus -n backup:create $TERMINUS_SITE.live
+
 # Deploy to live
 terminus -n env:deploy $TERMINUS_SITE.live --note="Automated deployment via CI job $CI_BUILD_NUMBER="
 
