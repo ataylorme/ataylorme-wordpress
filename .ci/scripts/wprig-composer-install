@@ -14,7 +14,7 @@ then
 	echo -e "\ncomposer.json found"
 
 	echo -e "\nRunning 'composer install'"
-	composer install --no-ansi --no-interaction --optimize-autoloader --no-progress --no-dev
+	composer install --no-ansi --no-interaction --optimize-autoloader --no-progress
 fi
 
 # Change back again
