@@ -149,8 +149,6 @@ jobs:
 
   build_wprig_theme_node:
     <<: *defaults
-    docker:
-      - image: circleci/node:latest
     steps:
       - checkout
 
