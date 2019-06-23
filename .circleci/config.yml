@@ -38,6 +38,27 @@ defaults: &defaults
 version: 2.1
 
 jobs:
+  configure_env_vars:
+    <<: *defaults
+
+    steps:
+      - checkout
+
+      - run:
+          # Set TERMINUS_ENV and related environment variables.
+          # https://github.com/pantheon-systems/docker-build-tools-ci/blob/4.x/scripts/set-environment
+          name: setup-environment-vars
+          command: /build-tools-ci/scripts/set-environment
+
+      - run:
+          name: clone-bash-env
+          command: cp $BASH_ENV bash_env.txt
+
+      # https://circleci.com/docs/2.0/workflows/#using-workspaces-to-share-data-among-jobs
+      - persist_to_workspace:
+          root: .
+          paths:
+            - bash_env.txt
 
   unit_test_code_sniff:
     <<: *defaults
@@ -201,16 +222,6 @@ jobs:
           name: handle merge to master (if needed)
           command: ./.ci/scripts/merge-master
 
-      - run:
-          name: clone-bash-env
-          command: cp $BASH_ENV bash_env.txt
-
-      # https://circleci.com/docs/2.0/workflows/#using-workspaces-to-share-data-among-jobs
-      - persist_to_workspace:
-          root: .
-          paths:
-            - bash_env.txt
-
   behat_test:
     <<: *defaults
     steps:
@@ -335,10 +346,13 @@ workflows:
   version: 2
   build_and_test:
     jobs:
+      # Set up environment variables
+      - configure_env_vars
       # Build PHP dependencies
       - build_php
       - build_wprig_theme_node:
           requires:
+            - configure_env_vars
             - build_php
       # Install dev dependencies and do simple tests (sniff, unit tests, etc.)
       - unit_test_code_sniff
@@ -349,10 +363,12 @@ workflows:
       # Deploy before running visual tests
       - visual_regression_test:
           requires:
+            - configure_env_vars
             - deploy_to_pantheon
       # Deploy before running lighthouse tests
       - lighthouse_test:
           requires:
+            - configure_env_vars
             - deploy_to_pantheon
       # Deploy before running Behat tests
       - behat_test:
