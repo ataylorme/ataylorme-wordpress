@@ -7,9 +7,6 @@ set -e
 echo -e "\nChanging directories into web/wp-content/themes/wprig"
 cd web/wp-content/themes/wprig
 
-echo -e "\nCopying stored vendor directory"
-cp -r /tmp/web/wp-content/themes/wprig/vendor/ .
-
 
 # Install any dependencies, if we find packages.json
 if [ -f 'package.json' ]
