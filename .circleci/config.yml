@@ -206,6 +206,10 @@ jobs:
           command: rsync -az /tmp/web/ web
 
       - run:
+          name: sync vendor
+          command: rsync -az /tmp/vendor/ vendor
+
+      - run:
           name: deploy to Pantheon
           command: ./.ci/scripts/deploy-to-pantheon
 
