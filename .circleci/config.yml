@@ -59,69 +59,7 @@ jobs:
           paths:
             - bash_env.txt
 
-  build_wprig_theme_php:
-    <<: *defaults
-
-    steps:
-      - checkout
-
-      - restore_cache:
-          keys:
-            - wp-rig-vendor-{{ checksum "web/wp-content/themes/wprig/composer.lock" }}
-
-      - run:
-          # Set TERMINUS_ENV and related environment variables.
-          # https://github.com/pantheon-systems/docker-build-tools-ci/blob/4.x/scripts/set-environment
-          name: setup-environment-vars
-          command: /build-tools-ci/scripts/set-environment
-
-      - run:
-          name: wprig composer install
-          command: ./.ci/scripts/wprig-composer-install
-
-      - save_cache:
-          key: wp-rig-vendor-{{ checksum "web/wp-content/themes/wprig/composer.lock" }}
-          paths:
-            - $HOME/wordsesh-2019-demo/web/wp-content/themes/wprig/vendor
-
-      # https://circleci.com/docs/2.0/workflows/#using-workspaces-to-share-data-among-jobs
-      - persist_to_workspace:
-          root: .
-          paths:
-            - web/wp-content/themes/wprig/vendor
-
-  build_wprig_theme_node:
-    <<: *defaults
-    docker:
-      - image: node:10.15.3
-    steps:
-      - checkout
-
-      - attach_workspace:
-          at: /tmp
-
-      - restore_cache:
-          keys:
-            - wp-rig-node-modules-{{ checksum "web/wp-content/themes/wprig/package-lock.json" }}
-
-      - run:
-          name: build theme
-          command: ./.ci/scripts/wprig-npm-install
-
-      - save_cache:
-          key: wp-rig-node-modules-{{ checksum "web/wp-content/themes/wprig/package-lock.json" }}
-          paths:
-            - $HOME/wordsesh-2019-demo/web/wp-content/themes/wprig/node_modules
-
-      - persist_to_workspace:
-          # Must be relative path from working_directory
-          root: .
-          # Must be relative path from root
-          paths:
-            - web/wp-content/themes/ataylorme
-
-  # @todo: common initialization: 'composer install' for the site-under-test
-  unit:
+  unit_test_code_sniff:
     <<: *defaults
 
     steps:
@@ -130,6 +68,7 @@ jobs:
       - restore_cache:
           keys:
             - composer-cache-{{ checksum "composer.lock" }}
+            - composer-cache-
 
       - run:
           name: setup-environment-vars
@@ -164,7 +103,7 @@ jobs:
           name: run unit tests
           command: composer -n unit-test
 
-  deploy_to_pantheon:
+  build_php:
     <<: *defaults
     steps:
       - checkout
@@ -176,6 +115,84 @@ jobs:
       - restore_cache:
           keys:
             - composer-cache-{{ checksum "composer.lock" }}
+            - composer-cache-
+            - wp-rig-vendor-{{ checksum "web/wp-content/themes/wprig/composer.lock" }}
+            - wp-rig-vendor-
+
+      - run:
+          name: setup-environment-vars
+          command: /build-tools-ci/scripts/set-environment
+
+      - run:
+          name: build assets
+          command: composer -n build-assets
+
+      - run:
+          name: wprig composer install
+          command: ./.ci/scripts/wprig-composer-install
+
+      - save_cache:
+          key: wp-rig-vendor-{{ checksum "web/wp-content/themes/wprig/composer.lock" }}
+          paths:
+            - $HOME/ataylorme-wordpress/web/wp-content/themes/wprig/vendor
+
+      - save_cache:
+          key: vendor-{{ checksum "composer.lock" }}
+          paths:
+            - $HOME/ataylorme-wordpress/vendor
+
+      - persist_to_workspace:
+          root: .
+          paths:
+            - web
+
+  build_wprig_theme_node:
+    <<: *defaults
+    docker:
+      - image: node:10.15.3
+    steps:
+      - checkout
+
+      - attach_workspace:
+          at: /tmp
+
+      - restore_cache:
+          keys:
+            - wp-rig-node-modules-{{ checksum "web/wp-content/themes/wprig/package-lock.json" }}
+            - wp-rig-node-modules-
+
+      - run:
+          name: sync web
+          command: rsync -az /tmp/web/ web
+
+      - run:
+          name: build theme
+          command: ./.ci/scripts/wprig-npm-install
+
+      - run:
+          name: remove dev theme
+          command: rm -rf web/wp-content/themes/wprig
+
+      - save_cache:
+          key: wp-rig-node-modules-{{ checksum "web/wp-content/themes/wprig/package-lock.json" }}
+          paths:
+            - $HOME/ataylorme-wordpress/web/wp-content/themes/wprig/node_modules
+
+      - persist_to_workspace:
+          # Must be relative path from working_directory
+          root: .
+          # Must be relative path from root
+          paths:
+            - web
+
+  deploy_to_pantheon:
+    <<: *defaults
+    steps:
+      - checkout
+
+      - attach_workspace:
+          # Must be absolute path or relative path from working_directory
+          at: /tmp
 
       - run:
           name: setup-environment-vars
@@ -186,16 +203,8 @@ jobs:
           command: terminus -n auth:login --machine-token="$TERMINUS_TOKEN"
 
       - run:
-          name: build assets
-          command: composer -n build-assets
-
-      - run:
-          name: copy production theme
-          command: cp -r /tmp/web/wp-content/themes/ataylorme web/wp-content/themes/
-
-      - run:
-          name: remove dev theme
-          command: rm -rf web/wp-content/themes/wprig
+          name: sync web
+          command: rsync -az /tmp/web/ web
 
       - run:
           name: deploy to Pantheon
@@ -217,6 +226,7 @@ jobs:
       - restore_cache:
           keys:
             - composer-cache-{{ checksum "composer.lock" }}
+            - composer-cache-
 
       - run:
           name: setup-environment-vars
@@ -247,12 +257,11 @@ jobs:
       - checkout
 
       - attach_workspace:
-          at: /tmp/workspace
+          at: /tmp
 
-      - run: cp /tmp/workspace/bash_env.txt $BASH_ENV
-      - run: echo "export CI_BUILD_URL='${CIRCLE_BUILD_URL}'" >> $BASH_ENV
-      - run: echo "export CI_NODE_INDEX='${CIRCLE_NODE_INDEX}'" >> $BASH_ENV
-      - run: source $BASH_ENV
+      - run:
+          name: set environment variables
+          command: ./.ci/scripts/set-up-env
 
       - run:
           name: visual regression test
@@ -271,17 +280,16 @@ jobs:
       - checkout
 
       - attach_workspace:
-          at: /tmp/workspace
+          at: /tmp
+
       - restore_cache:
           keys:
             - npm-dependencies-{{ checksum "package-lock.json" }}
             # fallback to using the latest cache if no exact match is found
             - npm-dependencies-
 
-      - run: cp /tmp/workspace/bash_env.txt $BASH_ENV
-      - run: echo "export CI_BUILD_URL='${CIRCLE_BUILD_URL}'" >> $BASH_ENV
-      - run: echo "export CI_NODE_INDEX='${CIRCLE_NODE_INDEX}'" >> $BASH_ENV
-      - run: source $BASH_ENV
+      # Set environment variables
+      - run: ./.ci/scripts/set-up-env
 
       - run:
           name: npm install
@@ -336,19 +344,18 @@ workflows:
     jobs:
       # Set up environment variables
       - configure_env_vars
-      # Build the wprig theme
-      - build_wprig_theme_php
+      # Build PHP dependencies
+      - build_php
       - build_wprig_theme_node:
           requires:
             - configure_env_vars
-            - build_wprig_theme_php
+            - build_php
       # Install dev dependencies and do simple tests (sniff, unit tests, etc.)
-      - unit
-      # Build deploy and test on target platform
+      - unit_test_code_sniff
       - deploy_to_pantheon:
           requires:
             - build_wprig_theme_node
-            - build_wprig_theme_php
+            - build_php
       # Deploy before running visual tests
       - visual_regression_test:
           requires:
@@ -369,7 +376,7 @@ workflows:
       - deploy_to_live:
           requires:
             - deploy_to_pantheon
-            - unit
+            - unit_test_code_sniff
             - behat_test
             - visual_regression_test
             - lighthouse_test
