@@ -371,7 +371,7 @@ workflows:
             - deploy_to_pantheon
           filters:
             branches:
-              not:
+              ignore:
                 - master
       # Deploy before running lighthouse tests
       - lighthouse_test:
