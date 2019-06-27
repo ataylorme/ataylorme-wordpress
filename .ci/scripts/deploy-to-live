@@ -5,6 +5,9 @@ set -eo pipefail
 # Set secrets on live
 terminus -n secrets:set $TERMINUS_SITE.live token "$GITHUB_TOKEN" --file='github-secrets.json' --clear --skip-if-empty
 
+# Create a backup before deploying to test
+terminus -n backup:create $TERMINUS_SITE.test
+
 # Deploy to test
 terminus -n env:deploy $TERMINUS_SITE.test --cc --sync-content --note="Automated deployment via CI job $CI_BUILD_NUMBER"
 
