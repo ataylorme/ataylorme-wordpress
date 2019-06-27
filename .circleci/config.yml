@@ -369,6 +369,10 @@ workflows:
           requires:
             - configure_env_vars
             - deploy_to_pantheon
+          filters:
+            branches:
+              not:
+                - master
       # Deploy before running lighthouse tests
       - lighthouse_test:
           requires:
