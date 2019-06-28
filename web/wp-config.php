@@ -143,7 +143,25 @@ if ( isset( $_ENV['PANTHEON_ENVIRONMENT'] ) ):
 	/**#@-*/
 
 	/** A couple extra tweaks to help things run well on Pantheon. **/
-	if ( isset( $_SERVER['HTTP_HOST'] ) ) {
+	if ( 'live' === $_ENV['PANTHEON_ENVIRONMENT'] ) {
+		$primary_domain = 'ataylor.me';
+		$site_url = 'https://' . $primary_domain;
+		define( 'WP_HOME', $site_url );
+		define( 'WP_SITEURL', $site_url . '/wp' );
+		if ( $_SERVER['HTTP_HOST'] != $primary_domain
+			|| !isset( $_SERVER['HTTP_USER_AGENT_HTTPS'] )
+			|| $_SERVER['HTTP_USER_AGENT_HTTPS'] != 'ON' ) {
+
+			// Name transaction "redirect" in New Relic for improved reporting (optional).
+			if ( extension_loaded( 'newrelic' ) ) {
+			newrelic_name_transaction( 'redirect' );
+			}
+
+			header('HTTP/1.0 301 Moved Permanently');
+			header('Location: https://'. $primary_domain . $_SERVER['REQUEST_URI']);
+			exit();
+		}
+	} else if ( isset( $_SERVER['HTTP_HOST'] ) ) {
 		// HTTP is still the default scheme for now.
 		$scheme = 'http';
 		// If we have detected that the end use is HTTPS, make sure we pass that
