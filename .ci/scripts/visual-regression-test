@@ -30,7 +30,7 @@ GIT_FILE_MODIFIED()
 
 LAST_GIT_COMMIT_MESSAGE=$(git log -1 --pretty=%B)
 
-if [[ ${LAST_GIT_COMMIT_MESSAGE} != *"--skip-vr"* ]]
+if [[ ${LAST_GIT_COMMIT_MESSAGE} == *"--skip-vr"* ]]
 then
     echo -e "\nVisual regression tests skipped because the last commit contains --skip-vr"
     exit 0
