@@ -9,9 +9,8 @@ set -eo pipefail
 # Use EITHER this script OR the re-install-new script; do not run both.
 #
 
-# Create a new multidev site to test on
-terminus -n env:wake "$TERMINUS_SITE.dev"
-terminus -n build:env:create "$TERMINUS_SITE.dev" "$TERMINUS_ENV" --yes --clone-content
+# Create deploy to the multidev site
+terminus -n build:env:push "$TERMINUS_SITE.$TERMINUS_ENV" --yes
 
 # Run update-db to ensure that the cloned database is updated for the new code.
 terminus -n wp $TERMINUS_SITE.$TERMINUS_ENV -- core update-db
