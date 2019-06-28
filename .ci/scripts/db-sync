@@ -1,0 +1,21 @@
+#!/bin/bash
+
+set -eo pipefail
+
+# Create a backup of the dev environment
+terminus -n backup:create $TERMINUS_SITE.test
+
+# Clone the live DB back to test
+terminus -n env:clone-content $TERMINUS_SITE.live "test" --yes
+
+# Run update-db on the test environment
+terminus -n wp $TERMINUS_SITE.test -- core update-db
+
+# Create a backup of the dev environment
+terminus -n backup:create $TERMINUS_SITE.dev
+
+# Clone the live DB back to dev
+terminus -n env:clone-content $TERMINUS_SITE.live "dev" --yes
+
+# Run update-db on the dev environment
+terminus -n wp $TERMINUS_SITE.dev -- core update-db

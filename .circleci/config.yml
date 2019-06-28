@@ -346,6 +346,23 @@ jobs:
           command: terminus -n backup:restore $TERMINUS_SITE.live --element=database --yes
           when: on_fail
 
+  db_sync:
+    <<: *defaults
+    steps:
+      - checkout
+
+      - run:
+          name: setup-environment-vars
+          command: /build-tools-ci/scripts/set-environment
+
+      - run:
+          name: log in
+          command: terminus -n auth:login --machine-token="$TERMINUS_TOKEN"
+
+      - run:
+          name: sync db
+          command: ./.ci/scripts/db-sync
+
 workflows:
   version: 2
   build_and_test:
@@ -407,3 +424,14 @@ workflows:
                 - master
     jobs:
       - composer_lock_updater
+
+  scheduled_db_sync:
+    triggers:
+      - schedule:
+          cron: "0 0 * * *"
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+      - db_sync
