@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ataylorme/ataylorme-wordpress-theme.git",
-                "reference": "393550fdd5a00bb82342a47bab1577052cd5e962"
+                "reference": "96470a351f8258f6da57111363d2c455522611fa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ataylorme/ataylorme-wordpress-theme/zipball/393550fdd5a00bb82342a47bab1577052cd5e962",
-                "reference": "393550fdd5a00bb82342a47bab1577052cd5e962",
+                "url": "https://api.github.com/repos/ataylorme/ataylorme-wordpress-theme/zipball/96470a351f8258f6da57111363d2c455522611fa",
+                "reference": "96470a351f8258f6da57111363d2c455522611fa",
                 "shasum": ""
             },
             "require-dev": {
@@ -65,7 +65,7 @@
                 "source": "https://github.com/ataylorme/ataylorme-wordpress-theme/tree/master",
                 "issues": "https://github.com/ataylorme/ataylorme-wordpress-theme/issues"
             },
-            "time": "2019-06-25T16:37:41+00:00"
+            "time": "2019-06-28T02:13:09+00:00"
         },
         {
             "name": "composer/installers",
@@ -4940,12 +4940,12 @@
             "version": "2.1.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards.git",
+                "url": "https://github.com/WordPress/WordPress-Coding-Standards.git",
                 "reference": "bd9c33152115e6741e3510ff7189605b35167908"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/WordPress-Coding-Standards/WordPress-Coding-Standards/zipball/bd9c33152115e6741e3510ff7189605b35167908",
+                "url": "https://api.github.com/repos/WordPress/WordPress-Coding-Standards/zipball/bd9c33152115e6741e3510ff7189605b35167908",
                 "reference": "bd9c33152115e6741e3510ff7189605b35167908",
                 "shasum": ""
             },
