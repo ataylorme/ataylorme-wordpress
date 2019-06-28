@@ -8,7 +8,7 @@ GITHUB_API_URL="https://api.github.com/repos/$CI_PROJECT_USERNAME/$CI_PROJECT_RE
 if [[ ${CI_BRANCH} != "master" && -z ${CI_PR_URL} ]];
 then
   echo -e "\nVisual regression tests will only run if we are not on the master branch and making a pull request"
-  exit 0;
+  exit 0
 fi
 
 echo -e "\nProcessing pull request #$PR_NUMBER"
@@ -29,6 +29,12 @@ GIT_FILE_MODIFIED()
 }
 
 LAST_GIT_COMMIT_MESSAGE=$(git log -1 --pretty=%B)
+
+if [[ ${LAST_GIT_COMMIT_MESSAGE} != *"--skip-vr"* ]]
+then
+    echo -e "\nVisual regression tests skipped because the last commit contains --skip-vr"
+    exit 0
+fi
 
 # Always run visual tests if "[vr]" is in the last commit message
 if [[ ${LAST_GIT_COMMIT_MESSAGE} != *"[vr]"* ]]
