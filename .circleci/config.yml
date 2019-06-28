@@ -407,6 +407,7 @@ workflows:
           requires:
             - build_wprig_theme_node
             - build_php
+            - create_multidev
       # Deploy before running visual tests
       - visual_regression_test:
           requires:
