@@ -33,6 +33,8 @@
     "wpackagist-plugin/pantheon-advanced-page-cache": "^0.3.0",
     "wpackagist-plugin/wp-native-php-sessions": "^0.7.0",
     "wpackagist-plugin/wp-redis": "^0.7.1",
+    "wpackagist-plugin/wp-mail-smtp": "^1.4.2",
+    "wpackagist-plugin/wpforms-lite": "^1.5.3",
     "wpackagist-theme/twentynineteen": "^1.4",
     "ataylorme/ataylorme-wordpress-theme": "dev-master"
   },

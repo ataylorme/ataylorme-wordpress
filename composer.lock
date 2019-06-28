@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "4afd6723c55fcdb78f7af7468dd6be60",
+    "content-hash": "309415c60bd5274f53df55604fe137a1",
     "packages": [
         {
             "name": "ataylorme/ataylorme-wordpress-theme",
@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ataylorme/ataylorme-wordpress-theme.git",
-                "reference": "3acd843382cf2d4f8a68f249064f111dd151d5ed"
+                "reference": "f75452ff5040c2b297619e455020f2efc69a2980"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ataylorme/ataylorme-wordpress-theme/zipball/3acd843382cf2d4f8a68f249064f111dd151d5ed",
-                "reference": "3acd843382cf2d4f8a68f249064f111dd151d5ed",
+                "url": "https://api.github.com/repos/ataylorme/ataylorme-wordpress-theme/zipball/f75452ff5040c2b297619e455020f2efc69a2980",
+                "reference": "f75452ff5040c2b297619e455020f2efc69a2980",
                 "shasum": ""
             },
             "require-dev": {
@@ -65,7 +65,7 @@
                 "source": "https://github.com/ataylorme/ataylorme-wordpress-theme/tree/master",
                 "issues": "https://github.com/ataylorme/ataylorme-wordpress-theme/issues"
             },
-            "time": "2019-06-28T02:48:34+00:00"
+            "time": "2019-06-28T03:38:43+00:00"
         },
         {
             "name": "composer/installers",
@@ -670,6 +670,26 @@
             "homepage": "https://wordpress.org/plugins/pwa/"
         },
         {
+            "name": "wpackagist-plugin/wp-mail-smtp",
+            "version": "1.4.2",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/wp-mail-smtp/",
+                "reference": "tags/1.4.2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/wp-mail-smtp.1.4.2.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/wp-mail-smtp/"
+        },
+        {
             "name": "wpackagist-plugin/wp-native-php-sessions",
             "version": "0.7.0",
             "source": {
@@ -708,6 +728,26 @@
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/wp-redis/"
+        },
+        {
+            "name": "wpackagist-plugin/wpforms-lite",
+            "version": "1.5.3.1",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/wpforms-lite/",
+                "reference": "tags/1.5.3.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/wpforms-lite.1.5.3.1.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/wpforms-lite/"
         },
         {
             "name": "wpackagist-theme/twentynineteen",
