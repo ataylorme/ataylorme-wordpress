@@ -60,6 +60,26 @@ jobs:
           paths:
             - bash_env.txt
 
+  create_multidev:
+    <<: *defaults
+
+    steps:
+      - checkout
+
+      - run:
+          # Set TERMINUS_ENV and related environment variables.
+          # https://github.com/pantheon-systems/docker-build-tools-ci/blob/6.x/scripts/set-environment
+          name: setup-environment-vars
+          command: /build-tools-ci/scripts/set-environment
+
+      - run:
+          name: log in
+          command: terminus -n auth:login --machine-token="$TERMINUS_TOKEN"
+
+      - run:
+          name: create multidev
+          command: terminus -n multidev:create $TERMINUS_SITE.live $TERMINUS_ENV
+
   unit_test_code_sniff:
     <<: *defaults
 
@@ -371,6 +391,12 @@ workflows:
       - configure_env_vars
       # Build PHP dependencies
       - build_php
+      # Only create the multidev for branches
+      - create_multidev:
+          filters:
+            branches:
+              ignore:
+                - master
       - build_wprig_theme_node:
           requires:
             - configure_env_vars
@@ -381,6 +407,7 @@ workflows:
           requires:
             - build_wprig_theme_node
             - build_php
+            - create_multidev
       # Deploy before running visual tests
       - visual_regression_test:
           requires:
