@@ -1,0 +1,56 @@
+==================================================================
+https://keybase.io/ataylorme
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://ataylor.me
+  * I am ataylorme (https://keybase.io/ataylorme) on keybase.
+  * I have a public key ASCKk31Y0ixruyL6tTEYLZytjyRP5h0QTauZubk1SBwfrQo
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "01208a937d58d22c6bbb22fab531182d9cad8f244fe61d104dab99b9b935481c1fad0a",
+      "host": "keybase.io",
+      "kid": "01208a937d58d22c6bbb22fab531182d9cad8f244fe61d104dab99b9b935481c1fad0a",
+      "uid": "f0526a17cd5fb1cb156b0864631f7c19",
+      "username": "ataylorme"
+    },
+    "merkle_root": {
+      "ctime": 1561994428,
+      "hash": "fdd929af0eabc69fa370e371b6c0b101e597aa46fce3122129599af0fc7d7c266c0a4e8c07b17efdc3b1b2ddfb31d34108c76828ecb273add8eb09bcc6154434",
+      "hash_meta": "e22f6811eef280d163a9be2a0a3a346f2cf00505af9d3c8d8872ba940b9026e8",
+      "seqno": 5673060
+    },
+    "service": {
+      "entropy": "RK9DZDf1KGquCu1JOFfn5yCW",
+      "hostname": "ataylor.me",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 2
+  },
+  "client": {
+    "name": "keybase.io go client",
+    "version": "4.1.0"
+  },
+  "ctime": 1561994430,
+  "expire_in": 504576000,
+  "prev": "cc0bedb8c33854c53e50c6b253ab56a00b5c99008d499da59daa0ac25a9cca0f",
+  "seqno": 21,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEgipN9WNIsa7si+rUxGC2crY8kT+YdEE2rmbm5NUgcH60Kp3BheWxvYWTESpcCFcQgzAvtuMM4VMU+UMayU6tWoAtcmQCNSZ2lnaoKwlqcyg/EIK1M0NHsOMVEv7W4ajzDsFcUE+R6YL6M8i0XaT1VQM/4AgHCo3NpZ8RAyC8S+mEcMyVEpVGgagaZ9eI7+QSjRp96YYiwbToYg1MObostAP0uxNGR1Q0cGawtzWFKEA3Z739ohNe+asFpCahzaWdfdHlwZSCkaGFzaIKkdHlwZQildmFsdWXEIFgcMav/1eCOa9f/iTLySDqjPmagYLnXYSKTBjp01A2vo3RhZ80CAqd2ZXJzaW9uAQ==
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/ataylorme
+
+==================================================================
