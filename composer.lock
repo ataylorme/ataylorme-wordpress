@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ataylorme/ataylorme-wordpress-theme.git",
-                "reference": "933cc55f56bdfd10d8b8e56a1e5fa1b8b21db3cd"
+                "reference": "0bde11f4f42a387661dcc20a30660f340a3981be"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ataylorme/ataylorme-wordpress-theme/zipball/933cc55f56bdfd10d8b8e56a1e5fa1b8b21db3cd",
-                "reference": "933cc55f56bdfd10d8b8e56a1e5fa1b8b21db3cd",
+                "url": "https://api.github.com/repos/ataylorme/ataylorme-wordpress-theme/zipball/0bde11f4f42a387661dcc20a30660f340a3981be",
+                "reference": "0bde11f4f42a387661dcc20a30660f340a3981be",
                 "shasum": ""
             },
             "require-dev": {
@@ -65,7 +65,7 @@
                 "source": "https://github.com/ataylorme/ataylorme-wordpress-theme/tree/master",
                 "issues": "https://github.com/ataylorme/ataylorme-wordpress-theme/issues"
             },
-            "time": "2019-06-28T17:39:33+00:00"
+            "time": "2019-07-04T17:14:41+00:00"
         },
         {
             "name": "composer/installers",
