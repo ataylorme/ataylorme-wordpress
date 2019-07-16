@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "309415c60bd5274f53df55604fe137a1",
+    "content-hash": "1e85160d7884523a15d4075ec1095f49",
     "packages": [
         {
             "name": "ataylorme/ataylorme-wordpress-theme",
@@ -569,15 +569,15 @@
         },
         {
             "name": "wpackagist-plugin/gutenberg",
-            "version": "5.9.2",
+            "version": "6.1.1",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/gutenberg/",
-                "reference": "tags/5.9.2"
+                "reference": "tags/6.1.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/gutenberg.5.9.2.zip"
+                "url": "https://downloads.wordpress.org/plugin/gutenberg.6.1.1.zip"
             },
             "require": {
                 "composer/installers": "~1.0"
