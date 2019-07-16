@@ -210,7 +210,7 @@ jobs:
 
       - run:
           name: deploy to Pantheon
-          command: ./.ci/scripts/deploy-to-pantheon
+          command: ./.ci/deploy/pantheon/dev-multidev
 
       - run:
           name: set secrets
