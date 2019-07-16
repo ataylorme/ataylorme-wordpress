@@ -18,7 +18,7 @@
     "lighthouse": "^5.1.0"
   },
   "scripts": {
-    "lighthouse-run": "node ./.ci/scripts/lighthouse/lighthouse.run.js",
-    "lighthouse-test": "jest ./.ci/scripts/lighthouse/lighthouse.test.js"
+    "lighthouse-run": "node ./.ci/test/lighthouse/lighthouse.run.js",
+    "lighthouse-test": "jest ./.ci/test/lighthouse/lighthouse.test.js"
   }
 }
