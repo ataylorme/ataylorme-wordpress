@@ -266,7 +266,7 @@ jobs:
       - checkout
 
       - attach_workspace:
-          at: /tmp/workspace
+          at: /tmp
 
       - run:
           name: set environment variables
