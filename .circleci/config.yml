@@ -133,12 +133,12 @@ jobs:
       - save_cache:
           key: wp-rig-vendor-{{ checksum "web/wp-content/themes/wprig/composer.lock" }}
           paths:
-            - $HOME/ataylorme-wordpress/web/wp-content/themes/wprig/vendor
+            - $CIRCLE_WORKING_DIRECTORY/web/wp-content/themes/wprig/vendor
 
       - save_cache:
           key: vendor-{{ checksum "composer.lock" }}
           paths:
-            - $HOME/ataylorme-wordpress/vendor
+            - $CIRCLE_WORKING_DIRECTORY/vendor
 
       - persist_to_workspace:
           root: .
@@ -170,7 +170,7 @@ jobs:
       - save_cache:
           key: wp-rig-node-modules-{{ checksum "web/wp-content/themes/wprig/package-lock.json" }}
           paths:
-            - $HOME/ataylorme-wordpress/web/wp-content/themes/wprig/node_modules
+            - $CIRCLE_WORKING_DIRECTORY/web/wp-content/themes/wprig/node_modules
 
       - run:
           name: remove dev theme
@@ -418,7 +418,7 @@ workflows:
       - deploy_to_live:
           requires:
             - deploy_to_pantheon
-            - unit_test_code_sniff
+            - static_tests
             - behat_test
             - visual_regression_test
             - lighthouse_test
