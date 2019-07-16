@@ -13,12 +13,12 @@
   },
   "homepage": "https://www.ataylor.me",
   "devDependencies": {
-    "chrome-launcher": "^0.10.7",
+    "chrome-launcher": "^0.11.1",
     "jest": "^24.8.0",
     "lighthouse": "^5.1.0"
   },
   "scripts": {
-    "lighthouse-run": "node ./.ci/scripts/lighthouse/lighthouse.run.js",
-    "lighthouse-test": "jest ./.ci/scripts/lighthouse/lighthouse.test.js"
+    "lighthouse-run": "node ./.ci/test/lighthouse/lighthouse.run.js",
+    "lighthouse-test": "jest ./.ci/test/lighthouse/lighthouse.test.js"
   }
 }

@@ -1,7 +1,15 @@
 #!/bin/bash
 
-# Exit on errors
-set -e
+set -eo pipefail
+
+#
+# This script prepares the PHP build artifacts.
+# The web and vendor artifact directories will
+# need to be persisted to other jobs.
+#
+
+# Build Composer Assets
+composer -n build-assets
 
 # Change into dev theme directory
 echo -e "\nChanging directories into web/wp-content/themes/wprig"
