@@ -80,7 +80,7 @@ jobs:
           name: create multidev
           command: terminus -n multidev:create $TERMINUS_SITE.live $TERMINUS_ENV
 
-  unit_test_code_sniff:
+  static_tests:
     <<: *defaults
 
     steps:
@@ -92,37 +92,19 @@ jobs:
             - composer-cache-
 
       - run:
+          # Set TERMINUS_ENV and related environment variables.
+          # https://github.com/pantheon-systems/docker-build-tools-ci/blob/6.x/scripts/set-environment
           name: setup-environment-vars
           command: /build-tools-ci/scripts/set-environment
 
       - run:
-          name: run composer install to get the vendor directory
-          command: composer install
+          name: run static tests
+          command: ./.ci/test/static/run
 
       - save_cache:
           key: composer-cache-{{ checksum "composer.lock" }}
           paths:
             - $HOME/.composer/cache
-
-      - run:
-          name: delete web
-          command: rm -rf web
-
-      - run:
-          name: reset web
-          command: git checkout -- web
-
-      - run:
-          name: lint php code for syntax errors
-          command: composer -n lint
-
-      - run:
-          name: check coding standards
-          command: composer -n code-sniff
-
-      - run:
-          name: run unit tests
-          command: composer -n unit-test
 
   build_php:
     <<: *defaults
@@ -145,12 +127,8 @@ jobs:
           command: /build-tools-ci/scripts/set-environment
 
       - run:
-          name: build assets
-          command: composer -n build-assets
-
-      - run:
-          name: wprig composer install
-          command: ./.ci/scripts/wprig-composer-install
+          name: build PHP assets
+          command: ./.ci/build/php
 
       - save_cache:
           key: wp-rig-vendor-{{ checksum "web/wp-content/themes/wprig/composer.lock" }}
@@ -168,7 +146,7 @@ jobs:
             - web
             - vendor
 
-  build_wprig_theme_node:
+  build_node:
     <<: *defaults
     steps:
       - checkout
@@ -187,7 +165,7 @@ jobs:
 
       - run:
           name: build theme
-          command: ./.ci/scripts/wprig-npm-install
+          command: ./.ci/build/node
 
       - save_cache:
           key: wp-rig-node-modules-{{ checksum "web/wp-content/themes/wprig/package-lock.json" }}
@@ -236,11 +214,11 @@ jobs:
 
       - run:
           name: set secrets
-          command: ./.ci/scripts/set-secrets
+          command: ./.ci/deploy/pantheon/set-secrets
 
       - run:
           name: handle merge to master (if needed)
-          command: ./.ci/scripts/merge-master
+          command: ./.ci/deploy/pantheon/merge-master
 
   behat_test:
     <<: *defaults
@@ -253,25 +231,32 @@ jobs:
             - composer-cache-
 
       - run:
+          # Set TERMINUS_ENV and related environment variables.
+          # https://github.com/pantheon-systems/docker-build-tools-ci/blob/6.x/scripts/set-environment
           name: setup-environment-vars
           command: /build-tools-ci/scripts/set-environment
 
       - run:
-          name: log in
-          command: terminus -n auth:login --machine-token="$TERMINUS_TOKEN"
-
-      - run:
-          name: run composer install again to get dev dependencies
-          command: composer install
+          name: prepare for Behat testing
+          command: ./.ci/test/behat/initialize
 
       - run:
           name: run acceptance tests with Behat
-          command: ./.ci/scripts/behat-test
+          command: ./.ci/test/behat/run
 
       - run:
-          name: behat-cleanup
-          command: ./.ci/scripts/behat-cleanup
+          name: clean up after Behat
+          command: ./.ci/test/behat/cleanup
           when: always
+
+      - save_cache:
+          key: composer-cache-{{ checksum "composer.lock" }}
+          paths:
+            - $HOME/.composer/cache
+
+      - store_artifacts:
+          path: /tmp/artifacts
+          destination: artifacts
 
   visual_regression_test:
     <<: *defaults
@@ -281,7 +266,7 @@ jobs:
       - checkout
 
       - attach_workspace:
-          at: /tmp
+          at: /tmp/workspace
 
       - run:
           name: set environment variables
@@ -289,7 +274,7 @@ jobs:
 
       - run:
           name: visual regression test
-          command: ./.ci/scripts/visual-regression-test
+          command: ./.ci/test/visual-regression/run
 
       - store_artifacts:
           path: /tmp/artifacts
@@ -311,8 +296,9 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - npm-dependencies-
 
-      # Set environment variables
-      - run: ./.ci/scripts/set-up-env
+      - run:
+          name: set environment variables
+          command: ./.ci/scripts/set-up-env
 
       - run:
           name: npm install
@@ -320,7 +306,7 @@ jobs:
 
       - run:
           name: lighthouse audit
-          command: ./.ci/scripts/lighthouse/lighthouse-audit
+          command: ./.ci/test/lighthouse/run
 
       - save_cache:
           paths:
@@ -359,7 +345,7 @@ jobs:
 
       - run:
           name: deploy to live
-          command: ./.ci/scripts/deploy-to-live
+          command: ./.ci/deploy/pantheon/live
 
       - run:
           name: restore backup
@@ -381,7 +367,7 @@ jobs:
 
       - run:
           name: sync db
-          command: ./.ci/scripts/db-sync
+          command: ./.ci/deploy/pantheon/db-sync
 
 workflows:
   version: 2
@@ -397,15 +383,15 @@ workflows:
             branches:
               ignore:
                 - master
-      - build_wprig_theme_node:
+      - build_node:
           requires:
             - configure_env_vars
             - build_php
       # Install dev dependencies and do simple tests (sniff, unit tests, etc.)
-      - unit_test_code_sniff
+      - static_tests
       - deploy_to_pantheon:
           requires:
-            - build_wprig_theme_node
+            - build_node
             - build_php
             - create_multidev
       # Deploy before running visual tests
