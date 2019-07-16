@@ -1,17 +1,15 @@
 #!/bin/bash
 
+#
+# This script runs visual regression tests using BackstopJS.
+# Tests are run if composer.lock has changed
+# but composer.json has not (e.g. dependency updates)
+# OR if the last commit message contains [vr]
+#
+
 # Variables
 BUILD_DIR=$(pwd)
 GITHUB_API_URL="https://api.github.com/repos/$CI_PROJECT_USERNAME/$CI_PROJECT_REPONAME"
-
-# Check if we are NOT on the master branch and this is a PR
-if [[ ${CI_BRANCH} != "master" && -z ${CI_PR_URL} ]];
-then
-  echo -e "\nVisual regression tests will only run if we are not on the master branch and making a pull request"
-  exit 0
-fi
-
-echo -e "\nProcessing pull request #$PR_NUMBER"
 
 GIT_FILE_MODIFIED()
 {
@@ -68,11 +66,11 @@ curl -I "$DEV_SITE_URL" >/dev/null
 
 # Backstop visual regression
 echo -e "\nRunning backstop reference on ${DEV_SITE_URL}..."
-backstop reference --config=.ci/scripts/backstopConfig.js
+backstop reference --config=.ci/test/visual-regression/backstopConfig.js
 
 # Backstop test
 echo -e "\nRunning backstop test on ${MULTIDEV_SITE_URL}..."
-VISUAL_REGRESSION_RESULTS=$(backstop test --config=.ci/scripts/backstopConfig.js || echo 'true')
+VISUAL_REGRESSION_RESULTS=$(backstop test --config=.ci/test/visual-regression/backstopConfig.js || echo 'true')
 
 echo "${VISUAL_REGRESSION_RESULTS}"
 
@@ -81,7 +79,6 @@ if [ ! -d "$ARTIFACTS_FULL_DIR" ]; then
   mkdir -p $ARTIFACTS_FULL_DIR
 fi
 
-export ARTIFACTS_DIR_URL="${CI_BUILD_URL}/artifacts/${CI_NODE_INDEX}/artifacts"
 
 # Copy backstop_data files to ARTIFACTS_FULL_DIR
 echo -e "\nCopying backstop_data files to $ARTIFACTS_FULL_DIR..."
@@ -120,8 +117,11 @@ else
 fi
 
 # Post the image back to the pull request on GitHub
-echo -e "\nPosting visual regression results back to PR #$PR_NUMBER "
-curl -s -i -u "$CI_PROJECT_USERNAME:$GITHUB_TOKEN" -d "{\"body\": \"$PR_MESSAGE\"}" $GITHUB_API_URL/issues/$PR_NUMBER/comments > /dev/null
+if [[ -n ${CI_REPOSITORY_URL} && ${CI_REPOSITORY_URL} == *"github"* ]]
+then
+    echo -e "\nPosting visual regression results back to PR #$PR_NUMBER "
+    curl -s -i -u "$CI_PROJECT_USERNAME:$GITHUB_TOKEN" -d "{\"body\": \"$PR_MESSAGE\"}" $GITHUB_API_URL/issues/$PR_NUMBER/comments > /dev/null
+fi
 
 if [[ ${VISUAL_REGRESSION_RESULTS} == *"Mismatch errors found"* ]]
 then

@@ -18,7 +18,7 @@ then
 	npm install
 fi
 
-# Run gulp
+# Run gulp to build the production theme
 echo -e "\nRunning 'npm run bundle'"
 npm run bundle
 
