@@ -15,7 +15,7 @@
   "devDependencies": {
     "chrome-launcher": "^0.11.1",
     "jest": "^24.8.0",
-    "lighthouse": "^5.1.0"
+    "lighthouse": "^5.2.0"
   },
   "scripts": {
     "lighthouse-run": "node ./.ci/test/lighthouse/lighthouse.run.js",
