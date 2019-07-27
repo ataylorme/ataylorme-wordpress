@@ -1,0 +1,46 @@
+#!/bin/bash
+
+set -eo pipefail
+
+#
+# This script starts creating the multidev
+# for this pull request on Pantheon.
+#
+
+# Authenticate with Terminus
+terminus -n auth:login --machine-token="$TERMINUS_TOKEN"
+
+# Helper function to check a the multidev environment exists
+TERMINUS_DOES_MULTIDEV_EXIST()
+{
+    # Stash a list of existing Pantheon multidev environments
+    PANTHEON_MULTIDEV_LIST="$(terminus multidev:list -n ${TERMINUS_SITE} --format=list --field=Name)"
+
+    while read -r multiDev; do
+        if [[ "${multiDev}" == "$1" ]]
+        then
+            return 0;
+        fi
+    done <<< "$PANTHEON_MULTIDEV_LIST"
+
+    return 1;
+}
+
+# If the multidev environment
+# already exists, we're done here
+if TERMINUS_DOES_MULTIDEV_EXIST ${TERMINUS_ENV}
+then
+    exit 0
+fi
+
+# Create the multidev environment
+terminus -n multidev:create $TERMINUS_SITE.live $TERMINUS_ENV
+
+# Stash the site ID
+export TERMINUS_SITE_UUID=$(terminus site:info $TERMINUS_SITE --field=id)
+
+# Send a link for the multidev to GitHub
+hub api repos/{owner}/{repo}/issues/${PR_NUMBER}/comments -f body='
+[![Visit Site](https://raw.githubusercontent.com/pantheon-systems/ci-drops-8/0.1.0/data/img/visit-site-36.png)]('${MULTIDEV_SITE_URL}')
+
+Created multidev environment [pr-'${PR_NUMBER}'](https://dashboard.pantheon.io/sites/'${TERMINUS_SITE_UUID}'#pr-'${PR_NUMBER}') for '${TERMINUS_SITE}'.'
