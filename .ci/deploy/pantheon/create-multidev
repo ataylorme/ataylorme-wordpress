@@ -45,4 +45,4 @@ export TERMINUS_SITE_UUID=$(terminus site:info $TERMINUS_SITE --field=id)
 hub api repos/{owner}/{repo}/issues/${PR_NUMBER}/comments -f body='
 [![Visit Site](https://raw.githubusercontent.com/pantheon-systems/ci-drops-8/0.1.0/data/img/visit-site-36.png)]('${MULTIDEV_SITE_URL}')
 
-Created multidev environment [pr-'${PR_NUMBER}'](https://dashboard.pantheon.io/sites/'${TERMINUS_SITE_UUID}'#pr-'${PR_NUMBER}') for '${TERMINUS_SITE}'.'
+Created multidev environment [pr-'${PR_NUMBER}'](https://dashboard.pantheon.io/sites/'${TERMINUS_SITE_UUID}'#pr-'${PR_NUMBER}') for '${TERMINUS_SITE}'.' > /dev/null
