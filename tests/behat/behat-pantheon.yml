@@ -30,3 +30,5 @@ default:
       path: web/wp
     
     DMore\ChromeExtension\Behat\ServiceContainer\ChromeExtension: ~
+
+    Imbo\BehatApiExtension: ~
