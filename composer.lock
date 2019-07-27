@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1e85160d7884523a15d4075ec1095f49",
+    "content-hash": "f17c5f4f2112a9f298e45a87e86a99f7",
     "packages": [
         {
             "name": "ataylorme/ataylorme-wordpress-theme",
@@ -602,24 +602,6 @@
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/health-check/"
-        },
-        {
-            "name": "wpackagist-plugin/lh-hsts",
-            "version": "1.25",
-            "source": {
-                "type": "svn",
-                "url": "https://plugins.svn.wordpress.org/lh-hsts/",
-                "reference": "trunk"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/lh-hsts.zip?timestamp=1558146276"
-            },
-            "require": {
-                "composer/installers": "~1.0"
-            },
-            "type": "wordpress-plugin",
-            "homepage": "https://wordpress.org/plugins/lh-hsts/"
         },
         {
             "name": "wpackagist-plugin/pantheon-advanced-page-cache",
@@ -2742,8 +2724,8 @@
             "authors": [
                 {
                     "name": "Sebastian Bergmann",
-                    "role": "lead",
-                    "email": "sebastian@phpunit.de"
+                    "email": "sebastian@phpunit.de",
+                    "role": "lead"
                 }
             ],
             "description": "The PHP Unit Testing framework.",
