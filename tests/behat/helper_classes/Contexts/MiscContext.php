@@ -35,6 +35,28 @@ class MiscContext extends MinkContext
     }
 
     /**
+     * @BeforeStep
+     */
+    public function beforeStep()
+    {
+
+        // Start a session if needed
+        $session = $this->getSession();
+        if (! $session->isStarted() ) {
+            $session->start();
+        }
+
+        // Stash the current URL
+        $current_url = $session->getCurrentUrl();
+
+        // If we aren't on a valid page
+        if ('about:blank' === $current_url ) {
+            // Go to the home page
+            $session->visit($this->_getFrontendURL());
+        }
+    }
+
+    /**
      * Verify that the current page is HTTPS
      *
      * Example: Then the current page is HTTPS
@@ -83,6 +105,7 @@ class MiscContext extends MinkContext
         // Get the headers from the session
         echo "\nGetting the headers...";
         $headers = $session->getResponseHeaders();
+        FailureContext::addState('response headers', $headers);
 
         if (!isset($headers[$header])) {
             throw new ExpectationException(
@@ -113,8 +136,7 @@ class MiscContext extends MinkContext
         // Get the headers from the session
         echo "\nGetting the headers...";
         $headers = $session->getResponseHeaders();
-
-        echo "\nThe headers are " . print_r($headers, true);
+        FailureContext::addState('response headers', $headers);
 
         if (!isset($headers[$header])) {
             throw new ExpectationException(
@@ -151,6 +173,8 @@ class MiscContext extends MinkContext
 
         // Get the headers from the session
         $headers = $session->getResponseHeaders();
+        FailureContext::addState('response headers', $headers);
+
         if (!isset($headers[$header])) {
             throw new ExpectationException(
                 "The response header $header is not set",
@@ -163,28 +187,6 @@ class MiscContext extends MinkContext
                 "The response header $header value $header_value does not match the expected pattern of $header_value_pattern",
                 $this->getSession()->getDriver()
             );
-        }
-    }
-
-    /**
-     * @BeforeStep
-     */
-    public function beforeStep()
-    {
-
-        // Start a session if needed
-        $session = $this->getSession();
-        if (! $session->isStarted() ) {
-            $session->start();
-        }
-
-        // Stash the current URL
-        $current_url = $session->getCurrentUrl();
-
-        // If we aren't on a valid page
-        if ('about:blank' === $current_url ) {
-            // Go to the home page
-            $session->visit($this->_getFrontendURL());
         }
     }
 
