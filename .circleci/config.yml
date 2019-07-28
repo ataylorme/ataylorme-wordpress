@@ -84,8 +84,7 @@ jobs:
 
       - restore_cache:
           keys:
-            - composer-cache-{{ checksum "composer.lock" }}
-            - composer-cache-
+            - composer-cache
 
       - run:
           # Set TERMINUS_ENV and related environment variables.
@@ -98,7 +97,7 @@ jobs:
           command: ./.ci/test/static/run
 
       - save_cache:
-          key: composer-cache-{{ checksum "composer.lock" }}
+          key: composer-cache
           paths:
             - $HOME/.composer/cache
 
@@ -113,8 +112,15 @@ jobs:
 
       - restore_cache:
           keys:
-            - composer-cache-{{ checksum "composer.lock" }}
-            - composer-cache-
+            - composer-cache
+
+      - restore_cache:
+          keys:
+            - main-vendor-{{ checksum "composer.lock" }}
+            - main-vendor-
+
+      - restore_cache:
+          keys:
             - wp-rig-vendor-{{ checksum "web/wp-content/themes/wprig/composer.lock" }}
             - wp-rig-vendor-
 
@@ -132,7 +138,7 @@ jobs:
             - $CIRCLE_WORKING_DIRECTORY/web/wp-content/themes/wprig/vendor
 
       - save_cache:
-          key: vendor-{{ checksum "composer.lock" }}
+          key: main-vendor-{{ checksum "composer.lock" }}
           paths:
             - $CIRCLE_WORKING_DIRECTORY/vendor
 
@@ -159,6 +165,10 @@ jobs:
             - wp-rig-node-modules-{{ checksum "web/wp-content/themes/wprig/package-lock.json" }}
             - wp-rig-node-modules-
 
+      - restore_cache:
+          keys:
+            - npm-cache-dir
+
       - run:
           name: build theme
           command: ./.ci/build/node
@@ -167,6 +177,11 @@ jobs:
           key: wp-rig-node-modules-{{ checksum "web/wp-content/themes/wprig/package-lock.json" }}
           paths:
             - $CIRCLE_WORKING_DIRECTORY/web/wp-content/themes/wprig/node_modules
+
+      - save_cache:
+          paths:
+            - $HOME/.npm
+          key: npm-cache-dir
 
       - run:
           name: remove dev theme
@@ -223,8 +238,12 @@ jobs:
 
       - restore_cache:
           keys:
-            - composer-cache-{{ checksum "composer.lock" }}
-            - composer-cache-
+            - main-vendor-{{ checksum "composer.lock" }}
+            - main-vendor-
+
+      - restore_cache:
+          keys:
+            - composer-cache
 
       - run:
           # Set TERMINUS_ENV and related environment variables.
@@ -244,11 +263,6 @@ jobs:
           name: clean up after Behat
           command: ./.ci/test/behat/cleanup
           when: always
-
-      - save_cache:
-          key: composer-cache-{{ checksum "composer.lock" }}
-          paths:
-            - $HOME/.composer/cache
 
       - store_artifacts:
           path: /tmp/artifacts
@@ -292,13 +306,21 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - npm-dependencies-
 
+      - restore_cache:
+          keys:
+            - npm-cache
+
       - run:
           name: set environment variables
           command: ./.ci/scripts/set-up-env
 
       - run:
-          name: npm install
-          command: npm install
+          name: Install Node dependencies
+          # npm install will rewrite package-lock.json
+          # to use the committed package-lock.json
+          # we need to run npm ci.
+          # See https://docs.npmjs.com/cli/ci.html
+          command: npm ci
 
       - run:
           name: lighthouse audit
@@ -306,8 +328,13 @@ jobs:
 
       - save_cache:
           paths:
-            - node_modules
+            - $CIRCLE_WORKING_DIRECTORY/node_modules
           key: npm-dependencies-{{ checksum "package-lock.json" }}
+
+      - save_cache:
+          paths:
+            - $HOME/.npm
+          key: npm-cache
 
       - store_artifacts:
           path: /tmp/artifacts
@@ -317,6 +344,10 @@ jobs:
     <<: *defaults
     steps:
       - checkout
+
+      - restore_cache:
+          keys:
+            - composer-cache
 
       - run:
           name: setup-environment-vars

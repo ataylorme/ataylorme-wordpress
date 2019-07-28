@@ -4,7 +4,7 @@ default:
       paths:
         - ./tests/behat
       contexts:
-        - Behat\MinkExtension\Context\MinkContext
+        - FailAid\Context\FailureContext
         - PaulGibbs\WordpressBehatExtension\Context\ContentContext
         - PaulGibbs\WordpressBehatExtension\Context\DashboardContext
         - PaulGibbs\WordpressBehatExtension\Context\SiteContext
@@ -12,7 +12,8 @@ default:
         - PaulGibbs\WordpressBehatExtension\Context\WordpressContext
         - PaulGibbs\WordpressBehatExtension\Context\EditPostContext
         - PaulGibbs\WordpressBehatExtension\Context\WidgetContext
-        - PantheonSystems\WordHatHelpers\Contexts\PantheonContext
+        - ataylorme\WordHatHelpers\Contexts\PantheonContext
+        - ataylorme\WordHatHelpers\Contexts\MiscContext
 
   extensions:
     Behat\MinkExtension:
@@ -28,7 +29,10 @@ default:
       # WordPress username/password and site_url set by ENV
       default_driver: wpcli
       path: web/wp
-    
-    DMore\ChromeExtension\Behat\ServiceContainer\ChromeExtension: ~
 
-    Imbo\BehatApiExtension: ~
+    FailAid\Extension:
+      screenshot:
+        directory: behat-screenshots/
+        autoClean: false
+
+    DMore\ChromeExtension\Behat\ServiceContainer\ChromeExtension: ~

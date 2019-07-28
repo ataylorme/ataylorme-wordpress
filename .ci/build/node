@@ -14,8 +14,8 @@ then
 
 	echo -e "\npackage.json found"
 
-	echo -e "\nRunning 'npm install'"
-	npm install
+	echo -e "\nRunning 'npm ci'"
+	npm ci
 fi
 
 # Run gulp to build the production theme
