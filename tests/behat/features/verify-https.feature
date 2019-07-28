@@ -11,7 +11,5 @@ Feature: HTTPS on the home page
 
   Scenario: Verify HSTS on the home page
     When I am on the homepage
-    And the "content-security-policy" response header is set
     Then the "content-security-policy" response header equals "upgrade-insecure-requests"
-    And the "strict-transport-security" response header is set
-    Then the "strict-transport-security" response header value matches "/max-age=[0-9]+; preload/"
+    And the "strict-transport-security" response header value matches "/max-age=[0-9]+.*/"
