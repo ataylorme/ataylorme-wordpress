@@ -21,7 +21,7 @@ class MiscContext extends MinkContext
      */
     private function _getAdminURL()
     {
-        return $this->getWordpressParameter('site_url') . ('/wp-admin/index.php');
+        return $this->getWordpressParameter('site_url') . '/wp-admin/index.php';
     }
 
     /**
@@ -68,7 +68,6 @@ class MiscContext extends MinkContext
      *
      * Example: And the response header "cache-control" is set
      *
-     * @Then /^the "([^"]+)" response header is set$/
      * @Then the :header response header is set
      *
      * @param string $header the header name
@@ -98,7 +97,6 @@ class MiscContext extends MinkContext
      *
      * Example: And the "cache-control" response header equals "public, max-age=86400"
      *
-     * @Then /^the "([^"]+)" response header equals "([^"]+)"$/
      * @Then the :header response header equals :header_value
      *
      * @param string $header the header name
@@ -136,7 +134,6 @@ class MiscContext extends MinkContext
      *
      * Example: And the "cache-control" response header value matches "public, max-age=86400"
      *
-     * @Then /^the "([^"]+)" response header value matches "([^"]+)"$/
      * @Then the :header response header value matches :header_value_pattern
      *
      * @param string $header the header name
@@ -167,6 +164,18 @@ class MiscContext extends MinkContext
     }
 
     /**
+     * @BeforeStep
+     */
+    public function beforeStep()
+    {
+        echo "Before step, verifying the session\n";
+
+        $session = $this->_verifySession();
+        $url = $session->getCurrentUrl();
+        echo "Current URL: {$url}\n";
+    }
+
+    /**
      * Verify a properly started mink session
      *
      * @return Session Returns Mink session.
@@ -185,7 +194,8 @@ class MiscContext extends MinkContext
         // If we aren't on a valid page
         if ('about:blank' === $current_url ) {
             // Go to the home page
-            $session->visit($this->getFrontendURL());
+            echo "Chrome is on about:blank, going to " . $this->_getFrontendURL();
+            $session->visit($this->_getFrontendURL());
         }
 
         // Return the session
