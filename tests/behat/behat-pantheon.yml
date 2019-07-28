@@ -30,9 +30,6 @@ default:
       default_driver: wpcli
       path: web/wp
 
-    FailAid\Extension:
-      screenshot:
-        directory: behat-screenshots/
-        autoClean: false
+    FailAid\Extension: ~
 
     DMore\ChromeExtension\Behat\ServiceContainer\ChromeExtension: ~
