@@ -69,11 +69,9 @@ class MiscContext extends MinkContext
     public function theCurrentPageIsHTTPS()
     {
         // Get the session
-        echo "\nGetting the session...";
         $session = $this->getSession();
 
         // Get the current URL
-        echo "\nGetting the current URL...";
         $current_url = $session->getCurrentUrl();
 
         // Verify the URL starts with HTTPS
@@ -99,13 +97,11 @@ class MiscContext extends MinkContext
     public function theResponseHeaderIsSet($header)
     {
         // Get the session
-        echo "\nGetting the session...";
         $session = $this->getSession();
 
         // Get the headers from the session
-        echo "\nGetting the headers...";
         $headers = $session->getResponseHeaders();
-        FailureContext::addState('response headers', $headers);
+        FailureContext::addState('response headers', print_r($headers, true));
 
         if (!isset($headers[$header])) {
             throw new ExpectationException(
@@ -130,13 +126,11 @@ class MiscContext extends MinkContext
     public function theResponseHeaderEquals($header,$header_value)
     {
         // Get the session
-        echo "\nGetting the session...";
         $session = $this->getSession();
 
         // Get the headers from the session
-        echo "\nGetting the headers...";
         $headers = $session->getResponseHeaders();
-        FailureContext::addState('response headers', $headers);
+        FailureContext::addState('response headers', print_r($headers, true));
 
         if (!isset($headers[$header])) {
             throw new ExpectationException(
@@ -168,12 +162,11 @@ class MiscContext extends MinkContext
     public function theResponseHeaderValueMatches($header,$header_value_pattern)
     {
         // Get the session
-        echo "\nGetting the session...";
         $session = $this->getSession();
 
         // Get the headers from the session
         $headers = $session->getResponseHeaders();
-        FailureContext::addState('response headers', $headers);
+        FailureContext::addState('response headers', print_r($headers, true));
 
         if (!isset($headers[$header])) {
             throw new ExpectationException(
