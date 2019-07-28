@@ -46,9 +46,9 @@ class MiscContext extends MinkContext
      */
     public function theCurrentPageIsHTTPS()
     {
-        // Verify the session
+        // Get the session
         echo "\nGetting the session...";
-        $session = $this->_verifySession();
+        $session = $this->getSession();
 
         // Get the current URL
         echo "\nGetting the current URL...";
@@ -76,9 +76,9 @@ class MiscContext extends MinkContext
      */
     public function theResponseHeaderIsSet($header)
     {
-        // Verify the session
+        // Get the session
         echo "\nGetting the session...";
-        $session = $this->_verifySession();
+        $session = $this->getSession();
 
         // Get the headers from the session
         echo "\nGetting the headers...";
@@ -106,13 +106,15 @@ class MiscContext extends MinkContext
      */
     public function theResponseHeaderEquals($header,$header_value)
     {
-        // Verify the session
+        // Get the session
         echo "\nGetting the session...";
-        $session = $this->_verifySession();
+        $session = $this->getSession();
 
         // Get the headers from the session
         echo "\nGetting the headers...";
         $headers = $session->getResponseHeaders();
+
+        echo "\nThe headers are " . print_r($headers, true);
 
         if (!isset($headers[$header])) {
             throw new ExpectationException(
@@ -143,8 +145,9 @@ class MiscContext extends MinkContext
      */
     public function theResponseHeaderValueMatches($header,$header_value_pattern)
     {
-        // Verify the session
-        $session = $this->_verifySession();
+        // Get the session
+        echo "\nGetting the session...";
+        $session = $this->getSession();
 
         // Get the headers from the session
         $headers = $session->getResponseHeaders();
@@ -168,20 +171,7 @@ class MiscContext extends MinkContext
      */
     public function beforeStep()
     {
-        echo "Before step, verifying the session\n";
 
-        $session = $this->_verifySession();
-        $url = $session->getCurrentUrl();
-        echo "Current URL: {$url}\n";
-    }
-
-    /**
-     * Verify a properly started mink session
-     *
-     * @return Session Returns Mink session.
-     */
-    private function _verifySession()
-    {
         // Start a session if needed
         $session = $this->getSession();
         if (! $session->isStarted() ) {
@@ -194,12 +184,8 @@ class MiscContext extends MinkContext
         // If we aren't on a valid page
         if ('about:blank' === $current_url ) {
             // Go to the home page
-            echo "Chrome is on about:blank, going to " . $this->_getFrontendURL();
             $session->visit($this->_getFrontendURL());
         }
-
-        // Return the session
-        return $session;
     }
 
 }

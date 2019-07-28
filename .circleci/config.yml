@@ -99,7 +99,7 @@ jobs:
       - save_cache:
           key: composer-cache
           paths:
-            - $HOME/.composer/cache
+            - "$HOME/.composer/cache"
 
   build_php:
     <<: *defaults
@@ -135,12 +135,12 @@ jobs:
       - save_cache:
           key: wp-rig-vendor-{{ checksum "web/wp-content/themes/wprig/composer.lock" }}
           paths:
-            - $CIRCLE_WORKING_DIRECTORY/web/wp-content/themes/wprig/vendor
+            - "$CIRCLE_WORKING_DIRECTORY/web/wp-content/themes/wprig/vendor"
 
       - save_cache:
           key: main-vendor-{{ checksum "composer.lock" }}
           paths:
-            - $CIRCLE_WORKING_DIRECTORY/vendor
+            - "$CIRCLE_WORKING_DIRECTORY/vendor"
 
       - persist_to_workspace:
           root: .
@@ -176,12 +176,12 @@ jobs:
       - save_cache:
           key: wp-rig-node-modules-{{ checksum "web/wp-content/themes/wprig/package-lock.json" }}
           paths:
-            - $CIRCLE_WORKING_DIRECTORY/web/wp-content/themes/wprig/node_modules
+            - "$CIRCLE_WORKING_DIRECTORY/web/wp-content/themes/wprig/node_modules"
 
       - save_cache:
-          paths:
-            - $HOME/.npm
           key: npm-cache-dir
+          paths:
+            - "$HOME/.npm"
 
       - run:
           name: remove dev theme
@@ -327,14 +327,14 @@ jobs:
           command: ./.ci/test/lighthouse/run
 
       - save_cache:
-          paths:
-            - $CIRCLE_WORKING_DIRECTORY/node_modules
           key: npm-dependencies-{{ checksum "package-lock.json" }}
+          paths:
+            - "$CIRCLE_WORKING_DIRECTORY/node_modules"
 
       - save_cache:
-          paths:
-            - $HOME/.npm
           key: npm-cache
+          paths:
+            - "$HOME/.npm"
 
       - store_artifacts:
           path: /tmp/artifacts

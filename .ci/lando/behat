@@ -10,6 +10,9 @@ export RELOCATED_WP_ADMIN=TRUE
 # Dynamically set Behat configuration parameters
 export BEHAT_PARAMS='{"extensions":{"Behat\\MinkExtension":{"base_url":"'${LANDO_INTERNAL_SITE_URL}'"},"PaulGibbs\\WordpressBehatExtension":{"site_url":"'${LANDO_INTERNAL_SITE_URL}'/wp","users":{"admin":{"username":"'$BEHAT_ADMIN_USERNAME'","password":"'$BEHAT_ADMIN_PASSWORD'"}},"wpcli":{"binary":"wp"}}}}'
 
+# Kill existing Chrome instances
+pkill -f "(chrome)?(--headless)"
+
 # Start headless Chrome if needed
 if [[ $(jobs | grep chrome) ]]
 then
