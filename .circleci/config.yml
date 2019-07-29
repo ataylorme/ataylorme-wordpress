@@ -229,10 +229,6 @@ jobs:
             - main-vendor-{{ checksum "composer.lock" }}
             - main-vendor-
 
-      - restore_cache:
-          keys:
-            - composer-cache
-
       - run:
           # Set TERMINUS_ENV and related environment variables.
           # https://github.com/pantheon-systems/docker-build-tools-ci/blob/6.x/scripts/set-environment
@@ -251,6 +247,11 @@ jobs:
           name: clean up after Behat
           command: ./.ci/test/behat/cleanup
           when: always
+
+      - save_cache:
+          key: main-vendor-{{ checksum "composer.lock" }}
+          paths:
+            - vendor
 
       - store_artifacts:
           path: /tmp/artifacts
