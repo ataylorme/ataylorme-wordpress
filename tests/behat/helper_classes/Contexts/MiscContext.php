@@ -35,6 +35,23 @@ class MiscContext extends MinkContext
     }
 
     /**
+     * Get headers from a URL
+     *
+     * @param string $url the URL to fetch headers from
+     * @return array the response headers of the URL
+     */
+    private function _getHeaders($url)
+    {
+        $headers = [];
+        $raw_headers = get_headers($url, 1);
+        unset($headers[0]);
+        foreach( $raw_headers as $key => $value ) {
+            $headers[strtolower($key)] = $value;
+        }
+        return $headers;
+    }
+
+    /**
      * @BeforeStep
      */
     public function beforeStep()
@@ -103,8 +120,7 @@ class MiscContext extends MinkContext
         $current_url = $session->getCurrentUrl();
 
         // Get the headers from the session
-        $headers = get_headers($current_url, 1);
-        unset($headers[0]);
+        $headers = _getHeaders($current_url);
         // $headers = $session->getResponseHeaders();
         FailureContext::addState('response headers', print_r($headers, true));
 
@@ -137,8 +153,7 @@ class MiscContext extends MinkContext
         $current_url = $session->getCurrentUrl();
 
         // Get the headers from the session
-        $headers = get_headers($current_url, 1);
-        unset($headers[0]);
+        $headers = _getHeaders($current_url);
         // $headers = $session->getResponseHeaders();
         FailureContext::addState('response headers', print_r($headers, true));
 
@@ -178,8 +193,7 @@ class MiscContext extends MinkContext
         $current_url = $session->getCurrentUrl();
 
         // Get the headers from the session
-        $headers = get_headers($current_url, 1);
-        unset($headers[0]);
+        $headers = _getHeaders($current_url);
         // $headers = $session->getResponseHeaders();
         FailureContext::addState('response headers', print_r($headers, true));
 
