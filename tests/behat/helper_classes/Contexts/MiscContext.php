@@ -120,7 +120,7 @@ class MiscContext extends MinkContext
         $current_url = $session->getCurrentUrl();
 
         // Get the headers from the session
-        $headers = _getHeaders($current_url);
+        $headers = $this->_getHeaders($current_url);
         // $headers = $session->getResponseHeaders();
         FailureContext::addState('response headers', print_r($headers, true));
 
@@ -153,7 +153,7 @@ class MiscContext extends MinkContext
         $current_url = $session->getCurrentUrl();
 
         // Get the headers from the session
-        $headers = _getHeaders($current_url);
+        $headers = $this->_getHeaders($current_url);
         // $headers = $session->getResponseHeaders();
         FailureContext::addState('response headers', print_r($headers, true));
 
@@ -193,7 +193,7 @@ class MiscContext extends MinkContext
         $current_url = $session->getCurrentUrl();
 
         // Get the headers from the session
-        $headers = _getHeaders($current_url);
+        $headers = $this->_getHeaders($current_url);
         // $headers = $session->getResponseHeaders();
         FailureContext::addState('response headers', print_r($headers, true));
 
