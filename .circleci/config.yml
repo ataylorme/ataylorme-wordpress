@@ -84,7 +84,8 @@ jobs:
 
       - restore_cache:
           keys:
-            - composer-cache
+            - main-vendor-{{ checksum "composer.lock" }}
+            - main-vendor-
 
       - run:
           # Set TERMINUS_ENV and related environment variables.
@@ -97,9 +98,9 @@ jobs:
           command: ./.ci/test/static/run
 
       - save_cache:
-          key: composer-cache
+          key: main-vendor-{{ checksum "composer.lock" }}
           paths:
-            - "$HOME/.composer/cache"
+            - vendor
 
   build_php:
     <<: *defaults
@@ -109,10 +110,6 @@ jobs:
       - attach_workspace:
           # Must be absolute path or relative path from working_directory
           at: /tmp
-
-      - restore_cache:
-          keys:
-            - composer-cache
 
       - restore_cache:
           keys:
@@ -135,12 +132,12 @@ jobs:
       - save_cache:
           key: wp-rig-vendor-{{ checksum "web/wp-content/themes/wprig/composer.lock" }}
           paths:
-            - "$CIRCLE_WORKING_DIRECTORY/web/wp-content/themes/wprig/vendor"
+            - web/wp-content/themes/wprig/vendor
 
       - save_cache:
           key: main-vendor-{{ checksum "composer.lock" }}
           paths:
-            - "$CIRCLE_WORKING_DIRECTORY/vendor"
+            - vendor
 
       - persist_to_workspace:
           root: .
@@ -165,10 +162,6 @@ jobs:
             - wp-rig-node-modules-{{ checksum "web/wp-content/themes/wprig/package-lock.json" }}
             - wp-rig-node-modules-
 
-      - restore_cache:
-          keys:
-            - npm-cache-dir
-
       - run:
           name: build theme
           command: ./.ci/build/node
@@ -176,12 +169,7 @@ jobs:
       - save_cache:
           key: wp-rig-node-modules-{{ checksum "web/wp-content/themes/wprig/package-lock.json" }}
           paths:
-            - "$CIRCLE_WORKING_DIRECTORY/web/wp-content/themes/wprig/node_modules"
-
-      - save_cache:
-          key: npm-cache-dir
-          paths:
-            - "$HOME/.npm"
+            - web/wp-content/themes/wprig/node_modules
 
       - run:
           name: remove dev theme
@@ -306,10 +294,6 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - npm-dependencies-
 
-      - restore_cache:
-          keys:
-            - npm-cache
-
       - run:
           name: set environment variables
           command: ./.ci/scripts/set-up-env
@@ -329,12 +313,7 @@ jobs:
       - save_cache:
           key: npm-dependencies-{{ checksum "package-lock.json" }}
           paths:
-            - "$CIRCLE_WORKING_DIRECTORY/node_modules"
-
-      - save_cache:
-          key: npm-cache
-          paths:
-            - "$HOME/.npm"
+            - node_modules
 
       - store_artifacts:
           path: /tmp/artifacts
