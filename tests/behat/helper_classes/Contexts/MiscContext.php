@@ -44,7 +44,7 @@ class MiscContext extends MinkContext
     {
         $headers = [];
         $raw_headers = get_headers($url, 1);
-        unset($headers[0]);
+        unset($raw_headers[0]);
         foreach( $raw_headers as $key => $value ) {
             $headers[strtolower($key)] = $value;
         }
