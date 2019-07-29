@@ -173,6 +173,13 @@ if ( isset( $_ENV['PANTHEON_ENVIRONMENT'] ) ):
 		define( 'WP_HOME', $scheme . '://' . $_SERVER['HTTP_HOST'] );
 		define( 'WP_SITEURL', $scheme . '://' . $_SERVER['HTTP_HOST'] . '/wp' );
 
+	} else if ( 'lando' === $_ENV['PANTHEON_ENVIRONMENT'] ) {
+		if( !isset($_ENV['LANDO_URL']) ) {
+			$_ENV['LANDO_URL'] = 'https://ataylorme-wordpress.lndo.site/';
+		}
+		define( 'WP_HOME', $_ENV['LANDO_URL'] );
+		define( 'WP_SITEURL', $_ENV['LANDO_URL'] . '/wp' );
+
 	}
 	// Don't show deprecations; useful under PHP 5.5
 	error_reporting( E_ALL ^ E_DEPRECATED );
