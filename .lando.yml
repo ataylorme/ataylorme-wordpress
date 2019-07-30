@@ -13,6 +13,10 @@ services:
   # Spin up a PHP CI service for Behat, PHPUnit, etc.
   ci:
     type: php:custom
+    run_as_root:
+      - chmod 777 /tmp
+      - mkdir -p /var/www/.composer/cache
+      - chmod 777 /var/www/.composer/cache
     overrides:
       image: quay.io/pantheon-public/build-tools-ci:6.x
       environment:
@@ -25,6 +29,7 @@ services:
         DB_USER: 'pantheon'
         DB_PASSWORD: 'pantheon'
         DB_NAME: 'pantheon'
+
   appserver:
     overrides:
       environment:
@@ -40,14 +45,6 @@ services:
 
 # Additional "lando" commands
 tooling:
-  tmp-permissions:
-    description: Temp directory permission
-    cmd: 
-      - chmod 777 /tmp
-      - mkdir -p /var/www/.composer/cache
-      - chmod 777 /var/www/.composer/cache
-    service: ci
-    user: root
   composer:
     service: appserver
   wp:
@@ -66,32 +63,12 @@ tooling:
     service: appserver
   export-db:
     description: export the database
-    cmd:
-      - appserver: ./.ci/lando/delete-wp-admin-user
-      - appserver: ./.ci/lando/export-db
+    cmd: ./.ci/lando/export-db
     service: appserver
-  behat:
-    description: Run Behat
-    cmd:
-      - appserver: ./.ci/lando/delete-wp-admin-user
-      - appserver: ./.ci/lando/export-db "pre-behat-tests"
-      - appserver: ./.ci/lando/create-wp-admin-user
-      - ci: google-chrome --disable-gpu --headless --remote-debugging-address=0.0.0.0 --remote-debugging-port=9222 --no-sandbox </dev/null &>/dev/null &
-      - ci: ./.ci/lando/behat
-      - ci: pkill -f "(chrome)?(--headless)"
-      - appserver: ./.ci/lando/restore-db "pre-behat-tests"
   behat-commands:
     description: List Behat scenarios
     cmd: composer -n behat-scenarios
     service: ci
-  delete-admin-user:
-    description: Delete admin WordPress user
-    cmd: ./.ci/lando/delete-wp-admin-user
-    service: appserver
-  create-admin-user:
-    description: Create admin WordPress user
-    cmd: ./.ci/lando/create-wp-admin-user
-    service: appserver
   pull-live:
     description: Pull DB and files from the Pantheon live environment
     service: appserver
