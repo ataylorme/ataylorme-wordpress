@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fe8fc88b2a79265c258949d2a9b83967",
+    "content-hash": "b47caebe2114d7842bf160b8787e017e",
     "packages": [
         {
             "name": "ataylorme/ataylorme-wordpress-theme",
@@ -186,6 +186,21 @@
                 "zikula"
             ],
             "time": "2018-08-27T06:10:37+00:00"
+        },
+        {
+            "name": "google/site-kit",
+            "version": "1.0.0-beta.1.0.3",
+            "source": {
+                "type": "vcs",
+                "url": "https://github.com/google/site-kit-wp",
+                "reference": "releases/tag/1.0.0-beta.1.0.3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/google/site-kit-wp/archive/1.0.0-beta.1.0.3.zip",
+                "reference": "releases/tag/1.0.0-beta.1.0.3"
+            },
+            "type": "wordpress-plugin"
         },
         {
             "name": "johnpbloch/wordpress-core-installer",
@@ -569,15 +584,15 @@
         },
         {
             "name": "wpackagist-plugin/gutenberg",
-            "version": "6.1.1",
+            "version": "6.2.0",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/gutenberg/",
-                "reference": "tags/6.1.1"
+                "reference": "tags/6.2.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/gutenberg.6.1.1.zip"
+                "url": "https://downloads.wordpress.org/plugin/gutenberg.6.2.0.zip"
             },
             "require": {
                 "composer/installers": "~1.0"
@@ -695,15 +710,15 @@
         },
         {
             "name": "wpackagist-plugin/wpforms-lite",
-            "version": "1.5.3.1",
+            "version": "1.5.4.1",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wpforms-lite/",
-                "reference": "tags/1.5.3.1"
+                "reference": "tags/1.5.4.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wpforms-lite.1.5.3.1.zip"
+                "url": "https://downloads.wordpress.org/plugin/wpforms-lite.1.5.4.1.zip"
             },
             "require": {
                 "composer/installers": "~1.0"
@@ -5264,6 +5279,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
+        "google/site-kit": 10,
         "roave/security-advisories": 20
     },
     "prefer-stable": false,
