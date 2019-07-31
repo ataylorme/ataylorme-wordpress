@@ -9,6 +9,7 @@ Feature: HTTPS on the home page
     When I am on the homepage
     Then the current page is HTTPS
 
+  @pantheon
   Scenario: Verify HSTS on the home page
     When I am on the homepage
     Then the "content-security-policy" response header equals "upgrade-insecure-requests"

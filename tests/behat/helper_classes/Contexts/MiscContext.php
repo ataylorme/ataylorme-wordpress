@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 namespace ataylorme\WordHatHelpers\Contexts;
@@ -13,43 +12,6 @@ use FailAid\Context\FailureContext;
  */
 class MiscContext extends MinkContext
 {
-
-    /**
-     * Get the WordPress admin URL
-     *
-     * @return string the Mink base_url with /wp-admin appended
-     */
-    private function _getAdminURL()
-    {
-        return $this->getWordpressParameter('site_url') . '/wp-admin/index.php';
-    }
-
-    /**
-     * Get the WordPress front end URL
-     *
-     * @return string the Mink base_url
-     */
-    private function _getFrontendURL()
-    {
-        return $this->getMinkParameter('base_url');
-    }
-
-    /**
-     * Get headers from a URL
-     *
-     * @param string $url the URL to fetch headers from
-     * @return array the response headers of the URL
-     */
-    private function _getHeaders($url)
-    {
-        $headers = [];
-        $raw_headers = get_headers($url, 1);
-        unset($raw_headers[0]);
-        foreach( $raw_headers as $key => $value ) {
-            $headers[strtolower($key)] = $value;
-        }
-        return $headers;
-    }
 
     /**
      * @BeforeStep
@@ -71,6 +33,45 @@ class MiscContext extends MinkContext
             // Go to the home page
             $session->visit($this->_getFrontendURL());
         }
+    }
+
+    /**
+     * Get the WordPress front end URL
+     *
+     * @return string the Mink base_url
+     */
+    private function _getFrontendURL()
+    {
+        return $this->getMinkParameter('base_url');
+    }
+
+    /**
+     * Get headers from a URL
+     *
+     * @param string $url the URL to fetch headers from
+     * @return array the response headers of the URL
+     */
+    private function _getHeaders($url)
+    {
+        $headers = [];
+        stream_context_set_default([
+            'ssl' => [
+                'verify_peer' => false,
+                'verify_peer_name' => false,
+            ],
+        ]);
+        $raw_headers = get_headers($url, 1);
+        unset($raw_headers[0]);
+        foreach( $raw_headers as $key => $value ) {
+            $headers[strtolower($key)] = $value;
+        }
+        stream_context_set_default([
+            'ssl' => [
+                'verify_peer' => true,
+                'verify_peer_name' => true,
+            ],
+        ]);
+        return $headers;
     }
 
     /**
