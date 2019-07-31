@@ -6,24 +6,15 @@ BEHAT_ADMIN_USERNAME="pantheon-ci-testing-local"
 BEHAT_ADMIN_EMAIL="andrew+local-ci@pantheon.io"
 BEHAT_ADMIN_PASSWORD="pantheon-ci-testing-local"
 
-# Check if an admin user with our desired username exists
-BEHAT_ADMIN_USER_EXISTS=$(lando wp user list --login=${BEHAT_ADMIN_USERNAME} --format=count)
-
 # Delete the admin user if it already exists
-if [[ "$BEHAT_ADMIN_USER_EXISTS" == "1" ]]
-then
-  echo -e "\nDeleting the WordPress admin user..."
-  lando wp user delete $BEHAT_ADMIN_USERNAME --yes
-  echo -e "\n WordPress user $BEHAT_ADMIN_USERNAME has been deleted."
-fi
+echo -e "\nDeleting the WordPress admin user..."
+lando wp user delete $BEHAT_ADMIN_USERNAME --yes
 
 # Export the DB prior to testing
 lando export-db
 
 # Create the admin user
-echo -e "\nCreating the WordPress admin user $BEHAT_ADMIN_USERNAME..."
 lando wp user create $BEHAT_ADMIN_USERNAME $BEHAT_ADMIN_EMAIL --user_pass=$BEHAT_ADMIN_PASSWORD --role=administrator
-echo -e "\n WordPress user $BEHAT_ADMIN_USERNAME with the password $BEHAT_ADMIN_PASSWORD has been created."
 
 # Dynamically set Behat configuration parameters
 export BEHAT_PARAMS='{"extensions":{"Behat\\MinkExtension":{"base_url":"https://ataylorme-wordpress.lndo.site/"},"PaulGibbs\\WordpressBehatExtension":{"site_url":"https://ataylorme-wordpress.lndo.site/wp","users":{"admin":{"username":"'$BEHAT_ADMIN_USERNAME'","password":"'$BEHAT_ADMIN_PASSWORD'"}},"wpcli":{"binary":"lando wp"}}}}'
@@ -32,10 +23,10 @@ export BEHAT_PARAMS='{"extensions":{"Behat\\MinkExtension":{"base_url":"https://
 # chrome --disable-gpu --headless --remote-debugging-address=0.0.0.0 --remote-debugging-port=9222 --no-sandbox &
 
 # Run Behat, excluding Pantheon only tests
-./vendor/bin/behat --config=tests/behat/behat-pantheon.yml --strict --colors --format-settings='{"paths": false}' --tags '~@pantheon'
+./vendor/bin/behat --config=tests/behat/behat-pantheon.yml --strict --colors --format-settings='{"paths": false}' --tags '~@live'
 
 # Restore the database to its state prior to testing
 lando restore-db
 
 # Stop headless Chrome
-pkill -f "(chrome)?(--headless)"
+#pkill -f "(chrome)?(--headless)"
