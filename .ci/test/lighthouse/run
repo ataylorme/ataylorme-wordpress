@@ -4,6 +4,9 @@
 BUILD_DIR=$(pwd)
 GITHUB_API_URL="https://api.github.com/repos/$CI_PROJECT_USERNAME/$CI_PROJECT_REPONAME"
 
+# exit when any command fails
+set -e
+
 # Check if we are NOT on the master branch and this is a PR
 if [[ ${CI_BRANCH} != "master" && -z ${CI_PR_URL} ]];
 then
