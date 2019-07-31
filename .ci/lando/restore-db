@@ -29,7 +29,7 @@ for DB_TABLE in $DB_TABLES; do
 done
 
 # Import the DB
-echo -e "\nImporting the $DB_NAME database..."
+echo -e "\nImporting $DB_FILE_NAME into the $DB_NAME database..."
 cat $DB_FILE_NAME.sql | $SQLSTART
 
 # Remove the DB export file

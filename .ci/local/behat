@@ -4,29 +4,34 @@
 export RELOCATED_WP_ADMIN=TRUE
 BEHAT_ADMIN_USERNAME="pantheon-ci-testing-local"
 BEHAT_ADMIN_EMAIL="andrew+local-ci@pantheon.io"
-BEHAT_ADMIN_PASSWORD="pantheon-ci-testing-local"
-
-# Delete the admin user if it already exists
-echo -e "\nDeleting the WordPress admin user..."
-lando wp user delete $BEHAT_ADMIN_USERNAME --yes
+BEHAT_ADMIN_PASSWORD="running-behat-locally-ftw"
 
 # Export the DB prior to testing
-lando export-db
-
-# Create the admin user
-lando wp user create $BEHAT_ADMIN_USERNAME $BEHAT_ADMIN_EMAIL --user_pass=$BEHAT_ADMIN_PASSWORD --role=administrator
+echo -e "\nExporting the DB prior to testing..."
+lando db-export pre-behat-tests
 
 # Dynamically set Behat configuration parameters
 export BEHAT_PARAMS='{"extensions":{"Behat\\MinkExtension":{"base_url":"https://ataylorme-wordpress.lndo.site/"},"PaulGibbs\\WordpressBehatExtension":{"site_url":"https://ataylorme-wordpress.lndo.site/wp","users":{"admin":{"username":"'$BEHAT_ADMIN_USERNAME'","password":"'$BEHAT_ADMIN_PASSWORD'"}},"wpcli":{"binary":"lando wp"}}}}'
 
-# Start headless Chrome (copy/paste this into Terminal)
-# chrome --disable-gpu --headless --remote-debugging-address=0.0.0.0 --remote-debugging-port=9222 --no-sandbox &
+# Start headless Chrome
+echo -e "\nStarting headless Chrome..."
+#chrome --disable-gpu --headless --remote-debugging-address=0.0.0.0 --remote-debugging-port=9222 --no-sandbox &
+/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --disable-gpu --headless --remote-debugging-address=0.0.0.0 --remote-debugging-port=9222 --no-sandbox </dev/null &>/dev/null &
+
+echo -e "\nWaiting 5 seconds for Chrome to initialize..."
+sleep 5
 
 # Run Behat, excluding Pantheon only tests
+echo -e "\nRunning the Behat tests..."
 ./vendor/bin/behat --config=tests/behat/behat-pantheon.yml --strict --colors --format-settings='{"paths": false}' --tags '~@live'
 
 # Restore the database to its state prior to testing
-lando restore-db
+echo -e "\nRestoring the DB after testing..."
+lando db-import pre-behat-tests.gz
+rm pre-behat-tests.gz
 
 # Stop headless Chrome
-#pkill -f "(chrome)?(--headless)"
+echo -e "\nStopping headless Chrome..."
+pkill -f "(chrome)?(--headless)"
+
+echo -e "\nAll done!"

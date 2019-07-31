@@ -10,7 +10,7 @@ config:
   webroot: web
 
 services:
-  # Spin up a PHP CI service for Behat, PHPUnit, etc.
+# Spin up a PHP CI service for Behat, PHPUnit, etc.
   ci:
     type: php:custom
     run_as_root:
@@ -22,26 +22,42 @@ services:
       environment:
         PANTHEON_ENVIRONMENT: lando
         # Get this info from "lando info"
-        LANDO_INTERNAL_SITE_URL: https://edge_ssl.ataylormewordpress.internal
+        LANDO_INTERNAL_SITE_URL: https://appserver_nginx
         LANDO_URL: https://ataylorme-wordpress.lndo.site/
         DB_HOST: 'database'
         DB_PORT: 3306
         DB_USER: 'pantheon'
         DB_PASSWORD: 'pantheon'
         DB_NAME: 'pantheon'
+        BEHAT_ADMIN_PASSWORD: 'running-behat-locally-ftw'
+        BEHAT_ADMIN_EMAIL: 'andrew+local-ci@pantheon.io'
+        BEHAT_ADMIN_USERNAME: 'pantheon-ci-testing-local'
 
   appserver:
     overrides:
       environment:
         PANTHEON_ENVIRONMENT: lando
         # Get this info from "lando info"
-        LANDO_INTERNAL_SITE_URL: https://edge_ssl.ataylormewordpress.internal
         LANDO_URL: https://ataylorme-wordpress.lndo.site/
         DB_HOST: 'database'
         DB_PORT: 3306
         DB_USER: 'pantheon'
         DB_PASSWORD: 'pantheon'
         DB_NAME: 'pantheon'
+        BEHAT_ADMIN_PASSWORD: 'running-behat-locally-ftw'
+        BEHAT_ADMIN_EMAIL: 'andrew+local-ci@pantheon.io'
+        BEHAT_ADMIN_USERNAME: 'pantheon-ci-testing-local'
+
+# Extra event hooks
+events:
+  post-pull:
+    - appserver: wp search-replace 'ataylor.me' 'ataylorme-wordpress.lndo.site'
+    - appserver: wp search-replace 'live-ataylorme-wordpress.pantheonsite.io' 'ataylorme-wordpress.lndo.site'
+    - appserver: wp cache flush
+    - appserver: sleep 5
+    - appserver: wp plugin deactivate amp
+    - appserver: wp theme activate ataylorme-wordpress-theme
+    - appserver: ./.ci/lando/create-wp-admin-user
 
 # Additional "lando" commands
 tooling:
@@ -69,23 +85,12 @@ tooling:
     description: List Behat scenarios
     cmd: composer -n behat-scenarios
     service: ci
-  pull-live:
-    description: Pull DB and files from the Pantheon live environment
+  delete-admin-user:
+    description: Delete admin WordPress user
+    cmd: ./.ci/lando/delete-wp-admin-user
     service: appserver
-    cmd:
-      # Files
-      - rm -f /tmp/files.sql.gz
-      - terminus backup:get ataylorme-wordpress.live --element=files --to=/tmp/files.tar.gz
-      - mkdir -p /app/wp-content/uploads
-      - tar -xzvf /tmp/files.tar.gz -C /app/wp-content/uploads --strip-components 1
-      # Database
-      - rm -f /tmp/database.sql.gz
-      - terminus backup:get ataylorme-wordpress.live --element=db --to=/tmp/database.sql.gz
-      - ./.ci/lando/restore-db "/tmp/database"
-      # wp-cli cleanup
-      - wp search-replace 'ataylor.me' 'ataylorme-wordpress.lndo.site'
-      - wp search-replace 'live-ataylorme-wordpress.pantheonsite.io' 'ataylorme-wordpress.lndo.site'
-      - wp plugin deactivate amp
-      - wp theme activate ataylorme-wordpress-theme
+  create-admin-user:
+    description: Create admin WordPress user
+    cmd: ./.ci/lando/create-wp-admin-user
+    service: appserver
   push: disabled
-  pull: disabled

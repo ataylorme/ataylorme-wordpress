@@ -1,4 +1,4 @@
-@javascript @auth @contact
+@javascript @contact @no_auth
 Feature: Verify the contact form
   As the site owner who likes to hear from users
   I want the contact form to submit properly

@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# Delete the admin user
+wp user delete $BEHAT_ADMIN_USERNAME --yes

@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# Create the admin user
+wp user create $BEHAT_ADMIN_USERNAME $BEHAT_ADMIN_EMAIL --user_pass="$BEHAT_ADMIN_PASSWORD" --role=administrator
