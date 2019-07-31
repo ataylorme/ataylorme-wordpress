@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b47caebe2114d7842bf160b8787e017e",
+    "content-hash": "36e22442783975098d72e3f0f7f52c41",
     "packages": [
         {
             "name": "ataylorme/ataylorme-wordpress-theme",
@@ -190,11 +190,6 @@
         {
             "name": "google/site-kit",
             "version": "1.0.0-beta.1.0.3",
-            "source": {
-                "type": "vcs",
-                "url": "https://github.com/google/site-kit-wp",
-                "reference": "releases/tag/1.0.0-beta.1.0.3"
-            },
             "dist": {
                 "type": "zip",
                 "url": "https://github.com/google/site-kit-wp/archive/1.0.0-beta.1.0.3.zip",
