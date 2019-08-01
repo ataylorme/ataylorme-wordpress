@@ -11,7 +11,7 @@ use RuntimeException;
 use FailAid\Context\FailureContext;
 
 /**
- * Define application features from the specific context.
+ * Define WordPress specific helper methods.
  */
 class RawWPContext extends RawWordpressContext
 {

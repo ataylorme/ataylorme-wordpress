@@ -35,6 +35,28 @@ class PantheonContext extends RawWPContext
     }
 
     /**
+     * @BeforeStep
+     */
+    public function beforeStep()
+    {
+
+        // Start a session if needed
+        $session = $this->getSession();
+        if (! $session->isStarted() ) {
+            $session->start();
+        }
+
+        // Stash the current URL
+        $current_url = $session->getCurrentUrl();
+
+        // If we aren't on a valid page
+        if ('about:blank' === $current_url ) {
+            // Go to the home page
+            $session->visit($this->getMinkParameter('base_url'));
+        }
+    }
+
+    /**
      * Clear Pantheon page cache.
      *
      * Example: When the Pantheon cache is cleared

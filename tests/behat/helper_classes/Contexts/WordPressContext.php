@@ -11,7 +11,7 @@ use RuntimeException;
 use FailAid\Context\FailureContext;
 
 /**
- * Define application features from the specific context.
+ * Define WordPress specific features from the specific context.
  */
 class WordPressContext extends RawWPContext
 {
@@ -95,28 +95,6 @@ class WordPressContext extends RawWPContext
                 $this->getSession()->getDriver()
             );
         }
-    }
-
-    /**
-     * Take a screenshot
-     *
-     * Example: And I take a Chrome screenshot
-     * Example: And I take a Chrome screenshot "some-page.png"
-     *
-     * @Then /^(?:|I )take a Chrome screenshot "(?P<file_name>[^"]+)"$/
-     * @Given I take a Chrome screenshot
-     */
-    public function takeScreenshot($file_name=null)
-    {
-        $driver = $this->getSession()->getDriver();
-        $ss_path = 'behat-screenshots/' . date('Y-m-d');
-        if (!file_exists($ss_path)) {
-            mkdir($ss_path, 0777, true);
-        }
-        if ( null == $file_name ) {
-            $file_name = 'screenshot-' . date('Y-m-d-H-i-s') . '.png';
-        }
-        $driver->captureScreenshot($ss_path . '/' . $file_name);
     }
 
     /**
