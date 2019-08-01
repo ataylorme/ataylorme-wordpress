@@ -129,9 +129,43 @@ class RawWPContext extends RawWordpressContext
         $found_user = $this->getAdminUser();
         // Stash the current URL to redirect to
         $previous_url = $this->getSession()->getCurrentUrl();
-        $this->logIn($found_user['username'], $found_user['password'], $previous_url);
+        $this->logIn(
+            $found_user['username'],
+            $found_user['password'],
+            $previous_url
+        );
         FailureContext::addState('source_url', $previous_url);
         FailureContext::addState('username', $found_user['username']);
+    }
+
+    /**
+     * Logs out of WordPress and redirect to
+     * the existing URL before logging out.
+     *
+     * @return void
+     */
+    protected function logOutAndRedirect()
+    {
+        // Get the session
+        $session = $this->getSession();
+
+        // Stash the current URL to redirect to
+        $previous_url = $session->getCurrentUrl();
+
+        // Logout
+        $this->logOut();
+
+        // Error if the user is still logged in
+        if ( $this->loggedIn() ) {
+            throw new ExpectationException(
+                "Failed to log out.",
+                $session->getDriver()
+            );
+        }
+
+        // Go to the previous URL
+        $session->visit($previous_url);
+
     }
 
 }

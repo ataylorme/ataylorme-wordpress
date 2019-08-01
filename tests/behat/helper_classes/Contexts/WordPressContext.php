@@ -98,35 +98,6 @@ class WordPressContext extends RawWPContext
     }
 
     /**
-     * Logs out of WordPress
-     *
-     * @return void
-     */
-    public function logOutAndRedirect()
-    {
-        // Get the session
-        $session = $this->getSession();
-
-        // Stash the current URL to redirect to
-        $previous_url = $session->getCurrentUrl();
-
-        // Logout
-        $this->logOut();
-
-        // Error if the user is still logged in
-        if ( $this->loggedIn() ) {
-            throw new ExpectationException(
-                "Failed to log out.",
-                $session->getDriver()
-            );
-        }
-
-        // Go to the previous URL
-        $session->visit($previous_url);
-
-    }
-
-    /**
      * Log into WordPress as an admin
      *
      * Example: Given I am a WordPress admin
