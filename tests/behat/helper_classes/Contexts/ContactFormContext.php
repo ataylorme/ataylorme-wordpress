@@ -35,6 +35,39 @@ class ContactForm extends RawWPContext
     }
 
     /**
+     * @BeforeStep
+     */
+    public function beforeStep()
+    {
+
+        // Start a session if needed
+        $session = $this->getSession();
+        if (! $session->isStarted() ) {
+            $session->start();
+        }
+
+        // Stash the current URL
+        $current_url = $session->getCurrentUrl();
+
+        // If we aren't on a valid page
+        if ('about:blank' === $current_url ) {
+            // Go to the home page
+            $session->visit($this->getMinkParameter('base_url'));
+        }
+    }
+
+    /**
+     * Go to the contact page
+     * Example: Given I am on the contact page
+     *
+     * @Given I am on the contact page
+     */
+    public function goToContactPage()
+    {
+        $this->getSession()->visit($this->getFrontendURL() . '/contact');
+    }
+
+    /**
      * Sets the contact form first name field
      * Example: When I set the contact form first name to "Andrew"
      *
