@@ -14,6 +14,13 @@ $rootPath = realpath( __DIR__ . '/..' );
  */
 require_once( $rootPath . '/vendor/autoload.php' );
 
+/**
+ * Disable WordPress Cron on the live site
+ */
+if( isset( $_ENV['PANTHEON_ENVIRONMENT'] ) && in_array( $_ENV['PANTHEON_ENVIRONMENT'], ['dev','test','live'] ) ) {
+	define('DISABLE_WP_CRON', true);
+}
+
 /*
  * Fetch .env
  */
