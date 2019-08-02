@@ -32,6 +32,7 @@ services:
         BEHAT_ADMIN_PASSWORD: 'running-behat-locally-ftw'
         BEHAT_ADMIN_EMAIL: 'andrew+local-ci@pantheon.io'
         BEHAT_ADMIN_USERNAME: 'pantheon-ci-testing-local'
+        TERMINUS_SITE: 'ataylorme-wordpress'
 
   appserver:
     overrides:
@@ -47,6 +48,7 @@ services:
         BEHAT_ADMIN_PASSWORD: 'running-behat-locally-ftw'
         BEHAT_ADMIN_EMAIL: 'andrew+local-ci@pantheon.io'
         BEHAT_ADMIN_USERNAME: 'pantheon-ci-testing-local'
+        TERMINUS_SITE: 'ataylorme-wordpress'
 
 # Extra event hooks
 events:
