@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7135dbb2f9170d68bb44035a386060f3",
+    "content-hash": "549c5b307bc459eac6c5f36a6dc51560",
     "packages": [
         {
             "name": "ataylorme/ataylorme-wordpress-theme",
@@ -186,6 +186,24 @@
                 "zikula"
             ],
             "time": "2018-08-27T06:10:37+00:00"
+        },
+        {
+            "name": "google/site-kit",
+            "version": "1.0.0-beta.1.0.3",
+            "dist": {
+                "type": "zip",
+                "url": "https://codeload.github.com/google/site-kit-wp/zip/1.0.0-beta.1.0.3"
+            },
+            "type": "wordpress-plugin"
+        },
+        {
+            "name": "google/site-kit-dev-settings",
+            "version": "0.1.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://sitekit.withgoogle.com/service/download/google-site-kit-dev-settings.zip"
+            },
+            "type": "wordpress-plugin"
         },
         {
             "name": "johnpbloch/wordpress-core-installer",
@@ -5300,6 +5318,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
+        "google/site-kit": 10,
         "wpackagist-plugin/wp-gdpr-cookie-notice": 10,
         "roave/security-advisories": 20
     },
