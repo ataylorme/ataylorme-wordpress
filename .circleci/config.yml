@@ -476,7 +476,7 @@ workflows:
   scheduled_cron_ping:
     triggers:
       - schedule:
-          cron: "*/15 * * * *"
+          cron: "* * * * *"
           filters:
             branches:
               only:
