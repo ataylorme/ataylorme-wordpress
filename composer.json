@@ -32,6 +32,7 @@
     "wpackagist-plugin/pantheon-advanced-page-cache": "^0.3.0",
     "wpackagist-plugin/pwa": "^0.2.0",
     "wpackagist-plugin/syntax-highlighting-code-block": "^1.0.0",
+    "wpackagist-plugin/wp-gdpr-cookie-notice": "^1.0.0-beta.2",
     "wpackagist-plugin/wp-mail-smtp": "^1.4.2",
     "wpackagist-plugin/wp-native-php-sessions": "^0.7.0",
     "wpackagist-plugin/wp-redis": "^0.7.1",
