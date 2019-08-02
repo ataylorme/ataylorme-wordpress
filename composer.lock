@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f36b4ec83e6e1c60b887380369d4bc6a",
+    "content-hash": "a648bbfc2f66960df4c57e21e4df2d82",
     "packages": [
         {
             "name": "ataylorme/ataylorme-wordpress-theme",
@@ -656,6 +656,24 @@
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/pwa/"
+        },
+        {
+            "name": "wpackagist-plugin/wp-gdpr-cookie-notice",
+            "version": "1.0.0-beta.2",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/wp-gdpr-cookie-notice/",
+                "reference": "tags/1.0.0-beta.2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/wp-gdpr-cookie-notice.1.0.0-beta.2.zip"
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/wp-gdpr-cookie-notice/"
         },
         {
             "name": "wpackagist-plugin/wp-mail-smtp",
@@ -5283,6 +5301,7 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "google/site-kit": 10,
+        "wpackagist-plugin/wp-gdpr-cookie-notice": 10,
         "roave/security-advisories": 20
     },
     "prefer-stable": false,
