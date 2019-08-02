@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a648bbfc2f66960df4c57e21e4df2d82",
+    "content-hash": "549c5b307bc459eac6c5f36a6dc51560",
     "packages": [
         {
             "name": "ataylorme/ataylorme-wordpress-theme",
@@ -656,6 +656,24 @@
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/pwa/"
+        },
+        {
+            "name": "wpackagist-plugin/syntax-highlighting-code-block",
+            "version": "1.0.0",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/syntax-highlighting-code-block/",
+                "reference": "tags/1.0.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/syntax-highlighting-code-block.1.0.0.zip"
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/syntax-highlighting-code-block/"
         },
         {
             "name": "wpackagist-plugin/wp-gdpr-cookie-notice",
