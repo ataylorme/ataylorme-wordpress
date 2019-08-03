@@ -23,7 +23,7 @@
         "version": "1.0.0-beta.1.0.3",
         "type": "wordpress-plugin",
         "dist": {
-          "url": "https://codeload.github.com/google/site-kit-wp/zip/1.0.0-beta.1.0.3",
+          "url": "https://sitekit.withgoogle.com/service/download/google-site-kit.zip",
           "type": "zip"
         }
       }

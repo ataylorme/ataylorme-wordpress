@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "549c5b307bc459eac6c5f36a6dc51560",
+    "content-hash": "8b4a59743e6fbab4adc3712ed136bc15",
     "packages": [
         {
             "name": "ataylorme/ataylorme-wordpress-theme",
