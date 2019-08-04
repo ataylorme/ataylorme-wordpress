@@ -14,3 +14,11 @@ fi
 if [ -d "web/wp/wp-content" ]; then
   rm -rf web/wp/wp-content
 fi
+
+
+if [ -d "web/wp-content/plugins/site-kit-dev-settings/google-site-kit-dev-settings" ]; then
+  mv web/wp-content/plugins/site-kit-dev-settings/google-site-kit-dev-settings/* web/wp-content/plugins/site-kit-dev-settings/
+  ls web/wp-content/plugins/site-kit-dev-settings/google-site-kit-dev-settings
+  rm -rf web/wp-content/plugins/site-kit-dev-settings/google-site-kit-dev-settings
+  rm -rf web/wp-content/plugins/site-kit-dev-settings/__MACOSX
+fi

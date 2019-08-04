@@ -123,4 +123,19 @@ class WordPressContext extends RawWPContext
         $this->loginAsWordPressAdmin();
     }
 
+    /**
+     * Open the WordPress dashboard.
+     *
+     * Example: Given I am on the WordPress dashboard
+     * Example: When I go to the WordPress dashboard
+     *
+     * @Given /^(?:I am|they are) on the WordPress dashboard/
+     * @When /^(?:I|they) go to the WordPress dashboard/
+     */
+    public function iAmOnWordPressDashboard()
+    {
+        $dashboard_url = $this->getAdminURL();
+        $this->getSession()->visit($dashboard_url);
+    }
+
 }
