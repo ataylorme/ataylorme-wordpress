@@ -472,14 +472,3 @@ workflows:
                 - master
     jobs:
       - db_sync
-
-  scheduled_cron_ping:
-    triggers:
-      - schedule:
-          cron: "* * * * *"
-          filters:
-            branches:
-              only:
-                - master
-    jobs:
-      - cron_ping
