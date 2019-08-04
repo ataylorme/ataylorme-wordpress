@@ -127,15 +127,15 @@ class RawWPContext extends RawWordpressContext
     {
         // Get the admin user
         $found_user = $this->getAdminUser();
+        FailureContext::addState('username', $found_user['username']);
         // Stash the current URL to redirect to
         $previous_url = $this->getSession()->getCurrentUrl();
+        FailureContext::addState('source_url', $previous_url);
         $this->logIn(
             $found_user['username'],
             $found_user['password'],
             $previous_url
         );
-        FailureContext::addState('source_url', $previous_url);
-        FailureContext::addState('username', $found_user['username']);
     }
 
     /**

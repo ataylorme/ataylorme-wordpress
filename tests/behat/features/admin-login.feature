@@ -6,6 +6,8 @@ Feature: Login as an administrator
 
 Background:
     Given I accept the cookie notice
+    Given the cookie notice is hidden
+    Given I take a Chrome screenshot "cookie-notice-accepted.png"
     Given I am a WordPress admin
     Given I am on the dashboard
 
