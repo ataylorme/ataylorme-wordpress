@@ -480,6 +480,6 @@ workflows:
           filters:
             branches:
               only:
-                - master
+                - cron_ping
     jobs:
       - cron_ping
