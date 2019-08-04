@@ -5,8 +5,11 @@ Feature: Visibility of the cookie notice
   I want to verify the cookie notice exists
   And can be accepted
 
+Background:
+    Given I am an anonymous user
+
   Scenario: Verify the cookie notice
-    When I am on the homepage
+    Given I am on the homepage
     Then the cookie notice is shown
     And I accept the cookie notice
     Then the cookie notice is hidden
