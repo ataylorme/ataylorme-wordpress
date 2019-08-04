@@ -31,7 +31,7 @@ web/wp
 !web/private/
 web/private/*
 !web/private/scripts/
-web/private/scripts/quicksilver
+web/private/scripts/quicksilver/quicksilver-pushback/
 !web/private/config/
 !.circleci
 !.well-known/

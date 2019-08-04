@@ -48,6 +48,16 @@ class RawWPContext extends RawWordpressContext
     }
 
     /**
+     * Get the WordPress admin base URL
+     *
+     * @return string the Mink base_url with /wp-admin/index.php appended
+     */
+    protected function getAdminBaseURL()
+    {
+        return $this->getWordpressParameter('site_url');
+    }
+
+    /**
      * Get the WordPress front end URL
      *
      * @return string the Mink base_url
@@ -127,15 +137,53 @@ class RawWPContext extends RawWordpressContext
     {
         // Get the admin user
         $found_user = $this->getAdminUser();
-        // Stash the current URL to redirect to
-        $previous_url = $this->getSession()->getCurrentUrl();
-        $this->logIn(
-            $found_user['username'],
-            $found_user['password'],
-            $previous_url
-        );
-        FailureContext::addState('source_url', $previous_url);
         FailureContext::addState('username', $found_user['username']);
+
+        // Stash the session and driver
+        $session = $this->getSession();
+        $driver = $session->getDriver();
+
+        // Stash the current URL to redirect to
+        $previous_url = $session->getCurrentUrl();
+        FailureContext::addState('previous_url', $previous_url);
+
+        // Logout if logged in
+        if ($this->loggedIn()) {
+            $this->logOut();
+        }
+
+        // Go to the login page
+        $this->visitPath(
+            $this->getAdminBaseURL() .
+            '/wp-login.php?redirect_to=' .
+            urlencode($previous_url)
+        );
+
+        // Get the page
+        $page = $session->getPage();
+
+        // Accept the cookie notice if needed
+        $cookie_notice_button = $page->find('css', '#wp-gdpr-cookie-notice .wp-gdpr-cookie-notice-button');
+        if( null !== $cookie_notice_button ) {
+            $cookie_notice_button->press();
+            // Wait for the cookie notice element to be hidden, giving up after 5 seconds.
+            $session->wait(
+                5000,
+                "null !== document.getElementById('wp-gdpr-cookie-notice') && true === document.getElementById('wp-gdpr-cookie-notice').hidden"
+            );
+        }
+
+        // Fill in the login details
+        $this->login_page->setUserName($found_user['username']);
+        $this->login_page->setUserPassword($found_user['password']);
+        $this->login_page->setRememberMe();
+
+        // Submit the login form
+        $this->login_page->submitLoginForm();
+
+        if (! $this->loggedIn()) {
+            throw new ExpectationException('The user could not be logged-in.', $driver);
+        }
     }
 
     /**

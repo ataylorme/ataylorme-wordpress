@@ -1,0 +1,23 @@
+#!/bin/bash
+
+set -eo pipefail
+
+CURRENT_MINUTE=$(date +%M)
+
+# Only run cron every 10 minutes
+if (( $CURRENT_MINUTE % 10 == 0 ))
+then
+    # Run cron on dev
+    echo -e "Running wp cron event run --due-now on the dev environment...\n"
+    terminus -n wp $TERMINUS_SITE.dev -- cron event run --due-now
+
+    # Run cron on test
+    echo -e "Running wp cron event run --due-now on the test environment...\n"
+    terminus -n wp $TERMINUS_SITE.test -- cron event run --due-now
+
+    # Run cron on live
+    echo -e "Running wp cron event run --due-now on the live environment...\n"
+    terminus -n wp $TERMINUS_SITE.live -- cron event run --due-now
+else
+    exit 0
+fi

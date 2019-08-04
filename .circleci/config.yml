@@ -376,6 +376,23 @@ jobs:
           name: sync db
           command: ./.ci/deploy/pantheon/db-sync
 
+  cron_ping:
+    <<: *defaults
+    steps:
+      - checkout
+
+      - run:
+          name: setup-environment-vars
+          command: /build-tools-ci/scripts/set-environment
+
+      - run:
+          name: log in
+          command: terminus -n auth:login --machine-token="$TERMINUS_TOKEN"
+
+      - run:
+          name: Run the cron ping script
+          command: ./.ci/deploy/pantheon/cron-ping
+
 workflows:
   version: 2
   build_and_test:
