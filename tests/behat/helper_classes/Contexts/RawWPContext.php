@@ -131,7 +131,7 @@ class RawWPContext extends RawWordpressContext
             $driver->captureScreenshot($ss_path . '/login-page-failure.png');
             FailureContext::addState('username', $username);
             FailureContext::addState('redirect_url', $redirect_to);
-            throw new ExpectationException('[W803] The user could not be logged-in.', $this->getSession()->getDriver());
+            throw new ExpectationException('The user could not be logged-in.', $driver);
         }
     }
 
