@@ -180,7 +180,6 @@ class RawWPContext extends RawWordpressContext
 
         // Submit the login form
         $this->login_page->submitLoginForm();
-        $driver->captureScreenshot($ss_path . '/login-page-after-submission.png');
 
         if (! $this->loggedIn()) {
             throw new ExpectationException('The user could not be logged-in.', $driver);
