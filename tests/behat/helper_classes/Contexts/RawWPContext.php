@@ -110,6 +110,12 @@ class RawWPContext extends RawWordpressContext
         $this->visitPath('wp-login.php?redirect_to=' . urlencode($this->locatePath($redirect_to)));
         $page = $session->getPage();
         $cookie_notice_button = $page->find('css', '#wp-gdpr-cookie-notice .wp-gdpr-cookie-notice-button');
+        $driver = $this->getSession()->getDriver();
+        $ss_path = 'behat-screenshots/' . date('Y-m-d');
+        if (!file_exists($ss_path)) {
+            mkdir($ss_path, 0777, true);
+        }
+        $driver->captureScreenshot($ss_path . '/login-page-before-form-fill.png');
         if( null !== $cookie_notice ) {
             $cookie_notice_button->press();
             // Wait for the cookie notice element to be hidden, giving up after 5 seconds.
@@ -117,17 +123,15 @@ class RawWPContext extends RawWordpressContext
                 5000,
                 "null !== document.getElementById('" . $this->cookie_notice_css_id . "') && true === document.getElementById('" . $this->cookie_notice_css_id . "').hidden"
             );
+            $driver->captureScreenshot($ss_path . '/login-page-cookie-notice-accepted.png');
         }
         $this->login_page->setUserName($username);
         $this->login_page->setUserPassword($password);
         $this->login_page->setRememberMe();
+        $driver->captureScreenshot($ss_path . '/login-page-after-form-fill.png');
         $this->login_page->submitLoginForm();
+        $driver->captureScreenshot($ss_path . '/login-page-after-submission.png');
         if (! $this->loggedIn()) {
-            $driver = $this->getSession()->getDriver();
-            $ss_path = 'behat-screenshots/' . date('Y-m-d');
-            if (!file_exists($ss_path)) {
-                mkdir($ss_path, 0777, true);
-            }
             $driver->captureScreenshot($ss_path . '/login-page-failure.png');
             FailureContext::addState('username', $username);
             FailureContext::addState('redirect_url', $redirect_to);
