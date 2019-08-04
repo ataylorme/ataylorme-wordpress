@@ -5,7 +5,6 @@ Feature: Login as an administrator
   So that I can administer the site
 
 Background:
-    Given I accept the cookie notice
     Given I am a WordPress admin
     Given I am on the WordPress dashboard
 
