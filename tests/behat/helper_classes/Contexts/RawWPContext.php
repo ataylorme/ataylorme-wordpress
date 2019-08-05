@@ -126,6 +126,25 @@ class RawWPContext extends RawWordpressContext
         return $found_user;
     }
 
+    protected function acceptCookieNotice()
+    {
+        // Get the session
+        $session = $this->getSession();
+
+        // Get the page
+        $page = $session->getPage();
+
+        $cookie_notice_button = $page->find('css', '#wp-gdpr-cookie-notice .wp-gdpr-cookie-notice-button');
+        if( null !== $cookie_notice_button ) {
+            $cookie_notice_button->press();
+            // Wait for the cookie notice element to be hidden, giving up after 5 seconds.
+            $session->wait(
+                5000,
+                "null !== document.getElementById('wp-gdpr-cookie-notice') && true === document.getElementById('wp-gdpr-cookie-notice').hidden"
+            );
+        }
+    }
+
     /**
      * Log into WordPress as an admin
      *
@@ -152,26 +171,15 @@ class RawWPContext extends RawWordpressContext
             $this->logOut();
         }
 
+        // Accept the cookie notice if needed
+        $this->acceptCookieNotice();
+
         // Go to the login page
         $this->visitPath(
             $this->getAdminBaseURL() .
             '/wp-login.php?redirect_to=' .
             urlencode($previous_url)
         );
-
-        // Get the page
-        $page = $session->getPage();
-
-        // Accept the cookie notice if needed
-        $cookie_notice_button = $page->find('css', '#wp-gdpr-cookie-notice .wp-gdpr-cookie-notice-button');
-        if( null !== $cookie_notice_button ) {
-            $cookie_notice_button->press();
-            // Wait for the cookie notice element to be hidden, giving up after 5 seconds.
-            $session->wait(
-                5000,
-                "null !== document.getElementById('wp-gdpr-cookie-notice') && true === document.getElementById('wp-gdpr-cookie-notice').hidden"
-            );
-        }
 
         // Fill in the login details
         $this->login_page->setUserName($found_user['username']);
