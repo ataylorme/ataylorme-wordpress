@@ -49,6 +49,8 @@ class WordPressContext extends RawWPContext
             $session->start();
         }
 
+        $session->evaluateScript('window.confirm = function(){return true;}');
+
         // Stash the current URL
         $current_url = $session->getCurrentUrl();
 
