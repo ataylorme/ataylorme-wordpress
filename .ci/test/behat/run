@@ -65,4 +65,4 @@ export BEHAT_PARAMS='{"extensions": {"Behat\\MinkExtension": {"base_url": "https
 export RELOCATED_WP_ADMIN=TRUE
 
 # Run the Behat tests
-./vendor/bin/behat --config=tests/behat/behat-pantheon.yml --strict --colors  "$@" --rerun || ./vendor/bin/behat --rerun
+./vendor/bin/behat --config=tests/behat/behat-pantheon.yml --strict --colors  "$@" --rerun || ./vendor/bin/behat --config=tests/behat/behat-pantheon.yml --strict --colors  "$@" --rerun
