@@ -4,28 +4,31 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3f1debe0e116e5a97fc1dae7b3f55491",
+    "content-hash": "19aab03ae81c249fb4cd53ac5a5ecba4",
     "packages": [
         {
             "name": "ataylorme/ataylorme-wordpress-theme",
-            "version": "1.0.1",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ataylorme/ataylorme-wordpress-theme.git",
-                "reference": "5c7f9b74529384fb6b06eb8c2a95544998a493ab"
+                "reference": "bd295c2b134052d953d7b653d22f84eb09ca4f9f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ataylorme/ataylorme-wordpress-theme/zipball/5c7f9b74529384fb6b06eb8c2a95544998a493ab",
-                "reference": "5c7f9b74529384fb6b06eb8c2a95544998a493ab",
+                "url": "https://api.github.com/repos/ataylorme/ataylorme-wordpress-theme/zipball/bd295c2b134052d953d7b653d22f84eb09ca4f9f",
+                "reference": "bd295c2b134052d953d7b653d22f84eb09ca4f9f",
                 "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2"
             },
             "require-dev": {
                 "brain/monkey": "^2",
-                "dealerdirect/phpcodesniffer-composer-installer": "^0.4",
+                "dealerdirect/phpcodesniffer-composer-installer": "^0.5",
                 "php": ">=7.0",
                 "phpcompatibility/php-compatibility": "^9",
-                "phpunit/phpunit": "^6",
+                "phpunit/phpunit": "^8",
                 "wp-coding-standards/wpcs": "^2"
             },
             "type": "wordpress-theme",
@@ -62,10 +65,10 @@
             ],
             "description": "WordPress theme for ataylor.me",
             "support": {
-                "source": "https://github.com/ataylorme/ataylorme-wordpress-theme/tree/1.0.1",
+                "source": "https://github.com/ataylorme/ataylorme-wordpress-theme/tree/1.1.0",
                 "issues": "https://github.com/ataylorme/ataylorme-wordpress-theme/issues"
             },
-            "time": "2019-08-08T12:01:35+00:00"
+            "time": "2019-08-09T16:44:00+00:00"
         },
         {
             "name": "composer/installers",
