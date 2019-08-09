@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8b4a59743e6fbab4adc3712ed136bc15",
+    "content-hash": "3f1debe0e116e5a97fc1dae7b3f55491",
     "packages": [
         {
             "name": "ataylorme/ataylorme-wordpress-theme",
-            "version": "1.0.0",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ataylorme/ataylorme-wordpress-theme.git",
-                "reference": "53166d1b324ca32634ae1ed7485160fe91359b62"
+                "reference": "5c7f9b74529384fb6b06eb8c2a95544998a493ab"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ataylorme/ataylorme-wordpress-theme/zipball/53166d1b324ca32634ae1ed7485160fe91359b62",
-                "reference": "53166d1b324ca32634ae1ed7485160fe91359b62",
+                "url": "https://api.github.com/repos/ataylorme/ataylorme-wordpress-theme/zipball/5c7f9b74529384fb6b06eb8c2a95544998a493ab",
+                "reference": "5c7f9b74529384fb6b06eb8c2a95544998a493ab",
                 "shasum": ""
             },
             "require-dev": {
@@ -62,10 +62,10 @@
             ],
             "description": "WordPress theme for ataylor.me",
             "support": {
-                "source": "https://github.com/ataylorme/ataylorme-wordpress-theme/tree/master",
+                "source": "https://github.com/ataylorme/ataylorme-wordpress-theme/tree/1.0.1",
                 "issues": "https://github.com/ataylorme/ataylorme-wordpress-theme/issues"
             },
-            "time": "2019-07-16T23:06:21+00:00"
+            "time": "2019-08-08T12:01:35+00:00"
         },
         {
             "name": "composer/installers",
@@ -2392,18 +2392,18 @@
             "authors": [
                 {
                     "name": "Arne Blankerts",
-                    "role": "Developer",
-                    "email": "arne@blankerts.de"
+                    "email": "arne@blankerts.de",
+                    "role": "Developer"
                 },
                 {
                     "name": "Sebastian Heuer",
-                    "role": "Developer",
-                    "email": "sebastian@phpeople.de"
+                    "email": "sebastian@phpeople.de",
+                    "role": "Developer"
                 },
                 {
                     "name": "Sebastian Bergmann",
-                    "role": "Developer",
-                    "email": "sebastian@phpunit.de"
+                    "email": "sebastian@phpunit.de",
+                    "role": "Developer"
                 }
             ],
             "description": "Library for handling version information and constraints",
@@ -2725,8 +2725,8 @@
             "authors": [
                 {
                     "name": "Sebastian Bergmann",
-                    "role": "lead",
-                    "email": "sebastian@phpunit.de"
+                    "email": "sebastian@phpunit.de",
+                    "role": "lead"
                 }
             ],
             "description": "FilterIterator implementation that filters files based on a list of suffixes.",
@@ -2767,8 +2767,8 @@
             "authors": [
                 {
                     "name": "Sebastian Bergmann",
-                    "role": "lead",
-                    "email": "sebastian@phpunit.de"
+                    "email": "sebastian@phpunit.de",
+                    "role": "lead"
                 }
             ],
             "description": "Simple template engine.",
@@ -2816,8 +2816,8 @@
             "authors": [
                 {
                     "name": "Sebastian Bergmann",
-                    "role": "lead",
-                    "email": "sebastian@phpunit.de"
+                    "email": "sebastian@phpunit.de",
+                    "role": "lead"
                 }
             ],
             "description": "Utility class for timing",
@@ -3877,8 +3877,8 @@
             "authors": [
                 {
                     "name": "Sebastian Bergmann",
-                    "role": "lead",
-                    "email": "sebastian@phpunit.de"
+                    "email": "sebastian@phpunit.de",
+                    "role": "lead"
                 }
             ],
             "description": "Collection of value objects that represent the types of the PHP type system",
@@ -3920,8 +3920,8 @@
             "authors": [
                 {
                     "name": "Sebastian Bergmann",
-                    "role": "lead",
-                    "email": "sebastian@phpunit.de"
+                    "email": "sebastian@phpunit.de",
+                    "role": "lead"
                 }
             ],
             "description": "Library that helps with managing the version number of Git-hosted PHP projects",
