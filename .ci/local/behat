@@ -23,7 +23,8 @@ sleep 5
 
 # Run Behat, excluding Pantheon only tests
 echo -e "\nRunning the Behat tests..."
-./vendor/bin/behat --config=tests/behat/behat-pantheon.yml --strict --colors --format-settings='{"paths": false}' --tags '~@live'
+BEHAT_TAGS="~@live"
+./vendor/bin/behat --config=tests/behat/behat-pantheon.yml --strict --colors --format-settings='{"paths": false}' --tags "$BEHAT_TAGS" --rerun || ./vendor/bin/behat --config=tests/behat/behat-pantheon.yml --strict --colors --format-settings='{"paths": false}' --tags "$BEHAT_TAGS" --rerun
 
 # Restore the database to its state prior to testing
 echo -e "\nRestoring the DB after testing..."

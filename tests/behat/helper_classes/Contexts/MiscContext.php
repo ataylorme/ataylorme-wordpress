@@ -31,18 +31,30 @@ class MiscContext extends MinkContext
         // If we aren't on a valid page
         if ('about:blank' === $current_url ) {
             // Go to the home page
-            $session->visit($this->_getFrontendURL());
+            $session->visit($this->getMinkParameter('base_url'));
         }
     }
 
     /**
-     * Get the WordPress front end URL
+     * Take a screenshot
      *
-     * @return string the Mink base_url
+     * Example: And I take a Chrome screenshot
+     * Example: And I take a Chrome screenshot "some-page.png"
+     *
+     * @Then /^(?:|I )take a Chrome screenshot "(?P<file_name>[^"]+)"$/
+     * @Given I take a Chrome screenshot
      */
-    private function _getFrontendURL()
+    public function takeScreenshot($file_name=null)
     {
-        return $this->getMinkParameter('base_url');
+        $driver = $this->getSession()->getDriver();
+        $ss_path = 'behat-screenshots/' . date('Y-m-d');
+        if (!file_exists($ss_path)) {
+            mkdir($ss_path, 0777, true);
+        }
+        if ( null == $file_name ) {
+            $file_name = 'screenshot-' . date('Y-m-d-H-i-s') . '.png';
+        }
+        $driver->captureScreenshot($ss_path . '/' . $file_name);
     }
 
     /**

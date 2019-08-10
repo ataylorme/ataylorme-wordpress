@@ -14,6 +14,7 @@ default:
         - PaulGibbs\WordpressBehatExtension\Context\WidgetContext
         - ataylorme\WordHatHelpers\Contexts\WordPressContext
         - ataylorme\WordHatHelpers\Contexts\ContactForm
+        - ataylorme\WordHatHelpers\Contexts\CookieNotice
         - ataylorme\WordHatHelpers\Contexts\PantheonContext
         - ataylorme\WordHatHelpers\Contexts\MiscContext
 

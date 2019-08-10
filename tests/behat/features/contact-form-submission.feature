@@ -3,9 +3,12 @@ Feature: Verify the contact form
   As the site owner who likes to hear from users
   I want the contact form to submit properly
 
+Background:
+    Given I am on the contact page
+    Given I am an anonymous user
+
   Scenario: Confirm contact form submissions
-    When I go to "/contact"
-    And I set the contact form first name to "Andrew"
+    When I set the contact form first name to "Andrew"
     And I set the contact form last name to "Taylor"
     And I set the contact form email to "andrew@pantheon.io"
     And I set the contact form message to "Testing the contact form with Behat!"
