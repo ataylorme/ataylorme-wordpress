@@ -11,10 +11,7 @@ Background:
     When I am on the homepage
     And I follow "Privacy Policy"
     Then the response status code should be 200
-
-  Scenario: Verify the privacy policy is accessible from the homepage
-    When I go to "/privacy-policy"
-    Then I should see "This website is the personal, non-commercial website of Andrew Taylor."
+    And I should see "This website is the personal, non-commercial website of Andrew Taylor."
     And I should see "Contact forms"
     And I should see "Cookies"
     And I should see "Comments"
