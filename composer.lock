@@ -4,28 +4,31 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8b4a59743e6fbab4adc3712ed136bc15",
+    "content-hash": "19aab03ae81c249fb4cd53ac5a5ecba4",
     "packages": [
         {
             "name": "ataylorme/ataylorme-wordpress-theme",
-            "version": "1.0.0",
+            "version": "1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ataylorme/ataylorme-wordpress-theme.git",
-                "reference": "53166d1b324ca32634ae1ed7485160fe91359b62"
+                "reference": "10950d1a56f35820f03058202b378e80042e0a2e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ataylorme/ataylorme-wordpress-theme/zipball/53166d1b324ca32634ae1ed7485160fe91359b62",
-                "reference": "53166d1b324ca32634ae1ed7485160fe91359b62",
+                "url": "https://api.github.com/repos/ataylorme/ataylorme-wordpress-theme/zipball/10950d1a56f35820f03058202b378e80042e0a2e",
+                "reference": "10950d1a56f35820f03058202b378e80042e0a2e",
                 "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2"
             },
             "require-dev": {
                 "brain/monkey": "^2",
-                "dealerdirect/phpcodesniffer-composer-installer": "^0.4",
+                "dealerdirect/phpcodesniffer-composer-installer": "^0.5",
                 "php": ">=7.0",
                 "phpcompatibility/php-compatibility": "^9",
-                "phpunit/phpunit": "^6",
+                "phpunit/phpunit": "^8",
                 "wp-coding-standards/wpcs": "^2"
             },
             "type": "wordpress-theme",
@@ -62,10 +65,10 @@
             ],
             "description": "WordPress theme for ataylor.me",
             "support": {
-                "source": "https://github.com/ataylorme/ataylorme-wordpress-theme/tree/master",
+                "source": "https://github.com/ataylorme/ataylorme-wordpress-theme/tree/1.1.1",
                 "issues": "https://github.com/ataylorme/ataylorme-wordpress-theme/issues"
             },
-            "time": "2019-07-16T23:06:21+00:00"
+            "time": "2019-08-09T18:56:53+00:00"
         },
         {
             "name": "composer/installers",
@@ -2392,18 +2395,18 @@
             "authors": [
                 {
                     "name": "Arne Blankerts",
-                    "role": "Developer",
-                    "email": "arne@blankerts.de"
+                    "email": "arne@blankerts.de",
+                    "role": "Developer"
                 },
                 {
                     "name": "Sebastian Heuer",
-                    "role": "Developer",
-                    "email": "sebastian@phpeople.de"
+                    "email": "sebastian@phpeople.de",
+                    "role": "Developer"
                 },
                 {
                     "name": "Sebastian Bergmann",
-                    "role": "Developer",
-                    "email": "sebastian@phpunit.de"
+                    "email": "sebastian@phpunit.de",
+                    "role": "Developer"
                 }
             ],
             "description": "Library for handling version information and constraints",
@@ -2725,8 +2728,8 @@
             "authors": [
                 {
                     "name": "Sebastian Bergmann",
-                    "role": "lead",
-                    "email": "sebastian@phpunit.de"
+                    "email": "sebastian@phpunit.de",
+                    "role": "lead"
                 }
             ],
             "description": "FilterIterator implementation that filters files based on a list of suffixes.",
@@ -2767,8 +2770,8 @@
             "authors": [
                 {
                     "name": "Sebastian Bergmann",
-                    "role": "lead",
-                    "email": "sebastian@phpunit.de"
+                    "email": "sebastian@phpunit.de",
+                    "role": "lead"
                 }
             ],
             "description": "Simple template engine.",
@@ -2816,8 +2819,8 @@
             "authors": [
                 {
                     "name": "Sebastian Bergmann",
-                    "role": "lead",
-                    "email": "sebastian@phpunit.de"
+                    "email": "sebastian@phpunit.de",
+                    "role": "lead"
                 }
             ],
             "description": "Utility class for timing",
@@ -3877,8 +3880,8 @@
             "authors": [
                 {
                     "name": "Sebastian Bergmann",
-                    "role": "lead",
-                    "email": "sebastian@phpunit.de"
+                    "email": "sebastian@phpunit.de",
+                    "role": "lead"
                 }
             ],
             "description": "Collection of value objects that represent the types of the PHP type system",
@@ -3920,8 +3923,8 @@
             "authors": [
                 {
                     "name": "Sebastian Bergmann",
-                    "role": "lead",
-                    "email": "sebastian@phpunit.de"
+                    "email": "sebastian@phpunit.de",
+                    "role": "lead"
                 }
             ],
             "description": "Library that helps with managing the version number of Git-hosted PHP projects",

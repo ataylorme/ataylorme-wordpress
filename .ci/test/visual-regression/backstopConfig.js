@@ -6,7 +6,13 @@ const multidevURL = process.env.MULTIDEV_SITE_URL.replace(/\/$/, "");
 
 const pathsToTest = {
     'Homepage': '/',
-    'About Page': '/about',
+    'About Page': '/about/',
+    'Blog': '/blog/',
+    'Contact Page': '/contact/',
+    'FJ Cruiser (single blog template)': '/fj-cruiser/',
+    'Tag archive': '/tag/oregon/',
+    'Category archive': '/category/personal/',
+    'Category archive': '/category/personal/',
 }
 
 let scenariosToTest = [];
