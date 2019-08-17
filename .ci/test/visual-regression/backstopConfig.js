@@ -29,7 +29,7 @@ for (let [key, value] of Object.entries(pathsToTest)) {
             'document',
         ],
         readyEvent: null,
-        delay: ( value === /fj-cruiser/ ) ? 3000 :1500,
+        delay: 5000,
         misMatchThreshold: 0.1
     })
 }
