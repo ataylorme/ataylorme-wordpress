@@ -610,15 +610,15 @@
         },
         {
             "name": "wpackagist-plugin/health-check",
-            "version": "1.3.2",
+            "version": "1.4.0",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/health-check/",
-                "reference": "tags/1.3.2"
+                "reference": "tags/1.4.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/health-check.1.3.2.zip"
+                "url": "https://downloads.wordpress.org/plugin/health-check.1.4.0.zip"
             },
             "require": {
                 "composer/installers": "~1.0"
