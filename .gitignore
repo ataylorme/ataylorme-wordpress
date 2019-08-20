@@ -22,6 +22,7 @@ web/wp-content/mu-plugins/*
 !web/wp-content/mu-plugins/.gitkeep
 !web/wp-content/plugins/
 web/wp-content/plugins/*
+!web/wp-content/plugins/events-and-presentations/
 !web/wp-content/plugins/.gitkeep
 !web/wp-content/themes
 web/wp-content/themes/*

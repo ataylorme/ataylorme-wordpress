@@ -1,0 +1,15 @@
+{
+    "name": "ataylorme/events-and-presentations",
+    "type": "wordpress-plugin",
+    "authors": [
+        {
+            "name": "Andrew Taylor",
+            "email": "andrew@ataylor.me"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "ataylorme\\EventsAndPresentations\\": "inc"
+        }
+    }
+}
