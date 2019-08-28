@@ -473,13 +473,13 @@ workflows:
     jobs:
       - db_sync
 
-  scheduled_cron_ping:
-    triggers:
-      - schedule:
-          cron: "* * * * *"
-          filters:
-            branches:
-              only:
-                - cron_ping
-    jobs:
-      - cron_ping
+#  scheduled_cron_ping:
+#    triggers:
+#      - schedule:
+#          cron: "* * * * *"
+#          filters:
+#            branches:
+#              only:
+#                - cron_ping
+#    jobs:
+#      - cron_ping
