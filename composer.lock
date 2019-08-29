@@ -579,15 +579,15 @@
         },
         {
             "name": "wpackagist-plugin/amp",
-            "version": "1.2.1",
+            "version": "1.2.2",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/amp/",
-                "reference": "tags/1.2.1"
+                "reference": "tags/1.2.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/amp.1.2.1.zip"
+                "url": "https://downloads.wordpress.org/plugin/amp.1.2.2.zip"
             },
             "require": {
                 "composer/installers": "~1.0"
@@ -597,15 +597,15 @@
         },
         {
             "name": "wpackagist-plugin/gutenberg",
-            "version": "6.3.0",
+            "version": "6.4.0",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/gutenberg/",
-                "reference": "tags/6.3.0"
+                "reference": "tags/6.4.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/gutenberg.6.3.0.zip"
+                "url": "https://downloads.wordpress.org/plugin/gutenberg.6.4.0.zip"
             },
             "require": {
                 "composer/installers": "~1.0"
