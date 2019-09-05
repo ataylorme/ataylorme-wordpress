@@ -52,6 +52,7 @@ module.exports = {
             "height": 1080
         }
     ],
+    onReadyScript: 'onReadyScript.js',
     scenarios: scenariosToTest,
     paths: {
         bitmaps_reference: 'backstop_data/bitmaps_reference',
