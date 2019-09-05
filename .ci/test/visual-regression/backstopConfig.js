@@ -55,6 +55,7 @@ module.exports = {
     onReadyScript: 'onReadyScript.js',
     scenarios: scenariosToTest,
     paths: {
+        engine_scripts: '.ci/test/visual-regression',
         bitmaps_reference: 'backstop_data/bitmaps_reference',
         bitmaps_test: 'backstop_data/bitmaps_test',
         html_report: 'backstop_data/html_report',
