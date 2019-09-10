@@ -335,7 +335,7 @@ jobs:
 
       - run:
           name: run composer lock updater
-          command: set -e && clu https://${GITHUB_TOKEN}:x-oauth-basic@github.com/${CI_PROJECT_USERNAME}/${CI_PROJECT_REPONAME}.git | sed -e "s/${GITHUB_TOKEN}/[REDACTED]/g"
+          command: .ci/build/composer-update
 
   deploy_to_live:
     <<: *defaults
