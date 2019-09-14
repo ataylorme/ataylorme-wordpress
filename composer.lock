@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "ataylorme/ataylorme-wordpress-theme",
-            "version": "1.1.1",
+            "version": "1.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ataylorme/ataylorme-wordpress-theme.git",
-                "reference": "10950d1a56f35820f03058202b378e80042e0a2e"
+                "reference": "f6c02d436f295076038886c869173a9955ff5199"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ataylorme/ataylorme-wordpress-theme/zipball/10950d1a56f35820f03058202b378e80042e0a2e",
-                "reference": "10950d1a56f35820f03058202b378e80042e0a2e",
+                "url": "https://api.github.com/repos/ataylorme/ataylorme-wordpress-theme/zipball/f6c02d436f295076038886c869173a9955ff5199",
+                "reference": "f6c02d436f295076038886c869173a9955ff5199",
                 "shasum": ""
             },
             "require": {
@@ -65,10 +65,10 @@
             ],
             "description": "WordPress theme for ataylor.me",
             "support": {
-                "source": "https://github.com/ataylorme/ataylorme-wordpress-theme/tree/1.1.1",
+                "source": "https://github.com/ataylorme/ataylorme-wordpress-theme/tree/1.1.2",
                 "issues": "https://github.com/ataylorme/ataylorme-wordpress-theme/issues"
             },
-            "time": "2019-08-09T18:56:53+00:00"
+            "time": "2019-09-14T12:53:12+00:00"
         },
         {
             "name": "composer/installers",
