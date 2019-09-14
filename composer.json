@@ -43,7 +43,7 @@
   ],
   "require": {
     "php": ">=7.3",
-    "ataylorme/ataylorme-wordpress-theme": "^1.1.0",
+    "ataylorme/ataylorme-wordpress-theme": "dev-dependency-updates@dev",
     "composer/installers": "^1.3.0",
     "google/site-kit": "1.0.0-beta.1.0.3",
     "google/site-kit-dev-settings": "0.1.0",

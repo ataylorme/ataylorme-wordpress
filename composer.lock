@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "19aab03ae81c249fb4cd53ac5a5ecba4",
+    "content-hash": "3bf8e83e9689e45ddb61b1cd3160d9a0",
     "packages": [
         {
             "name": "ataylorme/ataylorme-wordpress-theme",
-            "version": "1.1.1",
+            "version": "dev-dependency-updates",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ataylorme/ataylorme-wordpress-theme.git",
-                "reference": "10950d1a56f35820f03058202b378e80042e0a2e"
+                "reference": "461bfe7f6a1db6e28aa1cd6c2a82e231d3b73c19"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ataylorme/ataylorme-wordpress-theme/zipball/10950d1a56f35820f03058202b378e80042e0a2e",
-                "reference": "10950d1a56f35820f03058202b378e80042e0a2e",
+                "url": "https://api.github.com/repos/ataylorme/ataylorme-wordpress-theme/zipball/461bfe7f6a1db6e28aa1cd6c2a82e231d3b73c19",
+                "reference": "461bfe7f6a1db6e28aa1cd6c2a82e231d3b73c19",
                 "shasum": ""
             },
             "require": {
@@ -65,10 +65,10 @@
             ],
             "description": "WordPress theme for ataylor.me",
             "support": {
-                "source": "https://github.com/ataylorme/ataylorme-wordpress-theme/tree/1.1.1",
+                "source": "https://github.com/ataylorme/ataylorme-wordpress-theme/tree/dependency-updates",
                 "issues": "https://github.com/ataylorme/ataylorme-wordpress-theme/issues"
             },
-            "time": "2019-08-09T18:56:53+00:00"
+            "time": "2019-09-14T12:32:54+00:00"
         },
         {
             "name": "composer/installers",
@@ -5327,6 +5327,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
+        "ataylorme/ataylorme-wordpress-theme": 20,
         "google/site-kit": 10,
         "wpackagist-plugin/wp-gdpr-cookie-notice": 10,
         "roave/security-advisories": 20
