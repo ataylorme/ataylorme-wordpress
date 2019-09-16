@@ -4,14 +4,14 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0e7678d0c897b67bfd22f7c048badaf6",
+    "content-hash": "2977b3217d0d9781f1bd4a0eceb83555",
     "packages": [
         {
             "name": "acf/advanced-custom-fields-pro",
-            "version": "5.8.3",
+            "version": "5.8.4",
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/wp-premium/advanced-custom-fields-pro/archive/5.8.3.zip"
+                "url": "https://github.com/wp-premium/advanced-custom-fields-pro/archive/5.8.4.zip"
             },
             "type": "wordpress-plugin"
         },
@@ -693,6 +693,24 @@
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/syntax-highlighting-code-block/"
+        },
+        {
+            "name": "wpackagist-plugin/wp-cfm",
+            "version": "1.6",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/wp-cfm/",
+                "reference": "tags/1.6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/wp-cfm.1.6.zip"
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/wp-cfm/"
         },
         {
             "name": "wpackagist-plugin/wp-gdpr-cookie-notice",
