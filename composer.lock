@@ -1676,16 +1676,16 @@
         },
         {
             "name": "genesis/behat-fail-aid",
-            "version": "2.1.3",
+            "version": "2.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/forceedge01/behat-fail-aid.git",
-                "reference": "3959113065513fefbf40663a4ae9dce1a1714197"
+                "reference": "973898ee356f41c475cc5941c2926c6067784650"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/forceedge01/behat-fail-aid/zipball/3959113065513fefbf40663a4ae9dce1a1714197",
-                "reference": "3959113065513fefbf40663a4ae9dce1a1714197",
+                "url": "https://api.github.com/repos/forceedge01/behat-fail-aid/zipball/973898ee356f41c475cc5941c2926c6067784650",
+                "reference": "973898ee356f41c475cc5941c2926c6067784650",
                 "shasum": ""
             },
             "require": {
@@ -1698,6 +1698,11 @@
                 "behat/mink-goutte-driver": "^1.2",
                 "ciaranmcnulty/behat-localwebserverextension": "^1.1",
                 "phpunit/phpunit": "4.*"
+            },
+            "suggest": {
+                "genesis/db-backup-restore": "Quickly backup and restore your database.",
+                "genesis/sql-data-mods": "Extends behat-sql-extension to provide a powerful and simple framework to manage your data modules.",
+                "genesis/test-routing": "Simplistic routing that can extend main app routing for testing purposes."
             },
             "type": "library",
             "autoload": {
@@ -1720,7 +1725,7 @@
                 "error",
                 "fail"
             ],
-            "time": "2019-08-06T10:39:33+00:00"
+            "time": "2019-09-16T17:22:53+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
