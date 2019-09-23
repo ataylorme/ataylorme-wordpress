@@ -386,10 +386,6 @@ jobs:
           command: /build-tools-ci/scripts/set-environment
 
       - run:
-          name: log in
-          command: terminus -n auth:login --machine-token="$TERMINUS_TOKEN"
-
-      - run:
           name: Run the cron ping script
           command: ./.ci/deploy/pantheon/cron-ping
 

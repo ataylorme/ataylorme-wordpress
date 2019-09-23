@@ -5,6 +5,9 @@ set -eo pipefail
 # Only run cron every 10 jobs (roughly 10 minutes)
 if (( $CIRCLE_BUILD_NUM % 10 == 0 ))
 then
+    # Auth with Terminus
+    terminus -n auth:login --machine-token="$TERMINUS_TOKEN"
+
     # Run cron on dev
     echo -e "Running wp cron event run --due-now on the dev environment...\n"
     terminus -n wp $TERMINUS_SITE.dev -- cron event run --due-now
