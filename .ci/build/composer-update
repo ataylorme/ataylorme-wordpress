@@ -1,0 +1,18 @@
+#!/bin/bash
+
+set -eo pipefail
+
+#
+# This script run Composer Lock Updater (CLU)
+# which will open a new pull request with
+# available PHP dependency updates.
+#
+
+# Set Composer Update arguments
+export CLU_COMPOSER_UPDATE_ARGS="--no-progress --no-interaction"
+
+# Set Composer Install arguments
+export CLU_COMPOSER_INSTALL_ARGS="--no-interaction"
+
+# Run CLU
+set -e && clu https://${GITHUB_TOKEN}:x-oauth-basic@github.com/${CI_PROJECT_USERNAME}/${CI_PROJECT_REPONAME}.git | sed -e "s/${GITHUB_TOKEN}/[REDACTED]/g"
