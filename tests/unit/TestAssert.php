@@ -5,7 +5,7 @@ namespace ataylorme\Tests\Unit;
 use PHPUnit\Framework\TestCase;
 use Brain\Monkey;
 
-class Test_Assert extends TestCase {
+class TestAssert extends TestCase {
 	protected function setUp(): void {
 		parent::setUp();
 		Monkey\setUp();
