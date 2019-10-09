@@ -29,7 +29,7 @@ module.exports = {
         let referenceURL;
 
         if (process.env.CI_BRANCH == "master") {
-            referenceURL = process.env.LIVE_SITE_URL.replace(/\/$/, "");
+            referenceURL = "https://www.ataylor.me";
         } else {
             referenceURL = process.env.DEV_SITE_URL.replace(/\/$/, "");
         }

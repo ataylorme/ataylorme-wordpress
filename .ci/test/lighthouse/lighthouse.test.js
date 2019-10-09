@@ -40,8 +40,3 @@ test("The SEO score is greater than 80", () => {
   expect(devData.lhr.categories.seo.score)
   .toBeGreaterThanOrEqual(0.80)
 });
-
-test("The SEO score drops no more than 3%", () => {
-  expect(devData.lhr.categories.seo.score)
-  .toBeGreaterThanOrEqual(referenceData.lhr.categories.seo.score - 0.03)
-});
