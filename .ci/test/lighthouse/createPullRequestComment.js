@@ -70,7 +70,7 @@ pullRequestMessage += `
 Lighthouse Audit Reports:
 
 - [\`${process.env.TERMINUS_ENV}\` HTML Report](${liveReportURL})
-- [\`pantheon.io\` HTML Report](${devReportURL})
+- [\`ataylor.me\` HTML Report](${devReportURL})
 `;
 
 octokit.issues.createComment({
