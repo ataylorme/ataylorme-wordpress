@@ -77,6 +77,4 @@ fi
 
 # Test Lighthouse results
 echo -e "\nTesting Lighthouse results..."
-LIGHTHOUSE_RESULTS=$(npm run lighthouse-test || echo 'true')
-
-echo "${LIGHTHOUSE_RESULTS}"
+npm run lighthouse-test
