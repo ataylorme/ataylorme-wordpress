@@ -69,14 +69,12 @@ REFERENCE_HTML_REPORT_URL="$ARTIFACTS_DIR_URL/lighthouse_data/lighthouse-audit-r
 PR_MESSAGE="Lighthouse audit results:\n- [Dev HTML Report]($DEV_HTML_REPORT_URL)\n- [Reference HTML Report]($REFERENCE_HTML_REPORT_URL)"
 
 # Post the results back to the pull request on GitHub
+# if not on the master branch
 if [[ ${CI_BRANCH} != "master" ]];
 then
-    echo -e "\nPosting Lighthouse results back to PR #$PR_NUMBER "
-    curl -s -i -u "$CI_PROJECT_USERNAME:$GITHUB_TOKEN" -d "{\"body\": \"$PR_MESSAGE\"}" $GITHUB_API_URL/issues/$PR_NUMBER/comments > /dev/null
+  npm run lighthouse-pr-comment
 fi
 
 # Test Lighthouse results
 echo -e "\nTesting Lighthouse results..."
-LIGHTHOUSE_RESULTS=$(npm run lighthouse-test || echo 'true')
-
-echo "${LIGHTHOUSE_RESULTS}"
+npm run lighthouse-test
