@@ -271,9 +271,32 @@ jobs:
           name: set environment variables
           command: ./.ci/scripts/set-up-env
 
+      - restore_cache:
+          keys:
+            - npm-dependencies-{{ checksum "package-lock.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - npm-dependencies-
+
+      - run:
+          name: set environment variables
+          command: ./.ci/scripts/set-up-env
+
+      - run:
+          name: Install Node dependencies
+          # npm install will rewrite package-lock.json
+          # to use the committed package-lock.json
+          # we need to run npm ci.
+          # See https://docs.npmjs.com/cli/ci.html
+          command: npm ci
+
       - run:
           name: visual regression test
           command: ./.ci/test/visual-regression/run
+
+      - save_cache:
+          key: npm-dependencies-{{ checksum "package-lock.json" }}
+          paths:
+            - node_modules
 
       - store_artifacts:
           path: /tmp/artifacts
