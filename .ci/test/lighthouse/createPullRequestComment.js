@@ -110,7 +110,6 @@ async function deleteCommentOnPullRequest(commentID) {
   const lighthouseComments = await getPullRequestLighthouseComments();
 
   if (lighthouseComments.length) {
-    console.log(`Found ${lighthouseComments.length} LightHouse comments`);
     await Promise.all(lighthouseComments.map(
       (comment) => deleteCommentOnPullRequest(comment.id)
     ));

@@ -41,7 +41,6 @@ async function deleteCommentOnPullRequest(commentID) {
   const visualRegressionComments = await getPullRequestVisualRegressionComments();
 
   if (visualRegressionComments.length) {
-    console.log(`Found ${visualRegressionComments.length} LightHouse comments`);
     await Promise.all(visualRegressionComments.map(
       (comment) => deleteCommentOnPullRequest(comment.id)
     ));
