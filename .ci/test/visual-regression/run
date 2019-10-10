@@ -122,7 +122,10 @@ fi
 # Post the image back to the pull request on GitHub
 if [[ -n ${CI_REPOSITORY_URL} && ${CI_REPOSITORY_URL} == *"github"* ]]
 then
-    echo -e "\nPosting visual regression results back to PR #$PR_NUMBER "
+    echo -e "\nPosting visual regression results back to PR $PR_NUMBER "
+    # Cleanup old VR comments
+    npm run vr-pr-comment-cleanup
+    # Add a comment with the new results
     curl -s -i -u "$CI_PROJECT_USERNAME:$GITHUB_TOKEN" -d "{\"body\": \"$PR_MESSAGE\"}" $GITHUB_API_URL/issues/$PR_NUMBER/comments > /dev/null
 fi
 

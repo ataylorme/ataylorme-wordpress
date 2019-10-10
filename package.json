@@ -21,6 +21,7 @@
   "scripts": {
     "lighthouse-run": "node ./.ci/test/lighthouse/lighthouse.run.js",
     "lighthouse-test": "jest ./.ci/test/lighthouse/lighthouse.test.js",
-    "lighthouse-pr-comment": "node ./.ci/test/lighthouse/createPullRequestComment.js"
+    "lighthouse-pr-comment": "node ./.ci/test/lighthouse/createPullRequestComment.js",
+    "vr-pr-comment-cleanup": "node ./.ci/test/visual-regression/deleteOldVisualRegressionComments.js"
   }
 }

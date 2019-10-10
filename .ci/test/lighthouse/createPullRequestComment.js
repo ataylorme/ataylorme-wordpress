@@ -57,7 +57,7 @@ const scoresToReport = [
 let pullRequestMessage = `
 Lighthouse Audit Results:
 
-| Description | Live | ${process.env.TERMINUS_ENV} | Difference |
+| Description | Live | pr-${process.env.PR_NUMBER} | Difference |
 | --- | --- | --- | --- |`;
 
 scoresToReport.map(scoreObj => {
@@ -69,7 +69,7 @@ pullRequestMessage += `
 
 Lighthouse Audit Reports:
 
-- [\`${process.env.TERMINUS_ENV}\` HTML Report](${liveReportURL})
+- [\`pr-${process.env.PR_NUMBER}\` HTML Report](${liveReportURL})
 - [\`ataylor.me\` HTML Report](${devReportURL})
 `;
 
@@ -110,7 +110,6 @@ async function deleteCommentOnPullRequest(commentID) {
   const lighthouseComments = await getPullRequestLighthouseComments();
 
   if (lighthouseComments.length) {
-    console.log(`Found ${lighthouseComments.length} LightHouse comments`);
     await Promise.all(lighthouseComments.map(
       (comment) => deleteCommentOnPullRequest(comment.id)
     ));
