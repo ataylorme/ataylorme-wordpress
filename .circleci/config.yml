@@ -155,7 +155,7 @@ jobs:
 
       - run:
           name: sync web
-          command: rsync -az /tmp/web/ web
+          command: rsync -rz /tmp/web/ web
 
       - restore_cache:
           keys:
@@ -201,11 +201,11 @@ jobs:
 
       - run:
           name: sync web
-          command: rsync -az /tmp/web/ web
+          command: rsync -rz /tmp/web/ web
 
       - run:
           name: sync vendor
-          command: rsync -az /tmp/vendor/ vendor
+          command: rsync -rz /tmp/vendor/ vendor
 
       - run:
           name: deploy to Pantheon
