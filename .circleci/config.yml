@@ -156,6 +156,10 @@ jobs:
     steps:
       - checkout
 
+      - run:
+          name: "Install rsync"
+          command: apt-get install -y rsync
+
       - attach_workspace:
           at: /tmp
 
