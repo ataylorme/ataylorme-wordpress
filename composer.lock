@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "19aab03ae81c249fb4cd53ac5a5ecba4",
+    "content-hash": "0b3f480a2f3c651b9ae72633d10e32ea",
     "packages": [
         {
             "name": "ataylorme/ataylorme-wordpress-theme",
-            "version": "1.1.2",
+            "version": "1.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ataylorme/ataylorme-wordpress-theme.git",
-                "reference": "f6c02d436f295076038886c869173a9955ff5199"
+                "reference": "690b4b879dc42b54d4e367fb3c19a3c96e25dbe0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ataylorme/ataylorme-wordpress-theme/zipball/f6c02d436f295076038886c869173a9955ff5199",
-                "reference": "f6c02d436f295076038886c869173a9955ff5199",
+                "url": "https://api.github.com/repos/ataylorme/ataylorme-wordpress-theme/zipball/690b4b879dc42b54d4e367fb3c19a3c96e25dbe0",
+                "reference": "690b4b879dc42b54d4e367fb3c19a3c96e25dbe0",
                 "shasum": ""
             },
             "require": {
@@ -65,10 +65,10 @@
             ],
             "description": "WordPress theme for ataylor.me",
             "support": {
-                "source": "https://github.com/ataylorme/ataylorme-wordpress-theme/tree/1.1.2",
+                "source": "https://github.com/ataylorme/ataylorme-wordpress-theme/tree/1.1.3",
                 "issues": "https://github.com/ataylorme/ataylorme-wordpress-theme/issues"
             },
-            "time": "2019-09-14T12:53:12+00:00"
+            "time": "2019-10-16T14:52:55+00:00"
         },
         {
             "name": "composer/installers",
