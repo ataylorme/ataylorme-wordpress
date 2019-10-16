@@ -8,9 +8,6 @@ set -eo pipefail
 # need to be persisted to other jobs.
 #
 
-# Build Composer Assets
-composer -n build-assets
-
 # Change into dev theme directory
 echo -e "\nChanging directories into web/wp-content/themes/wprig"
 cd web/wp-content/themes/wprig
