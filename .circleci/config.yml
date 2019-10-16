@@ -111,10 +111,23 @@ jobs:
           # Must be absolute path or relative path from working_directory
           at: /tmp
 
+      - run:
+          name: setup-environment-vars
+          command: /build-tools-ci/scripts/set-environment
+
       - restore_cache:
           keys:
             - main-vendor-{{ checksum "composer.lock" }}
             - main-vendor-
+
+      - run:
+          name: build root PHP assets
+          command: ./.ci/build/root-php
+
+      - save_cache:
+          key: main-vendor-{{ checksum "composer.lock" }}
+          paths:
+            - vendor
 
       - restore_cache:
           keys:
@@ -122,22 +135,13 @@ jobs:
             - wp-rig-vendor-
 
       - run:
-          name: setup-environment-vars
-          command: /build-tools-ci/scripts/set-environment
-
-      - run:
-          name: build PHP assets
-          command: ./.ci/build/php
+          name: build theme PHP assets
+          command: ./.ci/build/theme-php
 
       - save_cache:
           key: wp-rig-vendor-{{ checksum "web/wp-content/themes/wprig/composer.lock" }}
           paths:
             - web/wp-content/themes/wprig/vendor
-
-      - save_cache:
-          key: main-vendor-{{ checksum "composer.lock" }}
-          paths:
-            - vendor
 
       - persist_to_workspace:
           root: .
@@ -147,6 +151,8 @@ jobs:
 
   build_node:
     <<: *defaults
+    docker:
+      - image: circleci/node:lts
     steps:
       - checkout
 
@@ -163,8 +169,8 @@ jobs:
             - wp-rig-node-modules-
 
       - run:
-          name: build theme
-          command: ./.ci/build/node
+          name: build theme Node assets
+          command: ./.ci/build/theme-node
 
       - save_cache:
           key: wp-rig-node-modules-{{ checksum "web/wp-content/themes/wprig/package-lock.json" }}
