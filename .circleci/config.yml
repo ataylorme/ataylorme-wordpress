@@ -169,7 +169,9 @@ jobs:
 
       - restore_cache:
           keys:
-            - wp-rig-node-modules-{{ checksum "web/wp-content/themes/wprig/package-lock.json" }}
+            # when lock file changes, use increasingly general patterns to restore cache
+            - wp-rig-node-modules-{{ .Branch }}-{{ checksum "web/wp-content/themes/wprig/package-lock.json" }}
+            - wp-rig-node-modules-{{ .Branch }}-
             - wp-rig-node-modules-
 
       - run:
@@ -177,9 +179,9 @@ jobs:
           command: ./.ci/build/theme-node
 
       - save_cache:
-          key: wp-rig-node-modules-{{ checksum "web/wp-content/themes/wprig/package-lock.json" }}
           paths:
-            - web/wp-content/themes/wprig/node_modules
+            - $HOME/.npm
+          key: wp-rig-node-modules-{{ checksum "web/wp-content/themes/wprig/package-lock.json" }}
 
       - run:
           name: remove dev theme
@@ -283,9 +285,10 @@ jobs:
 
       - restore_cache:
           keys:
-            - npm-dependencies-{{ checksum "package-lock.json" }}
-            # fallback to using the latest cache if no exact match is found
-            - npm-dependencies-
+            # when lock file changes, use increasingly general patterns to restore cache
+            - node-dependencies-{{ .Branch }}-{{ checksum "package-lock.json" }}
+            - node-dependencies-{{ .Branch }}-
+            - node-dependencies-
 
       - run:
           name: set environment variables
@@ -304,9 +307,9 @@ jobs:
           command: ./.ci/test/visual-regression/run
 
       - save_cache:
-          key: npm-dependencies-{{ checksum "package-lock.json" }}
           paths:
-            - node_modules
+            - $HOME/.npm
+          key: node-dependencies-{{ .Branch }}-{{ checksum "package-lock.json" }}
 
       - store_artifacts:
           path: /tmp/artifacts
@@ -324,9 +327,10 @@ jobs:
 
       - restore_cache:
           keys:
-            - npm-dependencies-{{ checksum "package-lock.json" }}
-            # fallback to using the latest cache if no exact match is found
-            - npm-dependencies-
+            # when lock file changes, use increasingly general patterns to restore cache
+            - node-dependencies-{{ .Branch }}-{{ checksum "package-lock.json" }}
+            - node-dependencies-{{ .Branch }}-
+            - node-dependencies-
 
       - run:
           name: set environment variables
@@ -345,9 +349,9 @@ jobs:
           command: ./.ci/test/lighthouse/run
 
       - save_cache:
-          key: npm-dependencies-{{ checksum "package-lock.json" }}
           paths:
-            - node_modules
+            - $HOME/.npm
+          key: node-dependencies-{{ .Branch }}-{{ checksum "package-lock.json" }}
 
       - store_artifacts:
           path: /tmp/artifacts
