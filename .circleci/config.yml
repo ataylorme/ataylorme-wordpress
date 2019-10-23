@@ -324,9 +324,10 @@ jobs:
 
       - restore_cache:
           keys:
-            - npm-dependencies-{{ checksum "package-lock.json" }}
-            # fallback to using the latest cache if no exact match is found
-            - npm-dependencies-
+            # when lock file changes, use increasingly general patterns to restore cache
+            - node-dependencies-{{ .Branch }}-{{ checksum "package-lock.json" }}
+            - node-dependencies-{{ .Branch }}-
+            - node-dependencies-
 
       - run:
           name: set environment variables
@@ -345,9 +346,9 @@ jobs:
           command: ./.ci/test/lighthouse/run
 
       - save_cache:
-          key: npm-dependencies-{{ checksum "package-lock.json" }}
           paths:
-            - node_modules
+            - ~/usr/local/lib/node_modules  # location depends on npm version
+          key: node-dependencies-{{ .Branch }}-{{ checksum "package-lock.json" }}
 
       - store_artifacts:
           path: /tmp/artifacts
