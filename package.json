@@ -13,7 +13,7 @@
   },
   "homepage": "https://www.ataylor.me",
   "devDependencies": {
-    "@octokit/rest": "^16.33.1",
+    "@octokit/rest": "^16.34.0",
     "chrome-launcher": "^0.11.2",
     "jest": "^24.9.0",
     "lighthouse": "^5.5.0"
