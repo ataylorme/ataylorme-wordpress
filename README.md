@@ -23,3 +23,5 @@ This open-source repository is an extension of [`pantheon-systems/example-wordpr
 - Performance testing with [Lighthouse](https://developers.google.com/web/tools/lighthouse/) and [Jest](https://jestjs.io/)
 - Visual regression testing with [BackstopJS](https://github.com/garris/BackstopJS/)
 - Daily Composer update pull requests with [Composer lock updater](https://github.com/danielbachhuber/composer-lock-updater)
+
+TEST CHANGE
