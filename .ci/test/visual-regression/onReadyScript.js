@@ -32,18 +32,15 @@ function waitForNetworkIdle(page, timeout, maxInflightRequests = 0) {
 }
 
 module.exports = async (page, scenario, vp) => {
-    const cookieButtonSelector = 'button.wp-gdpr-cookie-notice-button';
-    try {
-        await page.waitForSelector(cookieButtonSelector, { timeout: 1500 })
-        await page.click(cookieButtonSelector)
-    } catch (error) {
-        console.log("The cookie notice did not appear.")
-    }
+    // Remove the cookie notice
+     await page.$eval('#wp-gdpr-cookie-notice', e => e.parentNode.removeChild(e));
 
-    await page.evaluate(_ => {
+    // Scroll to the bottom of the page
+    await page.evaluate( () => {
         window.scrollBy(0, window.innerHeight);
     });
 
+    // Wait for all network activity to stop
+    // to ensure lazy-loaded images are visible
     await waitForNetworkIdle(page, 500, 0);
-    // await page.waitFor(1500);
 };
