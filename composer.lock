@@ -669,15 +669,15 @@
         },
         {
             "name": "wpackagist-plugin/syntax-highlighting-code-block",
-            "version": "1.1.0",
+            "version": "1.1.2",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/syntax-highlighting-code-block/",
-                "reference": "tags/1.1.0"
+                "reference": "tags/1.1.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/syntax-highlighting-code-block.1.1.0.zip"
+                "url": "https://downloads.wordpress.org/plugin/syntax-highlighting-code-block.1.1.2.zip"
             },
             "require": {
                 "composer/installers": "~1.0"
