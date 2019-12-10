@@ -1686,16 +1686,16 @@
         },
         {
             "name": "genesis/behat-fail-aid",
-            "version": "2.4.2",
+            "version": "2.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/forceedge01/behat-fail-aid.git",
-                "reference": "2151a1b7439115f27fd7e6c081dc69aaba0a3ac6"
+                "reference": "9d72348dc31a983b91ba0cfc39bd3c89e1c04d27"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/forceedge01/behat-fail-aid/zipball/2151a1b7439115f27fd7e6c081dc69aaba0a3ac6",
-                "reference": "2151a1b7439115f27fd7e6c081dc69aaba0a3ac6",
+                "url": "https://api.github.com/repos/forceedge01/behat-fail-aid/zipball/9d72348dc31a983b91ba0cfc39bd3c89e1c04d27",
+                "reference": "9d72348dc31a983b91ba0cfc39bd3c89e1c04d27",
                 "shasum": ""
             },
             "require": {
@@ -1738,7 +1738,7 @@
                 "error",
                 "fail"
             ],
-            "time": "2019-12-05T14:27:27+00:00"
+            "time": "2019-12-09T15:54:43+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
