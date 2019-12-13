@@ -319,16 +319,16 @@
         },
         {
             "name": "phpoption/phpoption",
-            "version": "1.6.0",
+            "version": "1.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/schmittjoh/php-option.git",
-                "reference": "f4e7a6a1382183412246f0d361078c29fb85089e"
+                "reference": "a8593bf5176bf3d3f2966942c530be19b44ec87c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/schmittjoh/php-option/zipball/f4e7a6a1382183412246f0d361078c29fb85089e",
-                "reference": "f4e7a6a1382183412246f0d361078c29fb85089e",
+                "url": "https://api.github.com/repos/schmittjoh/php-option/zipball/a8593bf5176bf3d3f2966942c530be19b44ec87c",
+                "reference": "a8593bf5176bf3d3f2966942c530be19b44ec87c",
                 "shasum": ""
             },
             "require": {
@@ -369,7 +369,7 @@
                 "php",
                 "type"
             ],
-            "time": "2019-11-30T20:20:49+00:00"
+            "time": "2019-12-11T13:45:14+00:00"
         },
         {
             "name": "roots/wp-password-bcrypt",
@@ -709,15 +709,15 @@
         },
         {
             "name": "wpackagist-plugin/wp-mail-smtp",
-            "version": "1.7.1",
+            "version": "1.8.0",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wp-mail-smtp/",
-                "reference": "tags/1.7.1"
+                "reference": "tags/1.8.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wp-mail-smtp.1.7.1.zip"
+                "url": "https://downloads.wordpress.org/plugin/wp-mail-smtp.1.8.0.zip"
             },
             "require": {
                 "composer/installers": "~1.0"
@@ -763,15 +763,15 @@
         },
         {
             "name": "wpackagist-plugin/wpforms-lite",
-            "version": "1.5.6.2",
+            "version": "1.5.7",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wpforms-lite/",
-                "reference": "tags/1.5.6.2"
+                "reference": "tags/1.5.7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wpforms-lite.1.5.6.2.zip"
+                "url": "https://downloads.wordpress.org/plugin/wpforms-lite.1.5.7.zip"
             },
             "require": {
                 "composer/installers": "~1.0"
@@ -3962,16 +3962,16 @@
         },
         {
             "name": "sensiolabs/behat-page-object-extension",
-            "version": "v2.3.0",
+            "version": "v2.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensiolabs/BehatPageObjectExtension.git",
-                "reference": "a05dda9dc38bfb3c789a936fd003b351a9a396be"
+                "reference": "b41bf1bbe9392afa6dee6544d4a9c95a4f5e0463"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/BehatPageObjectExtension/zipball/a05dda9dc38bfb3c789a936fd003b351a9a396be",
-                "reference": "a05dda9dc38bfb3c789a936fd003b351a9a396be",
+                "url": "https://api.github.com/repos/sensiolabs/BehatPageObjectExtension/zipball/b41bf1bbe9392afa6dee6544d4a9c95a4f5e0463",
+                "reference": "b41bf1bbe9392afa6dee6544d4a9c95a4f5e0463",
                 "shasum": ""
             },
             "require": {
@@ -3979,16 +3979,19 @@
                 "behat/mink": "^1.7",
                 "behat/mink-extension": "^2.2",
                 "ocramius/proxy-manager": "^2.1.1",
-                "php": ">=7.1.3,<7.4"
+                "php": "^7.2"
+            },
+            "conflict": {
+                "guzzlehttp/guzzle": "<6.3"
             },
             "require-dev": {
                 "behat/mink-goutte-driver": "^1.2",
-                "bossa/phpspec2-expect": "^3.1",
+                "bossa/phpspec2-expect": "^3.1.1",
                 "fabpot/goutte": "^3.2",
-                "phpspec/phpspec": "^5.1",
-                "symfony/filesystem": "^4.2",
-                "symfony/process": "^4.2",
-                "symfony/yaml": "^4.2"
+                "phpspec/phpspec": "^6.1",
+                "symfony/filesystem": "^4.2 || ^5.0",
+                "symfony/process": "^4.2 || ^5.0",
+                "symfony/yaml": "^4.2 || ^5.0"
             },
             "suggest": {
                 "bossa/phpspec2-expect": "Allows to use PHPSpec2 matchers in Behat context files"
@@ -3996,7 +3999,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.0-dev"
+                    "dev-master": "2.3-dev"
                 }
             },
             "autoload": {
@@ -4025,7 +4028,7 @@
                 "Behat",
                 "page"
             ],
-            "time": "2019-04-17T08:36:40+00:00"
+            "time": "2019-12-12T13:42:00+00:00"
         },
         {
             "name": "squizlabs/php_codesniffer",
