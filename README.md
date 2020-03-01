@@ -1,5 +1,11 @@
 # ataylorme-wordpress
 
+## Archived in 2020
+
+As of 2020, this project has been archived and is no longer maintained. It can still be used as a reference example but is out of date.
+
+## About
+
 The [WordPress](https://wordpress.org/) and [WP Rig](https://github.com/wprig/wprig) powered [personal site of Andrew Taylor](https://ataylor.me). 
 
 ## Build Status
